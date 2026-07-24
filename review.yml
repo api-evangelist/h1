@@ -1,0 +1,128 @@
+aid: h1
+name: H1
+review:
+  question: >-
+    Does H1 expose a real, documented public developer API, and is it FHIR /
+    SMART-on-FHIR based?
+  answer: true
+  fhir: false
+  date: '2026-07-24'
+  reviewer: API Evangelist
+  homeMarket: United States
+findings:
+  summary: >-
+    H1 (h1.co) publishes a real, documented developer API. The primary domain
+    h1.co (HTTP 200) links directly from its homepage to the developer portal at
+    https://ribbon.readme.io/ (HTTP 200) - the Ribbon Health API, which H1
+    operates following its acquisition of Ribbon Health. The API is a proprietary
+    REST API over HTTPS with base URL https://api.ribbonhealth.com/v1 (the root
+    returns HTTP 401 not_authenticated, confirming a live, key-gated host). It is
+    NOT FHIR-based: no FHIR CapabilityStatement / metadata endpoint and no
+    /.well-known/smart-configuration are served, and the data model uses
+    proprietary REST resources (providers by NPI, locations, insurances,
+    procedures, pricing) rather than FHIR resources. A full OpenAPI 3.1.0
+    definition (title "Ribbon Health API", version 1.0.0, 57 paths, single server
+    https://api.ribbonhealth.com/v1) was harvested verbatim from the ReadMe
+    reference and saved to openapi/ribbon-health-api-openapi.json. The surface is
+    segmented into Providers, Locations, Filters, Focus Areas (clinical
+    areas/conditions/treatments), Price Transparency, Cost Estimates &
+    Eligibility, Organizations, Reference Data (insurances/specialties/procedures/
+    types/languages/TINs/virtual care platforms), and Network Analysis.
+  developerPortal:
+    url: https://ribbon.readme.io/
+    httpStatus: 200
+    confirmed: true
+    note: >-
+      Linked directly from the h1.co homepage as the H1 / Ribbon Health API
+      developer documentation. Docs are split into Guides and an API Reference.
+  fhirCapabilityStatement:
+    present: false
+    version: null
+    resources: []
+    note: >-
+      No <base>/metadata CapabilityStatement and no /.well-known/smart-configuration
+      are served. Ribbon/H1 is a proprietary REST provider-data API, not an
+      HL7 FHIR interoperability API.
+  downloadableSpecs:
+    count: 1
+    specs:
+    - name: Ribbon Health API
+      format: OpenAPI 3.1.0
+      path: openapi/ribbon-health-api-openapi.json
+      paths: 57
+      server: https://api.ribbonhealth.com/v1
+      provenance: >-
+        Extracted verbatim from the embedded OpenAPI 3.1.0 definition in the
+        ReadMe-hosted API reference at https://ribbon.readme.io/reference on
+        2026-07-24 (parsed and validated: openapi 3.1.0, 57 paths, one server).
+  authModel:
+    scheme: API key (HTTP Bearer)
+    smartOnFhir: false
+    oauth2: false
+    scopes: []
+    note: >-
+      OpenAPI declares a single security scheme BearerAuth (type http, scheme
+      bearer) applied globally; the API key is passed as a bearer token. Sign-up
+      is gated via https://h1.co/request-demo/ - a documented but partner/demo-gated
+      onboarding rather than fully self-serve public keys. team@ribbonhealth.com
+      is the support contact returned on unauthenticated requests.
+  standardsConformance:
+    usCore: false
+    ukCore: false
+    auCore: false
+    daVinci: false
+    carinBlueButton: false
+    note: >-
+      No US Core / Da Vinci / CARIN Blue Button (or other FHIR implementation
+      guide) conformance - the API is not FHIR. Price Transparency data aligns
+      conceptually with US payer price-transparency disclosures but is exposed
+      through proprietary REST, not a FHIR IG.
+  accessPosture:
+    gated: true
+    selfServe: false
+    note: >-
+      Documentation is fully public; production API keys require a request-demo /
+      partner sign-up. No endpoints were fabricated behind the gate - the OpenAPI
+      was harvested from the public reference.
+  transports:
+  - protocol: REST
+    scheme: https
+    baseURL: https://api.ribbonhealth.com/v1
+    documented: true
+  - protocol: FHIR
+    scheme: https
+    documented: false
+    note: No FHIR base, metadata CapabilityStatement, or SMART-on-FHIR configuration is served.
+  - protocol: WebSocket
+    scheme: wss
+    documented: false
+    note: No WebSocket surface is documented.
+sources:
+- url: https://h1.co/
+  type: Website
+  note: Primary domain, HTTP 200; homepage links to the Ribbon Health API developer portal.
+- url: https://ribbon.readme.io/
+  type: DeveloperPortal
+  note: HTTP 200; H1 / Ribbon Health API developer documentation (Guides + API Reference).
+- url: https://ribbon.readme.io/docs/welcome-to-the-ribbon-health-api
+  type: Documentation
+  note: States base URL https://api.ribbonhealth.com/v1/ and API-key authentication.
+- url: https://ribbon.readme.io/reference
+  type: APIReference
+  note: Embeds the OpenAPI 3.1.0 definition (57 paths) harvested to openapi/.
+- url: https://api.ribbonhealth.com/v1
+  type: BaseURL
+  note: HTTP 401 not_authenticated on the root - confirms a live, API-key-gated host.
+actions:
+  openapiHarvested: true
+  openapiPath: openapi/ribbon-health-api-openapi.json
+  fhirCaptured: false
+  apisYmlUpdated: true
+  reason: >-
+    Real developer portal and a downloadable OpenAPI 3.1.0 were confirmed and
+    harvested verbatim; apis.yml catalogs the documented REST product families.
+    No FHIR CapabilityStatement or SMART-on-FHIR surface exists for this provider,
+    so none was captured.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
