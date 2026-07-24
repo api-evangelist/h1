@@ -1,0 +1,79 @@
+generated: '2026-07-24'
+method: derived
+source: openapi/ribbon-health-api-openapi.json
+note: Derived from OpenAPI paths and id-reference parameters (NPI + *_uuid). The API exposes no components.schemas,
+  so relationships are inferred from path structure and id fields.
+entities:
+- name: provider
+  id: npi
+  id_type: NPI
+- name: location
+  id: location_uuid
+- name: insurance
+  id: insurance_uuid
+- name: specialty
+  id: specialty_uuid
+- name: procedure
+  id: procedure_uuid
+- name: organization
+  id: organization_uuid
+- name: clinical_area
+  id: clinical_area_uuid
+- name: condition
+  id: condition_uuid
+- name: treatment
+  id: treatment_uuid
+- name: provider_type
+  id: provider_type_uuid
+- name: location_type
+  id: location_type_uuid
+- name: tin
+  id: tin_id
+- name: carrier
+  id: carrier_uuid
+- name: filter
+  id: filter_uuid
+- name: virtual_care_platform
+  id: virtual_care_platform_uuid
+relationships:
+- from: provider
+  to: location
+  type: has_many
+  via: location_uuid
+- from: provider
+  to: specialty
+  type: has_many
+  via: specialty_uuid
+- from: provider
+  to: procedure
+  type: has_many
+  via: procedure_uuid
+- from: provider
+  to: clinical_area
+  type: has_many
+  via: clinical_area_uuid
+- from: location
+  to: insurance
+  type: has_many
+  via: insurance_uuid
+- from: location
+  to: organization
+  type: has_many
+  via: organization_uuid
+- from: location
+  to: clinical_area
+  type: has_many
+  via: clinical_area_uuid
+- from: clinical_area
+  to: condition
+  type: has_many
+  via: condition_uuid
+- from: condition
+  to: treatment
+  type: has_many
+  via: treatment_uuid
+- from: carrier
+  to: procedure
+  type: has_many
+  via: procedure_uuid
+  context: price transparency negotiated rates

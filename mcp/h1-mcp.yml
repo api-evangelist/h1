@@ -1,0 +1,235 @@
+generated: '2026-07-24'
+method: derived
+status: candidate
+server:
+  name: h1-ribbon-health
+  transport: http
+note: Candidate tool list derived one-per-operation from the Ribbon Health OpenAPI. No official hosted
+  MCP server was found for H1/Ribbon Health as of this round.
+source: openapi/ribbon-health-api-openapi.json
+tools:
+- name: get_custom_providers
+  description: Search Providers
+  source_operation: openapi/ribbon-health-api-openapi.json#getCustomProviders
+- name: get_custom_provider
+  description: Get Provider
+  source_operation: openapi/ribbon-health-api-openapi.json#getCustomProvider
+- name: put_custom_provider
+  description: Modify Provider Fields
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomProvider
+- name: put_custom_provider_locations
+  description: Add Or Remove Provider Locations
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomProviderLocations
+- name: put_custom_provider_location
+  description: Modify Provider Location Fields
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomProviderLocation
+- name: put_custom_provider_specialties
+  description: Add Or Remove Provider Specialties
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomProviderSpecialties
+- name: put_custom_provider_primary_specialties
+  description: Modify A Provider's Primary Specialties
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomProviderPrimarySpecialties
+- name: put_custom_provider_procedures
+  description: Add Or Remove Provider Procedures
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomProviderProcedures
+- name: put_custom_provider_clinical_areas
+  description: Add Or Remove Provider Clinical Areas
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomProviderClinicalAreas
+- name: put_custom_provider_location_insurances
+  description: Add Or Remove Provider Insurances At A Location
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomProviderLocationInsurances
+- name: put_custom_provider_location_organizations
+  description: Add Or Remove Provider Organizations At A Location
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomProviderLocationOrganizations
+- name: get_custom_provider_filters
+  description: Get Provider Filters
+  source_operation: openapi/ribbon-health-api-openapi.json#getCustomProviderFilters
+- name: create_custom_provider_filter
+  description: Create Provider Filter
+  source_operation: openapi/ribbon-health-api-openapi.json#createCustomProviderFilter
+- name: edit_custom_provider_filter
+  description: Edit Provider Filter
+  source_operation: openapi/ribbon-health-api-openapi.json#editCustomProviderFilter
+- name: delete_custom_provider_filter
+  description: Delete Provider Filter
+  source_operation: openapi/ribbon-health-api-openapi.json#deleteCustomProviderFilter
+- name: get_custom_locations
+  description: Search Locations
+  source_operation: openapi/ribbon-health-api-openapi.json#getCustomLocations
+- name: post_custom_locations
+  description: Create Location
+  source_operation: openapi/ribbon-health-api-openapi.json#postCustomLocations
+- name: get_custom_location
+  description: Get Location
+  source_operation: openapi/ribbon-health-api-openapi.json#getCustomLocation
+- name: put_custom_location
+  description: Add or Edit Location Fields
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomLocation
+- name: delete_custom_location
+  description: Delete Location
+  source_operation: openapi/ribbon-health-api-openapi.json#deleteCustomLocation
+- name: put_custom_location_insurances
+  description: Add Or Remove Location Insurances
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomLocationInsurances
+- name: put_custom_location_organizations
+  description: Add Or Remove Location Organizations
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomLocationOrganizations
+- name: put_custom_location_clinical_areas
+  description: Add Or Remove Location Clinical Areas
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomLocationClinicalAreas
+- name: get_custom_location_filters
+  description: Get Location Filters
+  source_operation: openapi/ribbon-health-api-openapi.json#getCustomLocationFilters
+- name: create_custom_location_filter
+  description: Create Location Filter
+  source_operation: openapi/ribbon-health-api-openapi.json#createCustomLocationFilter
+- name: edit_custom_location_filter
+  description: Edit Location Filter
+  source_operation: openapi/ribbon-health-api-openapi.json#editCustomLocationFilter
+- name: delete_custom_location_filter
+  description: Delete Location Filter
+  source_operation: openapi/ribbon-health-api-openapi.json#deleteCustomLocationFilter
+- name: get_insurances
+  description: Search Insurances
+  source_operation: openapi/ribbon-health-api-openapi.json#getInsurances
+- name: post_custom_insurance
+  description: Create Insurance
+  source_operation: openapi/ribbon-health-api-openapi.json#postCustomInsurance
+- name: get_custom_insurance
+  description: Get Insurance
+  source_operation: openapi/ribbon-health-api-openapi.json#getCustomInsurance
+- name: put_custom_insurance
+  description: Edit Insurance Fields
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomInsurance
+- name: delete_custom_insurance
+  description: Delete Insurance
+  source_operation: openapi/ribbon-health-api-openapi.json#deleteCustomInsurance
+- name: get_specialties
+  description: Search Specialties
+  source_operation: openapi/ribbon-health-api-openapi.json#getSpecialties
+- name: post_custom_specialty
+  description: Create Specialty
+  source_operation: openapi/ribbon-health-api-openapi.json#postCustomSpecialty
+- name: get_custom_specialty
+  description: Get Specialty
+  source_operation: openapi/ribbon-health-api-openapi.json#getCustomSpecialty
+- name: put_custom_specialty
+  description: Edit Specialty Fields
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomSpecialty
+- name: delete_custom_specialty
+  description: Delete Specialty
+  source_operation: openapi/ribbon-health-api-openapi.json#deleteCustomSpecialty
+- name: get_clinical_areas
+  description: Search Clinical Areas
+  source_operation: openapi/ribbon-health-api-openapi.json#getClinicalAreas
+- name: get_clinical_area
+  description: Get Clinical Area
+  source_operation: openapi/ribbon-health-api-openapi.json#getClinicalArea
+- name: get_conditions
+  description: Search Conditions
+  source_operation: openapi/ribbon-health-api-openapi.json#getConditions
+- name: get_condition
+  description: Get Condition
+  source_operation: openapi/ribbon-health-api-openapi.json#getCondition
+- name: get_treatments
+  description: Search Treatments
+  source_operation: openapi/ribbon-health-api-openapi.json#getTreatments
+- name: get_treatment
+  description: Get Treatment
+  source_operation: openapi/ribbon-health-api-openapi.json#getTreatment
+- name: get_organizations
+  description: Search Organizations
+  source_operation: openapi/ribbon-health-api-openapi.json#getOrganizations
+- name: get_organization
+  description: Get Organization
+  source_operation: openapi/ribbon-health-api-openapi.json#getOrganization
+- name: get_tins
+  description: Search TINs
+  source_operation: openapi/ribbon-health-api-openapi.json#getTins
+- name: get_custom_tin
+  description: Get TIN
+  source_operation: openapi/ribbon-health-api-openapi.json#getCustomTin
+- name: get_custom_provider_types
+  description: Search Provider Types
+  source_operation: openapi/ribbon-health-api-openapi.json#getCustomProviderTypes
+- name: post_custom_provider_type
+  description: Create Provider Type
+  source_operation: openapi/ribbon-health-api-openapi.json#postCustomProviderType
+- name: get_custom_provider_type
+  description: Get Provider Type
+  source_operation: openapi/ribbon-health-api-openapi.json#getCustomProviderType
+- name: put_custom_provider_type
+  description: Edit Provider Type Fields
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomProviderType
+- name: delete_custom_provider_type
+  description: Delete Provider Type
+  source_operation: openapi/ribbon-health-api-openapi.json#deleteCustomProviderType
+- name: get_custom_location_types
+  description: Search Location Types
+  source_operation: openapi/ribbon-health-api-openapi.json#getCustomLocationTypes
+- name: post_custom_location_type
+  description: Create Location Type
+  source_operation: openapi/ribbon-health-api-openapi.json#postCustomLocationType
+- name: get_custom_location_type
+  description: Get Location Type
+  source_operation: openapi/ribbon-health-api-openapi.json#getCustomLocationType
+- name: put_custom_location_type
+  description: Edit Location Type Fields
+  source_operation: openapi/ribbon-health-api-openapi.json#putCustomLocationType
+- name: delete_custom_location_type
+  description: Delete Location Type
+  source_operation: openapi/ribbon-health-api-openapi.json#deleteCustomLocationType
+- name: get_custom_virtual_care_platforms
+  description: Search Virtual Care Platforms
+  source_operation: openapi/ribbon-health-api-openapi.json#getCustomVirtualCarePlatforms
+- name: get_virtual_care_platform
+  description: Get Virtual Care Platform
+  source_operation: openapi/ribbon-health-api-openapi.json#getVirtualCarePlatform
+- name: get_procedures
+  description: Search Procedures
+  source_operation: openapi/ribbon-health-api-openapi.json#getProcedures
+- name: get_procedure
+  description: Get Procedure
+  source_operation: openapi/ribbon-health-api-openapi.json#getProcedure
+- name: get_languages
+  description: Search Languages
+  source_operation: openapi/ribbon-health-api-openapi.json#getLanguages
+- name: get_pricing_providers
+  description: Provider Price Search
+  source_operation: openapi/ribbon-health-api-openapi.json#getPricingProviders
+- name: get_pricing_provider_procedures
+  description: Provider Procedures
+  source_operation: openapi/ribbon-health-api-openapi.json#getPricingProviderProcedures
+- name: get_pricing_provider_procedure
+  description: Provider Procedure Pricing
+  source_operation: openapi/ribbon-health-api-openapi.json#getPricingProviderProcedure
+- name: get_pricing_provider_procedure_location
+  description: Provider Location Procedure Pricing
+  source_operation: openapi/ribbon-health-api-openapi.json#getPricingProviderProcedureLocation
+- name: get_pricing_carriers
+  description: List Carriers
+  source_operation: openapi/ribbon-health-api-openapi.json#getPricingCarriers
+- name: get_pricing_carrier
+  description: Get Carrier
+  source_operation: openapi/ribbon-health-api-openapi.json#getPricingCarrier
+- name: get_pricing_carrier_names
+  description: Carrier Names
+  source_operation: openapi/ribbon-health-api-openapi.json#getPricingCarrierNames
+- name: get_pricing_version_carrier
+  description: Carrier Data Versions By Name
+  source_operation: openapi/ribbon-health-api-openapi.json#getPricingVersionCarrier
+- name: get_eligibility
+  description: Check Member Eligibility
+  source_operation: openapi/ribbon-health-api-openapi.json#getEligibility
+- name: get_eligibility_insurance_partners
+  description: Search Supported Eligibility Insurances
+  source_operation: openapi/ribbon-health-api-openapi.json#getEligibilityInsurancePartners
+- name: get_eligibility_insurance_partner
+  description: Get Eligibility Insurance
+  source_operation: openapi/ribbon-health-api-openapi.json#getEligibilityInsurancePartner
+- name: get_procedure_cost_estimate
+  description: Procedure Cost Estimate
+  source_operation: openapi/ribbon-health-api-openapi.json#getProcedureCostEstimate
+- name: get_network_analysis
+  description: Network Analysis Based on Geography
+  source_operation: openapi/ribbon-health-api-openapi.json#getNetworkAnalysis

@@ -1,0 +1,33 @@
+generated: '2026-07-24'
+method: searched
+source: https://ribbon.readme.io/docs/rate-limits
+error:
+  status: 429
+  code: rate_limit_exceeded
+  message: Too Many Requests
+default_unit: requests
+limits:
+- endpoint: v1/custom/providers
+  limit_count: 1000
+  window: minute
+- endpoint: v1/custom/providers/{npi}
+  limit_count: 5000
+  window: minute
+- endpoint: v1/insurances
+  limit_count: 1000
+  window: minute
+- endpoint: v1/specialties
+  limit_count: 1000
+  window: minute
+- endpoint: v1/custom/locations
+  limit_count: 1000
+  window: minute
+- endpoint: v1/custom/locations/{uuid}
+  limit_count: 5000
+  window: minute
+- endpoint: v1/conditions
+  limit_count: 1000
+  window: minute
+- endpoint: v1/deductible
+  limit_count: 1000
+  window: hour

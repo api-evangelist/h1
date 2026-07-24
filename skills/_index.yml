@@ -1,0 +1,19 @@
+generated: '2026-07-24'
+method: generated
+skills:
+- file: h1-provider-search.md
+  name: Search and retrieve healthcare providers
+  api: openapi/ribbon-health-api-openapi.json
+  operations: [getCustomProviders, getCustomProvider, getSpecialties, getInsurances]
+- file: h1-in-network-search.md
+  name: Find in-network providers for an insurance
+  api: openapi/ribbon-health-api-openapi.json
+  operations: [getInsurances, getCustomProviders, getNetworkAnalysis]
+- file: h1-price-transparency.md
+  name: Price-transparency and procedure cost lookup
+  api: openapi/ribbon-health-api-openapi.json
+  operations: [getProcedures, getPricingProviders, getPricingProviderProcedure, getProcedureCostEstimate]
+- file: h1-eligibility-check.md
+  name: Check member insurance eligibility
+  api: openapi/ribbon-health-api-openapi.json
+  operations: [getEligibilityInsurancePartners, getEligibility]

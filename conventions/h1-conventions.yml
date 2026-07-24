@@ -1,0 +1,37 @@
+generated: '2026-07-24'
+method: searched
+sources:
+- https://ribbon.readme.io/docs/authentication
+- https://ribbon.readme.io/docs/rate-limits
+authentication:
+  style: bearer-api-key
+  header: Authorization
+  format: Bearer {customer_token}
+  docs: https://ribbon.readme.io/docs/authentication
+  ref: authentication/h1-authentication.yml
+pagination:
+  style: page-number
+  params:
+  - page
+  - page_size
+  note: List/search endpoints accept page and page_size query parameters.
+idempotency:
+  supported: false
+  note: No Idempotency-Key header is documented; PUT operations are idempotent by HTTP semantics but there
+    is no dedicated idempotency contract.
+rate_limiting:
+  signaled: true
+  status: 429
+  code: rate_limit_exceeded
+  ref: rate-limits/h1-rate-limits.yml
+error_envelope:
+  format: json
+  ref: errors/h1-problem-types.yml
+  note: Errors returned as JSON bodies (not RFC 9457 problem+json).
+versioning:
+  scheme: uri-path
+  current: v1
+identifiers:
+  providers: NPI (National Provider Identifier)
+  entities: UUID for locations, insurances, specialties, procedures, organizations, clinical areas, conditions,
+    treatments, carriers, provider types, location types

@@ -1,0 +1,18 @@
+generated: '2026-07-24'
+method: searched
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.ribbonhealth.com/v1
+status_page: https://status.ribbonhealth.com
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation policy page found. Two pricing endpoints are marked deprecated in the docs
+    (Carrier Names -> use List Carriers; Carrier Data Versions By Name -> use Get Carrier).
+deprecated_operations:
+- openapi/ribbon-health-api-openapi.json#getpricingcarriernames
+- openapi/ribbon-health-api-openapi.json#getpricingversioncarrier
+access:
+  model: gated
+  note: Access via request-demo / API-key issuance rather than self-serve signup.

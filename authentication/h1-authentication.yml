@@ -1,0 +1,22 @@
+generated: '2026-07-24'
+method: searched
+source: openapi/ribbon-health-api-openapi.json
+docs: https://ribbon.readme.io/docs/authentication
+summary:
+  types:
+  - http
+  scheme: bearer-api-key
+  note: >-
+    The H1 (Ribbon Health) API authenticates every request with a customer API
+    key passed in the HTTP Bearer scheme - Authorization: Bearer {customer_token}.
+    There is no OAuth 2.0 / OpenID Connect surface; keys are issued via the
+    request-demo onboarding rather than self-serve. Keep the key server-side.
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  in: header
+  header: Authorization
+  format: Bearer {customer_token}
+  sources:
+  - openapi/ribbon-health-api-openapi.json

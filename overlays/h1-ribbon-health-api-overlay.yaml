@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Ribbon Health API
+  version: 1.0.0
+extends: openapi/ribbon-health-api-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: h1
+    x-apievangelist-rate-limits: rate-limits/h1-rate-limits.yml
+    x-apievangelist-conventions: conventions/h1-conventions.yml

@@ -1,0 +1,471 @@
+generated: '2026-07-24'
+method: derived
+source: openapi/ribbon-health-api-openapi.json
+note: 'Derived crosswalk: the H1 MCP server is a candidate (no official hosted server found), so every
+  tool maps 1:1 to its backing REST operationId, inheriting that operation parameters+requestBody as its
+  real inputSchema.'
+surfaces:
+  openapi: openapi/ribbon-health-api-openapi.json
+  graphql: null
+  mcp:
+    status: candidate
+    url: null
+crosswalk:
+- tool: get_custom_providers
+  category: Providers
+  rest:
+  - getCustomProviders
+  binding: rest
+  confidence: high
+- tool: get_custom_provider
+  category: Providers
+  rest:
+  - getCustomProvider
+  binding: rest
+  confidence: high
+- tool: put_custom_provider
+  category: Providers
+  rest:
+  - putCustomProvider
+  binding: rest
+  confidence: high
+- tool: put_custom_provider_locations
+  category: Providers
+  rest:
+  - putCustomProviderLocations
+  binding: rest
+  confidence: high
+- tool: put_custom_provider_location
+  category: Providers
+  rest:
+  - putCustomProviderLocation
+  binding: rest
+  confidence: high
+- tool: put_custom_provider_specialties
+  category: Providers
+  rest:
+  - putCustomProviderSpecialties
+  binding: rest
+  confidence: high
+- tool: put_custom_provider_primary_specialties
+  category: Providers
+  rest:
+  - putCustomProviderPrimarySpecialties
+  binding: rest
+  confidence: high
+- tool: put_custom_provider_procedures
+  category: Providers
+  rest:
+  - putCustomProviderProcedures
+  binding: rest
+  confidence: high
+- tool: put_custom_provider_clinical_areas
+  category: Providers
+  rest:
+  - putCustomProviderClinicalAreas
+  binding: rest
+  confidence: high
+- tool: put_custom_provider_location_insurances
+  category: Providers
+  rest:
+  - putCustomProviderLocationInsurances
+  binding: rest
+  confidence: high
+- tool: put_custom_provider_location_organizations
+  category: Providers
+  rest:
+  - putCustomProviderLocationOrganizations
+  binding: rest
+  confidence: high
+- tool: get_custom_provider_filters
+  category: Filters
+  rest:
+  - getCustomProviderFilters
+  binding: rest
+  confidence: high
+- tool: create_custom_provider_filter
+  category: Filters
+  rest:
+  - createCustomProviderFilter
+  binding: rest
+  confidence: high
+- tool: edit_custom_provider_filter
+  category: Filters
+  rest:
+  - editCustomProviderFilter
+  binding: rest
+  confidence: high
+- tool: delete_custom_provider_filter
+  category: Filters
+  rest:
+  - deleteCustomProviderFilter
+  binding: rest
+  confidence: high
+- tool: get_custom_locations
+  category: Locations
+  rest:
+  - getCustomLocations
+  binding: rest
+  confidence: high
+- tool: post_custom_locations
+  category: Locations
+  rest:
+  - postCustomLocations
+  binding: rest
+  confidence: high
+- tool: get_custom_location
+  category: Locations
+  rest:
+  - getCustomLocation
+  binding: rest
+  confidence: high
+- tool: put_custom_location
+  category: Locations
+  rest:
+  - putCustomLocation
+  binding: rest
+  confidence: high
+- tool: delete_custom_location
+  category: Locations
+  rest:
+  - deleteCustomLocation
+  binding: rest
+  confidence: high
+- tool: put_custom_location_insurances
+  category: Locations
+  rest:
+  - putCustomLocationInsurances
+  binding: rest
+  confidence: high
+- tool: put_custom_location_organizations
+  category: Locations
+  rest:
+  - putCustomLocationOrganizations
+  binding: rest
+  confidence: high
+- tool: put_custom_location_clinical_areas
+  category: Locations
+  rest:
+  - putCustomLocationClinicalAreas
+  binding: rest
+  confidence: high
+- tool: get_custom_location_filters
+  category: Filters
+  rest:
+  - getCustomLocationFilters
+  binding: rest
+  confidence: high
+- tool: create_custom_location_filter
+  category: Filters
+  rest:
+  - createCustomLocationFilter
+  binding: rest
+  confidence: high
+- tool: edit_custom_location_filter
+  category: Filters
+  rest:
+  - editCustomLocationFilter
+  binding: rest
+  confidence: high
+- tool: delete_custom_location_filter
+  category: Filters
+  rest:
+  - deleteCustomLocationFilter
+  binding: rest
+  confidence: high
+- tool: get_insurances
+  category: Reference Endpoints
+  rest:
+  - getInsurances
+  binding: rest
+  confidence: high
+- tool: post_custom_insurance
+  category: Reference Endpoints
+  rest:
+  - postCustomInsurance
+  binding: rest
+  confidence: high
+- tool: get_custom_insurance
+  category: Reference Endpoints
+  rest:
+  - getCustomInsurance
+  binding: rest
+  confidence: high
+- tool: put_custom_insurance
+  category: Reference Endpoints
+  rest:
+  - putCustomInsurance
+  binding: rest
+  confidence: high
+- tool: delete_custom_insurance
+  category: Reference Endpoints
+  rest:
+  - deleteCustomInsurance
+  binding: rest
+  confidence: high
+- tool: get_specialties
+  category: Reference Endpoints
+  rest:
+  - getSpecialties
+  binding: rest
+  confidence: high
+- tool: post_custom_specialty
+  category: Reference Endpoints
+  rest:
+  - postCustomSpecialty
+  binding: rest
+  confidence: high
+- tool: get_custom_specialty
+  category: Reference Endpoints
+  rest:
+  - getCustomSpecialty
+  binding: rest
+  confidence: high
+- tool: put_custom_specialty
+  category: Reference Endpoints
+  rest:
+  - putCustomSpecialty
+  binding: rest
+  confidence: high
+- tool: delete_custom_specialty
+  category: Reference Endpoints
+  rest:
+  - deleteCustomSpecialty
+  binding: rest
+  confidence: high
+- tool: get_clinical_areas
+  category: Focus Area Endpoints
+  rest:
+  - getClinicalAreas
+  binding: rest
+  confidence: high
+- tool: get_clinical_area
+  category: Focus Area Endpoints
+  rest:
+  - getClinicalArea
+  binding: rest
+  confidence: high
+- tool: get_conditions
+  category: Focus Area Endpoints
+  rest:
+  - getConditions
+  binding: rest
+  confidence: high
+- tool: get_condition
+  category: Focus Area Endpoints
+  rest:
+  - getCondition
+  binding: rest
+  confidence: high
+- tool: get_treatments
+  category: Focus Area Endpoints
+  rest:
+  - getTreatments
+  binding: rest
+  confidence: high
+- tool: get_treatment
+  category: Focus Area Endpoints
+  rest:
+  - getTreatment
+  binding: rest
+  confidence: high
+- tool: get_organizations
+  category: Organizations
+  rest:
+  - getOrganizations
+  binding: rest
+  confidence: high
+- tool: get_organization
+  category: Organizations
+  rest:
+  - getOrganization
+  binding: rest
+  confidence: high
+- tool: get_tins
+  category: TINs
+  rest:
+  - getTins
+  binding: rest
+  confidence: high
+- tool: get_custom_tin
+  category: TINs
+  rest:
+  - getCustomTin
+  binding: rest
+  confidence: high
+- tool: get_custom_provider_types
+  category: Reference Endpoints
+  rest:
+  - getCustomProviderTypes
+  binding: rest
+  confidence: high
+- tool: post_custom_provider_type
+  category: Reference Endpoints
+  rest:
+  - postCustomProviderType
+  binding: rest
+  confidence: high
+- tool: get_custom_provider_type
+  category: Reference Endpoints
+  rest:
+  - getCustomProviderType
+  binding: rest
+  confidence: high
+- tool: put_custom_provider_type
+  category: Reference Endpoints
+  rest:
+  - putCustomProviderType
+  binding: rest
+  confidence: high
+- tool: delete_custom_provider_type
+  category: Reference Endpoints
+  rest:
+  - deleteCustomProviderType
+  binding: rest
+  confidence: high
+- tool: get_custom_location_types
+  category: Reference Endpoints
+  rest:
+  - getCustomLocationTypes
+  binding: rest
+  confidence: high
+- tool: post_custom_location_type
+  category: Reference Endpoints
+  rest:
+  - postCustomLocationType
+  binding: rest
+  confidence: high
+- tool: get_custom_location_type
+  category: Reference Endpoints
+  rest:
+  - getCustomLocationType
+  binding: rest
+  confidence: high
+- tool: put_custom_location_type
+  category: Reference Endpoints
+  rest:
+  - putCustomLocationType
+  binding: rest
+  confidence: high
+- tool: delete_custom_location_type
+  category: Reference Endpoints
+  rest:
+  - deleteCustomLocationType
+  binding: rest
+  confidence: high
+- tool: get_custom_virtual_care_platforms
+  category: Virtual Care Platforms
+  rest:
+  - getCustomVirtualCarePlatforms
+  binding: rest
+  confidence: high
+- tool: get_virtual_care_platform
+  category: Virtual Care Platforms
+  rest:
+  - getVirtualCarePlatform
+  binding: rest
+  confidence: high
+- tool: get_procedures
+  category: Reference Endpoints
+  rest:
+  - getProcedures
+  binding: rest
+  confidence: high
+- tool: get_procedure
+  category: Reference Endpoints
+  rest:
+  - getProcedure
+  binding: rest
+  confidence: high
+- tool: get_languages
+  category: Reference Endpoints
+  rest:
+  - getLanguages
+  binding: rest
+  confidence: high
+- tool: get_pricing_providers
+  category: Price Transparency
+  rest:
+  - getPricingProviders
+  binding: rest
+  confidence: high
+- tool: get_pricing_provider_procedures
+  category: Price Transparency
+  rest:
+  - getPricingProviderProcedures
+  binding: rest
+  confidence: high
+- tool: get_pricing_provider_procedure
+  category: Price Transparency
+  rest:
+  - getPricingProviderProcedure
+  binding: rest
+  confidence: high
+- tool: get_pricing_provider_procedure_location
+  category: Price Transparency
+  rest:
+  - getPricingProviderProcedureLocation
+  binding: rest
+  confidence: high
+- tool: get_pricing_carriers
+  category: Price Transparency
+  rest:
+  - getPricingCarriers
+  binding: rest
+  confidence: high
+- tool: get_pricing_carrier
+  category: Price Transparency
+  rest:
+  - getPricingCarrier
+  binding: rest
+  confidence: high
+- tool: get_pricing_carrier_names
+  category: Price Transparency
+  rest:
+  - getPricingCarrierNames
+  binding: rest
+  confidence: high
+- tool: get_pricing_version_carrier
+  category: Price Transparency
+  rest:
+  - getPricingVersionCarrier
+  binding: rest
+  confidence: high
+- tool: get_eligibility
+  category: Cost Estimates
+  rest:
+  - getEligibility
+  binding: rest
+  confidence: high
+- tool: get_eligibility_insurance_partners
+  category: Cost Estimates
+  rest:
+  - getEligibilityInsurancePartners
+  binding: rest
+  confidence: high
+- tool: get_eligibility_insurance_partner
+  category: Cost Estimates
+  rest:
+  - getEligibilityInsurancePartner
+  binding: rest
+  confidence: high
+- tool: get_procedure_cost_estimate
+  category: Cost Estimates
+  rest:
+  - getProcedureCostEstimate
+  binding: rest
+  confidence: high
+- tool: get_network_analysis
+  category: Networks
+  rest:
+  - getNetworkAnalysis
+  binding: rest
+  confidence: high
+mcp_only: []
+rest_only: []
+coverage:
+  tools_named: 75
+  tools_bound: 75
+  mcp_only: 0
+  rest_ops_total: 75
+  rest_ops_with_tool: 75

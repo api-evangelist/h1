@@ -1,0 +1,27 @@
+generated: '2026-07-24'
+method: derived
+source: openapi/ribbon-health-api-openapi.json
+standards:
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securityScheme; bearer API-key (http bearer) only.
+- id: oidc
+  conforms: false
+- id: fhir-r4
+  conforms: false
+  evidence: Proprietary REST resources keyed by NPI/UUID; no FHIR CapabilityStatement or SMART-on-FHIR.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors returned as plain JSON, not application/problem+json.
+- id: bearer-token-auth
+  conforms: true
+  evidence: 'http bearer securityScheme documented (Authorization: Bearer).'
+- id: pagination
+  conforms: true
+  evidence: page / page_size query parameters across list endpoints.
+- id: rate-limiting
+  conforms: true
+  evidence: Documented per-endpoint rate limits with 429 rate_limit_exceeded.
+- id: openapi-3.1
+  conforms: true
+  evidence: Published OpenAPI 3.1.0 definition, 57 paths / 75 operations.

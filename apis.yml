@@ -199,6 +199,38 @@ apis:
   - type: APIReference
     url: https://ribbon.readme.io/reference
 common:
+- type: AgenticAccess
+  url: agentic-access/h1-agentic-access.yml
+- type: DomainSecurity
+  url: security/h1-domain-security.yml
+- type: Authentication
+  url: authentication/h1-authentication.yml
+- type: RateLimits
+  url: rate-limits/h1-rate-limits.yml
+- type: Conventions
+  url: conventions/h1-conventions.yml
+- type: ErrorCatalog
+  url: errors/h1-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/h1-lifecycle.yml
+- type: StatusPage
+  url: https://status.ribbonhealth.com
+- type: Conformance
+  url: conformance/h1-conformance.yml
+- type: DataModel
+  url: data-model/h1-data-model.yml
+- type: MCPServer
+  url: mcp/h1-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/h1-tool-crosswalk.yml
+- type: Overlay
+  url: overlays/h1-ribbon-health-api-overlay.yaml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/h1-llms.txt
+- type: GitHubOrganization
+  url: https://github.com/RibbonHealth
 - type: Website
   url: https://h1.co/
 - type: DeveloperPortal

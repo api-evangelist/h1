@@ -1,0 +1,53 @@
+generated: '2026-07-24'
+method: derived
+source: openapi/ribbon-health-api-openapi.json
+docs: https://ribbon.readme.io/docs/rate-limits
+format: json-envelope
+note: Ribbon Health returns JSON error bodies (not RFC 9457 problem+json). Statuses derived from OpenAPI
+  4xx responses; the documented 429 rate_limit_exceeded code is added from the rate-limits doc.
+problems:
+- status: 400
+  title: Bad Request
+  remediation: Validate request parameters and body against the endpoint schema.
+  operation_count: 37
+  example_operations:
+  - getCustomProviders
+  - putCustomProvider
+  - putCustomProviderLocations
+  - putCustomProviderLocation
+  - putCustomProviderSpecialties
+- status: 403
+  title: Forbidden
+  remediation: The API key lacks access to this resource or product family; confirm your plan/entitlements.
+  operation_count: 18
+  example_operations:
+  - getCustomProviders
+  - getCustomProvider
+  - putCustomProvider
+  - putCustomProviderLocations
+  - putCustomProviderLocation
+- status: 404
+  title: Not Found
+  remediation: The referenced resource (NPI, UUID, carrier, etc.) does not exist.
+  operation_count: 45
+  example_operations:
+  - getCustomProvider
+  - putCustomProvider
+  - putCustomProviderLocations
+  - putCustomProviderLocation
+  - putCustomProviderSpecialties
+- status: 409
+  title: Conflict
+  remediation: A conflicting resource already exists (e.g. duplicate custom filter/entity).
+  operation_count: 13
+  example_operations:
+  - createCustomProviderFilter
+  - editCustomProviderFilter
+  - postCustomLocations
+  - createCustomLocationFilter
+  - editCustomLocationFilter
+- status: 429
+  title: Too Many Requests
+  code: rate_limit_exceeded
+  remediation: Rate limit exceeded; back off and retry within the documented per-endpoint limits.
+  source: https://ribbon.readme.io/docs/rate-limits
