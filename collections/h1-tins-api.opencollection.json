@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ribbon Health TI Ns API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TINs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search TINs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/tin",
+            "params": [
+              {
+                "name": "Tins Search Parameters",
+                "value": "",
+                "type": "query",
+                "description": "Search parameters for the tin reference endpoint."
+              }
+            ]
+          },
+          "docs": "Search and list tins that exist within the Ribbon API.\n"
+        },
+        {
+          "info": {
+            "name": "Get TIN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/tin/:tin_id",
+            "params": [
+              {
+                "name": "tin_id",
+                "value": "",
+                "type": "path",
+                "description": "The target TIN."
+              }
+            ]
+          },
+          "docs": "Retrieve data on a specific TIN.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

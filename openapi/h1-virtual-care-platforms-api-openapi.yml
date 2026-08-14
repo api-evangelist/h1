@@ -1,0 +1,335 @@
+openapi: 3.2.0
+info:
+  title: Ribbon Health Virtual Care Platforms API
+  version: 1.0.0
+  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
+
+    '
+servers:
+- url: https://api.ribbonhealth.com/v1
+security:
+- BearerAuth: []
+tags:
+- name: Virtual Care Platforms
+paths:
+  /custom/virtual_care_platforms:
+    get:
+      summary: Search Virtual Care Platforms
+      description: 'Search for different at-home or virtual platforms.
+
+
+        #### Example Use Case
+
+        Enable a patient to find a virtual care platform that focuses on their speciality need, has licensure in the state they live in, and is in-network for their insurance plan.
+
+        '
+      operationId: getCustomVirtualCarePlatforms
+      tags:
+      - Virtual Care Platforms
+      parameters:
+      - name: Virtual Care Platform Search Options
+        in: query
+        required: false
+        description: Search options based on aspects of the virtual care platform objects.
+        explode: true
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: 'A full or partial platform name.
+
+
+                Note: This parameter performs a case-insensitive exact string match (i.e. is not fuzzy).
+
+                '
+              example: Virtual Care Platform
+            address_string:
+              type: string
+              description: An address that will be interpreted and geocoded in real time.
+              example: 100 Main Street
+            insurance_ids:
+              type: string
+              description: Comma-delimited list of desired insurance uuids. Returns all platforms which accept at least one of the given insurances.
+              example: 7b815b2f-ba65-4024-80aa-0ac1a9dcd4e0
+            specialty_ids:
+              type: string
+              description: Comma-delimited list of desired specialty uuids. Returns all platforms which specialize in at least one of the given specialties.
+              example: fff41986-41dc-46c0-93f0-5fb3fbd47678
+            npis:
+              type: string
+              description: Comma-delimited list of type 2 NPIs associated with the platform.
+              example: 1558319491
+            offers_appts:
+              type: boolean
+              description: Returns platforms that offer appointments.
+              example: true
+            panel_ages:
+              type:
+              - string
+              - integer
+              enum:
+              - Pediatric
+              - Adolescent
+              - Adult
+              - Senior
+              description: 'Desired Panel Ages string, or an integer age.
+
+
+                Returns all platforms with a `panel_demographics.ages` label field corresponding to the entered string or integer.
+
+                '
+              example: Adolescent
+            panel_sexes:
+              type: string
+              enum:
+              - Female
+              - F
+              - Male
+              - M
+              description: Returns all platforms with a `panel_demographics.sexes` label field corresponding to the entered string.
+              example: Female
+            payment_method:
+              type: string
+              enum:
+              - Cash Pay
+              - Insurance
+              description: Returns all platforms which accept the designated payment method.
+              example: Cash Pay
+            provider_types:
+              type: string
+              description: Comma-delimited list of the `type`s of providers you are searching for. Provider types are higher level groupings of specialties.
+              example: Doctor
+            profile_claimed:
+              type: boolean
+              description: 'Returns care platform profiles which are curated directly by the platform.
+
+
+                When `False`, Ribbon has curated on behalf of the platform and may not have complete information for concepts such as licensure or insurances accepted.
+
+                '
+              example: true
+      responses:
+        '200':
+          description: Returns an ordered list of matching virtual care platforms
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - parameters
+                - data
+                properties:
+                  parameters:
+                    type: object
+                    properties:
+                      total_count:
+                        type: integer
+                        example: 141
+                        description: The total number of results matched, across all pages.
+                      page:
+                        type: integer
+                        example: 1
+                        description: The page of the results which was returned.
+                      page_size:
+                        type: integer
+                        example: 25
+                        description: How many results are in each page.
+                      specialty_ids:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        example:
+                        - 058148f1-3a99-4bbe-9722-6c2a54ddb860
+                      insurance_ids:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        example:
+                        - 0082f872-5383-44de-9319-511f090fc56b
+                      address:
+                        type: string
+                        example: 408 broadway
+                      geocoded_state:
+                        type: string
+                        example: NY
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/paths/~1custom~1virtual_care_platforms~1%7Bvirtual_care_platform_uuid%7D/get/responses/200/content/application~1json/schema'
+        '400':
+          description: The search could not be completed as requested
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+  /custom/virtual_care_platforms/{virtual_care_platform_uuid}:
+    get:
+      summary: Get Virtual Care Platform
+      description: 'Retrieve detailed information for any virtual care platform given its UUID.
+
+        '
+      operationId: getVirtualCarePlatform
+      tags:
+      - Virtual Care Platforms
+      parameters:
+      - name: virtual_care_platform_uuid
+        in: path
+        required: true
+        description: The UUID of the target virtual care platform.
+        schema:
+          type: string
+          format: uuid
+          example: c8fdf322-e562-479b-840d-e44931fb2a12
+      responses:
+        '200':
+          description: Returns a single virtual care platform
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid:
+                    type: string
+                    format: uuid
+                    description: Primary ID of this virtual care platform.
+                    example: c8fdf322-e562-479b-840d-e44931fb4112
+                  name:
+                    type: string
+                    description: Name of the virtual care platform.
+                    example: RibbonCare Platform
+                  website:
+                    format: string
+                    description: URL of the virtual care platform's website.
+                    example: https://www.ribbonvirtualcare.com
+                  description:
+                    type: string
+                    example: <p>RibbonCare is a virtual dermatology platform for eczema and psoriasis treatment.</p>
+                  geographies_served:
+                    type: array
+                    items:
+                      type: string
+                      description: 2-letter state code of covered states.
+                      example: NY
+                    example:
+                    - NY
+                    - TX
+                    - CA
+                  npis:
+                    type: array
+                    items:
+                      type: integer
+                      example: 1234567890
+                    description: NPIs of providers associated with this platform.
+                  specialties:
+                    type: array
+                    items:
+                      $ref: '#/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema'
+                  specialties_detail:
+                    type: string
+                    example: <p>We focus on eczma and psoriasis care</p>
+                  insurances:
+                    type: array
+                    items:
+                      type: string
+                      format: uuid
+                      example: 0082f872-5383-44de-9319-511f090fc56b
+                  insurances_detail:
+                    type: string
+                    example: <p>We have flexibility to do single case agreements with other payers/plans not listed on our profile</p>
+                  sign_up_instructions:
+                    type: string
+                    example: <ol><li>Create an account</li><li>Complete an online consultation to help your provider find the best treatment plan for your needs.</li><li>A provider trained in your specialty of concern will review your information and suggest a personalized treatment plan</li><li>If prescribed, we send your medication directly to your door</li><li>Get unlimited access messaging with your provider team to answer any questions and make changes as needed</li></ol>
+                  care_delivery:
+                    type: array
+                    items:
+                      type: string
+                      example: Virtual Care - Asynchronous
+                    description: Methods by which care can be delivered from this platform.
+                    example:
+                    - Virtual Care - Asynchronous
+                    - Virtual Care - Live
+                  provider_types:
+                    type: array
+                    items:
+                      type: string
+                      example: Doctor
+                    description: Types of the providers associated with this platform.
+                  provider_types_detail:
+                    type: string
+                    example: <p>We also employ allied health professionals and lactation consultants</p>
+                  panel_demographics:
+                    type: object
+                    properties:
+                      ages:
+                        type: array
+                        items:
+                          type: string
+                          enum:
+                          - Pediatric (0-12)
+                          - Adolescent (13-21)
+                          - Adult (22-44)
+                          - Adult (45-64)
+                          - Senior (65 and over)
+                        example:
+                        - Senior (65 and over)
+                      sexes:
+                        type: array
+                        items:
+                          type: string
+                          enum:
+                          - Both female and male
+                          - Primarily female
+                          - Primarily male
+                        example:
+                        - Both female and male
+                      detail:
+                        type:
+                        - string
+                        - 'null'
+                  offers_appointments:
+                    type: boolean
+                    example: true
+                    description: Whether this virtual care platform accepts appointments or not.
+                  appointment_booking_detail:
+                    type: string
+                    example: '<p>Patients can book an appointment through the Age Bold website: https://www.ribbonvirtualcare.com/booking</p>'
+                  payment_method:
+                    type: array
+                    items:
+                      type: string
+                      example: Cash Pay
+                    description: The methods of payment accepted by this platform.
+                    example:
+                    - Cash Pay
+                    - Insurance
+                  pricing_detail:
+                    type: string
+                    example: <p>Patients have to join the RibbonCare membership to be able to consult with a doctor. The membership is an annual membership and cost $192 per year. </p><p>The visit is then billed through insurance (if we are in network with their insurance) or the cash price for a live visit is $42 per visit.</p>
+                  claimed_profile:
+                    type: boolean
+                    example: true
+                    description: 'Returns care platform profiles which are curated directly by the platform.
+
+
+                      When `False`, Ribbon has curated on behalf of the platform and may not have complete information for concepts such as licensure or insurances accepted.
+
+                      '
+                  disclaimer:
+                    type:
+                    - string
+                    - 'null'
+                    description: Any disclaimer associated with this platform.
+        '404':
+          description: The given UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

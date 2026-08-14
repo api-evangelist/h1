@@ -1,0 +1,1222 @@
+openapi: 3.2.0
+info:
+  title: Ribbon Health Reference Endpoints API
+  version: 1.0.0
+  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
+
+    '
+servers:
+- url: https://api.ribbonhealth.com/v1
+security:
+- BearerAuth: []
+tags:
+- name: Reference Endpoints
+paths:
+  /custom/insurances:
+    get:
+      summary: Search Insurances
+      description: 'Search and list insurances that exist within the Ribbon API.
+
+        '
+      operationId: getInsurances
+      tags:
+      - Reference Endpoints
+      parameters:
+      - name: Insurance Search Parameters
+        in: query
+        required: false
+        description: Search parameters for the insurances reference endpoint.
+        explode: true
+        schema:
+          type: object
+          properties:
+            search:
+              type: string
+              description: 'String input that fuzzy searches across `display_name`, `carrier_name`, and `uuid`.
+
+                '
+              example: Aetna
+            carrier_association:
+              type: string
+              description: 'Comma separated list of the carrier association of insurances you are searching for.
+
+
+                Note: This input must be an exact string match to work
+
+                '
+              example: BCBS Association
+            carrier_brand:
+              type: string
+              description: 'Comma separated list of the carrier brand of insurances you are searching for.
+
+
+                Note: This input must be an exact string match to work
+
+                '
+              example: BCBS
+            carrier_name:
+              type: string
+              description: 'Comma separated list of the carrier name of insurances you are searching for.
+
+
+                Note: This input must be an exact string match to work
+
+                '
+              example: Blue Cross Blue Shield of Illinois
+            state:
+              type: string
+              description: Two letter abbreviated state code of insurances you are searching for.
+              example: NY
+            plan_name:
+              type: string
+              description: Exact string input of the plan name of insurances you are searching for.
+              example: BlueCare Direct
+            plan_type:
+              type: string
+              description: Exact string input of the plan type of insurances you are searching for.
+              example: PPO
+            display_name:
+              type: string
+              description: Exact string input of the display name of insurances you are searching for.
+              example: Blue Cross Blue Shield of Illinois - BlueCare Direct - HMO
+            category:
+              type: string
+              description: 'Comma separated list of the category of insurances you are searching for.
+
+
+                Note: This input must be an exact string match to work
+
+                '
+              example: Medicare Advantage
+            _excl_category:
+              type: string
+              description: 'Comma separated list of the category of insurances you wish to exclude.
+
+
+                Note: This input must be an exact string match to work
+
+                '
+              example: Medicare Advantage
+            codes:
+              type: string
+              description: Single code input to search for plans with an exact string match within the codes field.
+              example: H9572-001
+            partial_codes:
+              type: string
+              description: 'Partial string input to match to the codes field.
+
+                For Medicare Advantage plans this is a contract ID (i.e. H9572). For Federal or State Exchange plans this is the first 10 digits of the HIOS ID (i.e. 36096il100)
+
+
+                Note: This parameter can only be used if the `category` param is also utilized with a single category value.
+
+                '
+              example: H9572
+      responses:
+        '200':
+          description: Insurances returned from a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - next
+                - previous
+                - results
+                properties:
+                  count:
+                    type: integer
+                    description: The total number of results matched, across all pages.
+                    example: 141
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    example: https://api.ribbonhealth.com/v1/custom/insurances?search=aetna&page=3
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                    example: https://api.ribbonhealth.com/v1/custom/insurances?search=aetna&page=1
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/paths/~1custom~1insurances/post/requestBody/content/application~1json/schema'
+        '400':
+          description: A failure due to a malformed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+    post:
+      summary: Create Insurance
+      description: 'Create a insurance with desired field values.
+
+        '
+      operationId: postCustomInsurance
+      tags:
+      - Reference Endpoints
+      requestBody:
+        required: true
+        description: A JSON object mapping the name of the field to update to its new value
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uuid:
+                  type: string
+                  format: uuid
+                  example: d8addf29-1054-4ccb-b179-dda65f7fefdd
+                  description: A UUID uniquely identifying this insurance
+                carrier_association:
+                  type:
+                  - string
+                  - 'null'
+                  example: Aetna
+                carrier_brand:
+                  type:
+                  - string
+                  - 'null'
+                  example: Aetna
+                carrier_name:
+                  type:
+                  - string
+                  - 'null'
+                  example: Aetna
+                state:
+                  type:
+                  - string
+                  - 'null'
+                  example: NY
+                plan_name:
+                  type:
+                  - string
+                  - 'null'
+                  example: Aetna HealthFund Open Choice
+                plan_type:
+                  type:
+                  - string
+                  - 'null'
+                  example: PPO
+                metal_level:
+                  type:
+                  - string
+                  - 'null'
+                display_name:
+                  type: string
+                  example: Aetna - HealthFund Open Choice - PPO
+                network:
+                  type:
+                  - string
+                  - 'null'
+                confidence:
+                  type:
+                  - integer
+                  - 'null'
+                  example: 4
+                category:
+                  type:
+                  - string
+                  - 'null'
+                codes:
+                  type:
+                  - array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Insurance was successfully created.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1insurances/post/requestBody/content/application~1json/schema'
+        '400':
+          description: This request attempted to update with invalid schema or was missing required fields.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '409':
+          description: Insurance object with given fields already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1locations/post/responses/409/content/application~1json/schema'
+  /custom/insurances/{insurance_uuid}:
+    get:
+      summary: Get Insurance
+      description: 'Retrieve data on a specific insurance.
+
+        '
+      operationId: getCustomInsurance
+      tags:
+      - Reference Endpoints
+      parameters:
+      - name: insurance_uuid
+        in: path
+        required: true
+        description: The UUID of the target insurance.
+        schema:
+          type: string
+          format: uuid
+          example: 12403618-49d5-43ee-99ad-5e99194fe05c
+      responses:
+        '200':
+          description: Returns a single insurance
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1insurances/post/requestBody/content/application~1json/schema'
+        '404':
+          description: The given insurance UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+    put:
+      summary: Edit Insurance Fields
+      description: 'Edit fields of a custom created insurance or a Ribbon created insurance.
+
+        '
+      operationId: putCustomInsurance
+      tags:
+      - Reference Endpoints
+      parameters:
+      - $ref: '#/paths/~1custom~1insurances~1%7Binsurance_uuid%7D/get/parameters/0'
+      requestBody:
+        required: true
+        description: A JSON object mapping the name of the field to update to its new value
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1custom~1insurances/post/requestBody/content/application~1json/schema'
+      responses:
+        '200':
+          description: The insurance object was successfully updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1insurances/post/requestBody/content/application~1json/schema'
+        '400':
+          description: This request attempted to update with invalid schema or was missing required fields.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '404':
+          description: The given insurance UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+        '409':
+          description: Insurance object with given fields already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1locations/post/responses/409/content/application~1json/schema'
+    delete:
+      summary: Delete Insurance
+      description: 'Delete an insurance.
+
+
+        Note: If you''ve added this insurance to doctors, you are deleting all instances of this UUID, and Ribbon will not be able to regenerate them.
+
+        '
+      operationId: deleteCustomInsurance
+      tags:
+      - Reference Endpoints
+      parameters:
+      - $ref: '#/paths/~1custom~1insurances~1%7Binsurance_uuid%7D/get/parameters/0'
+      responses:
+        '204':
+          description: Insurance was successfully deleted
+        '404':
+          description: The given insurance UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+  /custom/specialties:
+    get:
+      summary: Search Specialties
+      description: 'Search and list specialties that exist within the Ribbon API.
+
+        '
+      operationId: getSpecialties
+      tags:
+      - Reference Endpoints
+      parameters:
+      - name: Specialty Search Parameters
+        in: query
+        required: false
+        description: Search parameters for the specialty reference endpoint.
+        explode: true
+        schema:
+          type: object
+          properties:
+            page:
+              type: integer
+              example: 1
+              description: The page of the results which was returned.
+            page_size:
+              type: integer
+              example: 25
+              description: How many results are in each page.
+            search:
+              type: string
+              description: 'String input that fuzzy searches against key fields within each specialties object to return the most relevant options.
+
+                '
+              example: Gastroenterology
+            provider_type:
+              type: string
+              description: '''Type'' of provider specialty to filter results on. Here are a few key provider types:
+
+                - Doctor
+
+                - Nursing
+
+                - Dental Providers
+
+                '
+              example: Doctor
+      responses:
+        '200':
+          description: Specialties returned from a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - next
+                - previous
+                - results
+                properties:
+                  count:
+                    type: integer
+                    description: The total number of results matched, across all pages.
+                    example: 141
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    example: https://api.ribbonhealth.com/v1/custom/specialties?page=3
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                    example: https://api.ribbonhealth.com/v1/custom/specialties?page=1
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema'
+        '403':
+          description: Trial accounts do not have access to custom specialties
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+    post:
+      summary: Create Specialty
+      description: 'Create a custom specialty with desired field values.
+
+        '
+      operationId: postCustomSpecialty
+      tags:
+      - Reference Endpoints
+      requestBody:
+        required: true
+        description: A JSON object mapping the name of the field to update to its new value
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema'
+              required:
+              - display
+              - board_specialty
+              - board_sub_specialty
+              - non_md_specialty
+              - non_md_sub_specialty
+              - provider_name
+              - colloquial
+              - provider_type
+      responses:
+        '201':
+          description: Specialty was successfully created.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema'
+        '400':
+          description: This request attempted to update with invalid schema or was missing required fields.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '409':
+          description: Specialty object with given fields already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1locations/post/responses/409/content/application~1json/schema'
+  /custom/specialties/{specialty_uuid}:
+    get:
+      summary: Get Specialty
+      description: 'Retrieve data on a specific specialty.
+
+        '
+      operationId: getCustomSpecialty
+      tags:
+      - Reference Endpoints
+      parameters:
+      - name: specialty_uuid
+        in: path
+        required: true
+        description: The UUID of the target specialty.
+        schema:
+          type: string
+          format: uuid
+          example: a77d23ba-29f1-4afd-a0c4-62d2f0444cf7
+      responses:
+        '200':
+          description: Returns a single specialty
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid:
+                    type: string
+                    format: uuid
+                    example: 18d8ad26-7e5f-44ac-9afa-966efb375344
+                    description: A UUID uniquely identifying this specialty
+                  taxonomy_code:
+                    type:
+                    - string
+                    example: 207Q00000X
+                  board_specialty:
+                    type:
+                    - string
+                    - 'null'
+                    example: Family Medicine
+                  board_sub_specialty:
+                    type:
+                    - string
+                    - 'null'
+                  non_md_specialty:
+                    type:
+                    - string
+                    - 'null'
+                  non_md_sub_specialty:
+                    type:
+                    - string
+                    - 'null'
+                    example: None
+                  provider_name:
+                    type:
+                    - string
+                    - 'null'
+                    example: Family Medicine Doctor
+                  colloquial:
+                    type:
+                    - string
+                    - 'null'
+                  taxonomy_1:
+                    type:
+                    - string
+                    - 'null'
+                    example: Allopathic & Osteopathic Physicians
+                  taxonomy_2:
+                    type:
+                    - string
+                    - 'null'
+                    example: Family Medicine
+                  taxonomy_3:
+                    type:
+                    - string
+                    - 'null'
+                  display:
+                    type: string
+                    example: Family Medicine
+                  provider_type:
+                    type: string
+                    example: Doctor
+                  is_primary:
+                    type: boolean
+                    example: true
+                    description: Whether or not a specialty is a provider's primary specialty
+        '404':
+          description: The given specialty UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+    put:
+      summary: Edit Specialty Fields
+      description: 'Edit fields of a custom created specialty.
+
+
+        Note: You cannot edit a Ribbon created specialty.
+
+        '
+      operationId: putCustomSpecialty
+      tags:
+      - Reference Endpoints
+      parameters:
+      - $ref: '#/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/parameters/0'
+      requestBody:
+        required: true
+        description: A JSON object mapping the name of the field to update to its new value
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1custom~1specialties/post/requestBody/content/application~1json/schema'
+      responses:
+        '200':
+          description: The specialty object was successfully updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema'
+        '400':
+          description: This request attempted to update with invalid schema or was missing required fields.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '404':
+          description: The given specialty UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+        '409':
+          description: Specialty object with given fields already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1locations/post/responses/409/content/application~1json/schema'
+    delete:
+      summary: Delete Specialty
+      description: 'Delete a specialty.
+
+
+        Note: You cannot delete a Ribbon created specialty.
+
+        '
+      operationId: deleteCustomSpecialty
+      tags:
+      - Reference Endpoints
+      parameters:
+      - $ref: '#/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/parameters/0'
+      responses:
+        '204':
+          description: Specialty was successfully deleted
+        '404':
+          description: The given specialty UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+  /provider_types:
+    get:
+      summary: Search Provider Types
+      description: 'Search and list provider types that exist within the Ribbon API.
+
+        '
+      operationId: getCustomProviderTypes
+      tags:
+      - Reference Endpoints
+      parameters:
+      - $ref: '#/paths/~1languages/get/parameters/0'
+      responses:
+        '200':
+          description: Provider types returned from a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - data
+                properties:
+                  count:
+                    type: integer
+                    description: The total number of results matched, across all pages.
+                    example: 23
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/paths/~1custom~1provider_types~1%7Bprovider_type_uuid%7D/get/responses/200/content/application~1json/schema'
+  /custom/provider_types:
+    post:
+      summary: Create Provider Type
+      description: 'Create a custom provider type with desired field values.
+
+        '
+      operationId: postCustomProviderType
+      tags:
+      - Reference Endpoints
+      requestBody:
+        required: true
+        description: A JSON object mapping the name of the field to update to its new value
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                display_name:
+                  type: string
+                  example: Certified Nurse Midwife
+      responses:
+        '201':
+          description: Provider type was successfully created.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1provider_types~1%7Bprovider_type_uuid%7D/get/responses/200/content/application~1json/schema'
+        '400':
+          description: This request attempted to create with invalid schema or was missing required fields.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '409':
+          description: Provider type object with given display_name already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1locations/post/responses/409/content/application~1json/schema'
+  /custom/provider_types/{provider_type_uuid}:
+    get:
+      summary: Get Provider Type
+      description: 'Retrieve data on a specific provider type.
+
+        '
+      operationId: getCustomProviderType
+      tags:
+      - Reference Endpoints
+      parameters:
+      - name: provider_type_uuid
+        in: path
+        required: true
+        description: The UUID of the target provider type.
+        schema:
+          type: string
+          format: uuid
+          example: edeb875a-494a-4907-babb-5377ef1f49f9
+      responses:
+        '200':
+          description: Returns a single provider type
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid:
+                    type: string
+                    format: uuid
+                    example: 854a242b-9fa6-4427-b36f-ae7ba858e2c8
+                    description: A UUID uniquely identifying this provider type
+                  display_name:
+                    type: string
+                    example: Pediatrician
+        '404':
+          description: The given provider type UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+    put:
+      summary: Edit Provider Type Fields
+      description: 'Edit fields of a custom created provider type.
+
+
+        Note: You cannot edit a Ribbon created provider type.
+
+        '
+      operationId: putCustomProviderType
+      tags:
+      - Reference Endpoints
+      parameters:
+      - $ref: '#/paths/~1custom~1provider_types~1%7Bprovider_type_uuid%7D/get/parameters/0'
+      requestBody:
+        required: true
+        description: A JSON object mapping the name of the field to update to its new value
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1custom~1provider_types/post/requestBody/content/application~1json/schema'
+      responses:
+        '200':
+          description: The provider type object was successfully updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1provider_types~1%7Bprovider_type_uuid%7D/get/responses/200/content/application~1json/schema'
+        '400':
+          description: This request attempted to update with invalid schema or was missing required fields.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '403':
+          description: This resource is managed by Ribbon and cannot be modified.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+        '404':
+          description: The given provider type UUID cannot be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+        '409':
+          description: Provider Type object with given display_name already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1locations/post/responses/409/content/application~1json/schema'
+    delete:
+      summary: Delete Provider Type
+      description: 'Delete a provider type.
+
+
+        Note: You cannot edit a Ribbon created provider type.
+
+        '
+      operationId: deleteCustomProviderType
+      tags:
+      - Reference Endpoints
+      parameters:
+      - $ref: '#/paths/~1custom~1provider_types~1%7Bprovider_type_uuid%7D/get/parameters/0'
+      responses:
+        '204':
+          description: Provider type was successfully deleted
+        '403':
+          description: This resource is managed by Ribbon and cannot be deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+        '404':
+          description: The given provider type UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+  /location_types:
+    get:
+      summary: Search Location Types
+      description: 'Search and list location types that exist within the Ribbon API.
+
+        '
+      operationId: getCustomLocationTypes
+      tags:
+      - Reference Endpoints
+      parameters:
+      - $ref: '#/paths/~1languages/get/parameters/0'
+      responses:
+        '200':
+          description: Location types returned from a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - data
+                properties:
+                  count:
+                    type: integer
+                    description: The total number of results matched, across all pages.
+                    example: 7
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/paths/~1custom~1location_types~1%7Blocation_type_uuid%7D/get/responses/200/content/application~1json/schema'
+  /custom/location_types:
+    post:
+      summary: Create Location Type
+      description: 'Create a location type with desired field values.
+
+        '
+      operationId: postCustomLocationType
+      tags:
+      - Reference Endpoints
+      requestBody:
+        required: true
+        description: A JSON object mapping the name of the field to update to its new value
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1custom~1provider_types/post/requestBody/content/application~1json/schema'
+      responses:
+        '201':
+          description: Location type was successfully created.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1location_types~1%7Blocation_type_uuid%7D/get/responses/200/content/application~1json/schema'
+        '400':
+          description: This request attempted to create with invalid schema or was missing required fields.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '409':
+          description: Location type object with given display_name already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1locations/post/responses/409/content/application~1json/schema'
+  /custom/location_types/{location_type_uuid}:
+    get:
+      summary: Get Location Type
+      description: 'Retrieve data on a specific location type.
+
+        '
+      operationId: getCustomLocationType
+      tags:
+      - Reference Endpoints
+      parameters:
+      - name: location_type_uuid
+        in: path
+        required: true
+        description: The UUID of the target location type.
+        schema:
+          type: string
+          format: uuid
+          example: b5458763-968e-4690-bc70-f29d3a7459a9
+      responses:
+        '200':
+          description: Returns a single location type
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid:
+                    type: string
+                    format: uuid
+                    example: cd7f242d-3016-4db6-94f4-77b8237127a3
+                    description: A UUID uniquely identifying this location type
+                  display_name:
+                    type: string
+                    example: Radiology
+        '404':
+          description: The given location type UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+    put:
+      summary: Edit Location Type Fields
+      description: 'Edit fields of a custom created location type.
+
+
+        Note: You cannot edit a Ribbon created location type.
+
+        '
+      operationId: putCustomLocationType
+      tags:
+      - Reference Endpoints
+      parameters:
+      - $ref: '#/paths/~1custom~1location_types~1%7Blocation_type_uuid%7D/get/parameters/0'
+      requestBody:
+        required: true
+        description: A JSON object mapping the name of the field to update to its new value
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1custom~1provider_types/post/requestBody/content/application~1json/schema'
+      responses:
+        '200':
+          description: The location type object was successfully updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1location_types~1%7Blocation_type_uuid%7D/get/responses/200/content/application~1json/schema'
+        '400':
+          description: This request attempted to update with invalid schema or was missing required fields.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '403':
+          description: This resource is managed by Ribbon and cannot be modified.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+        '404':
+          description: The given location type UUID cannot be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+        '409':
+          description: Location Type object with given display_name already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1locations/post/responses/409/content/application~1json/schema'
+    delete:
+      summary: Delete Location Type
+      description: 'Delete a location type.
+
+
+        Note: You cannot edit a Ribbon created location type.
+
+        '
+      operationId: deleteCustomLocationType
+      tags:
+      - Reference Endpoints
+      parameters:
+      - $ref: '#/paths/~1custom~1location_types~1%7Blocation_type_uuid%7D/get/parameters/0'
+      responses:
+        '204':
+          description: Location type was successfully deleted
+        '403':
+          description: This resource is managed by Ribbon and cannot be deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+        '404':
+          description: The given location type UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+  /procedures:
+    get:
+      summary: Search Procedures
+      description: 'Search and list procedures that exist within the Ribbon API.
+
+        '
+      operationId: getProcedures
+      tags:
+      - Reference Endpoints
+      parameters:
+      - $ref: '#/paths/~1languages/get/parameters/0'
+      - name: procedure_code
+        in: query
+        required: false
+        description: A specific billing code (e.g., CPT, DRG) to search for
+        schema:
+          type: string
+          example: 73222
+      - name: page
+        in: query
+        required: false
+        description: The page of the results which was returned.
+        schema:
+          type: integer
+          example: 1
+      - name: page_size
+        in: query
+        required: false
+        description: How many results are in each page.
+        schema:
+          type: integer
+          example: 15
+      responses:
+        '200':
+          description: Procedures returned from a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - next
+                - previous
+                - results
+                properties:
+                  count:
+                    type: integer
+                    description: The total number of results matched, across all pages.
+                    example: 141
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    example: https://api.ribbonhealth.com/v1/procedures?page=3
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                    example: https://api.ribbonhealth.com/v1/procedures?page=1
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        uuid:
+                          type: string
+                          format: uuid
+                          example: 0a9a245f-2f52-4cc0-a5c3-77a811acc6f7
+                          description: A UUID uniquely identifying this procedure
+                        display_name:
+                          type: string
+                          example: MRI, arm
+  /procedures/{procedure_uuid}:
+    get:
+      summary: Get Procedure
+      description: 'Retrieve data on a specific procedure.
+
+        '
+      operationId: getProcedure
+      tags:
+      - Reference Endpoints
+      parameters:
+      - name: procedure_uuid
+        in: path
+        required: true
+        description: The UUID of the target procedure.
+        schema:
+          type: string
+          format: uuid
+          example: 3c51144e-3385-4933-b581-4081c84b3cb9
+      responses:
+        '200':
+          description: Returns a single procedure
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid:
+                    type: string
+                    format: uuid
+                    example: 0a9a245f-2f52-4cc0-a5c3-77a811acc6f7
+                    description: A UUID uniquely identifying this procedure
+                  display:
+                    type: string
+                    example: MRI, arm
+                  procedure_code_count:
+                    type: integer
+                    example: 7
+                  procedure_codes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: '73222'
+                        type:
+                          type: string
+                          example: CPT
+                        description:
+                          type: string
+                          example: MRI, arm
+        '404':
+          description: The given procedure UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+  /languages:
+    get:
+      summary: Search Languages
+      description: 'Search and list provider languages that exist in the Ribbon API.
+
+        '
+      operationId: getLanguages
+      tags:
+      - Reference Endpoints
+      parameters:
+      - name: search
+        in: query
+        required: false
+        description: Search parameter for reference endpoints (Provider Type, Location Type, Languages)
+        schema:
+          type: string
+          description: 'String input that fuzzy searches on `display_name` field within each object to return the most relevant options.
+
+            '
+          example:
+          - Pediatrician
+          - Clinic
+          - Spanish
+      responses:
+        '200':
+          description: Languages returned from a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - data
+                properties:
+                  count:
+                    type: integer
+                    description: The total number of results matched, across all pages.
+                    example: 333
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        uuid:
+                          type: string
+                          format: uuid
+                          example: 9b79819b-a1e3-489d-8010-b0b9f591c201
+                          description: A UUID uniquely identifying this language
+                        display_name:
+                          type: string
+                          example: arabic
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

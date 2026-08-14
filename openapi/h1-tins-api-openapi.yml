@@ -1,0 +1,245 @@
+openapi: 3.2.0
+info:
+  title: Ribbon Health TI Ns API
+  version: 1.0.0
+  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
+
+    '
+servers:
+- url: https://api.ribbonhealth.com/v1
+security:
+- BearerAuth: []
+tags:
+- name: TINs
+paths:
+  /custom/tin:
+    get:
+      summary: Search TINs
+      description: 'Search and list tins that exist within the Ribbon API.
+
+        '
+      operationId: getTins
+      tags:
+      - TINs
+      parameters:
+      - name: Tins Search Parameters
+        in: query
+        required: false
+        description: Search parameters for the tin reference endpoint.
+        explode: true
+        schema:
+          type: object
+          properties:
+            search:
+              type: string
+              description: 'String input that fuzzy searches across tins, name, address, and legal_name.
+
+                '
+            name:
+              type: string
+              description: 'The billing entity name that appears on claims data, or if available, the official legal name of the billing entity.
+
+                String input that is fuzzy matched against the `name` field.
+
+                Note: This parameter will not match with the `legal_name` field, only the `name` field.
+
+                '
+            legal_name:
+              type: string
+              description: 'The legal name of the entity associated with the TIN.
+
+                String input that is fuzzy matched against the `legal_name` field.
+
+                '
+            tin_ids:
+              type: string
+              description: 'Comma separated list of TINs.
+
+                Note: This parameter cannot be used in combination with any other parameters.
+
+                '
+            has_tin:
+              type: boolean
+              description: Boolean input that applies to tin_confirmed field.
+            page:
+              type: integer
+              description: The page of the results which was returned.
+            page_size:
+              type: integer
+              description: How many results are in each page.
+      responses:
+        '200':
+          description: Tins returned from a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - parameters
+                - tins
+                properties:
+                  parameters:
+                    oneOf:
+                    - type: object
+                      properties:
+                        tin_ids:
+                          type: string
+                          description: Comma separated list of TINS.
+                    - type: object
+                      properties:
+                        search:
+                          type: string
+                          description: String input that fuzzy searches across TINs, names, address, and legal_name.
+                        name:
+                          type: string
+                          description: 'The billing entity name that appears on claims data, or if available, the official legal name of the billing entity.
+
+                            String input that is fuzzy matched against the `name` field.
+
+                            '
+                        legal_name:
+                          type: string
+                          description: 'The legal name of the entity associated with the TIN.
+
+                            String input that is fuzzy matched against the `legal_name` field.
+
+                            '
+                        has_tin:
+                          type: boolean
+                          description: Boolean input that applies to tin_confirmed field.
+                        page:
+                          type: integer
+                          description: The page of the results which was returned.
+                        page_size:
+                          type: integer
+                          description: The number of results per page.
+                  tins:
+                    type: array
+                    description: array of returned TIN objects
+                    items:
+                      type: object
+                      properties:
+                        tin:
+                          type: string
+                          description: 'Standard 9-digit identification code used by the IRS for business entities and used for contracting and paying provider/facility claims.
+
+                            '
+                        name:
+                          type: string
+                          description: 'The billing entity name that appears on claims data, or if available, the official legal name of the billing entity.
+
+                            '
+                        legal_name:
+                          type: string
+                          description: The legal name of the entity associated with the TIN.
+                        address:
+                          type: string
+                          description: 'The address of the organization with the TIN. This could be the primary service location or billing location.
+
+                            '
+                        tin_confirmed:
+                          type: boolean
+                          description: 'A yes/no field that assesses whether a TIN is likely to be valid or not. The field is powered by business logic that triangulates IRS data and claims data.
+
+                            '
+        '403':
+          description: Trial accounts do not have access to custom tins
+          content:
+            application/json:
+              schema:
+                type: object
+                description: You are not allow to make this request
+                required:
+                - error
+                properties:
+                  error:
+                    type: object
+                    required:
+                    - status
+                    - code
+                    - message
+                    properties:
+                      status:
+                        type: integer
+                        example: 403
+                      code:
+                        type: string
+                        enum:
+                        - permission_denied
+                      message:
+                        type: string
+                        example: a trial account does not have access to this functionality
+  /custom/tin/{tin_id}:
+    get:
+      summary: Get TIN
+      description: 'Retrieve data on a specific TIN.
+
+        '
+      operationId: getCustomTin
+      tags:
+      - TINs
+      parameters:
+      - name: tin_id
+        in: path
+        required: true
+        description: The target TIN.
+        schema:
+          type: string
+          format: uuid
+          example: 123454321
+      responses:
+        '200':
+          description: Returns a single TIN
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tin:
+                    type: string
+                    description: Standard 9-digit identification code used by the IRS for business entities and used for contracting and paying provider/facility claims.
+                  name:
+                    type: string
+                    description: The billing entity name that appears on claims data, or if available, the official legal name of the billing entity.
+                  legal_name:
+                    type: string
+                    description: The legal name of the entity associated with the TIN.
+                  address:
+                    type: string
+                    description: The address of the organization with the TIN. This could be the primary service location or billing location.
+                  tin_confirmed:
+                    type: boolean
+                    description: A yes/no field that assesses whether a TIN is likely to be valid or not. The field is powered by business logic that triangulates IRS data and claims data.
+        '404':
+          description: The given TIN UUID cannot be found
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The requested resource could not be found
+                required:
+                - error
+                properties:
+                  error:
+                    type: object
+                    required:
+                    - status
+                    - code
+                    - message
+                    properties:
+                      status:
+                        type: integer
+                        example: 404
+                      code:
+                        type: string
+                        enum:
+                        - not_found
+                      message:
+                        type: string
+                        enum:
+                        - resource not found
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

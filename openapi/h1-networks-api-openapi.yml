@@ -1,0 +1,167 @@
+openapi: 3.2.0
+info:
+  title: Ribbon Health Networks API
+  version: 1.0.0
+  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
+
+    '
+servers:
+- url: https://api.ribbonhealth.com/v1
+security:
+- BearerAuth: []
+tags:
+- name: Networks
+paths:
+  /network_analysis:
+    get:
+      summary: Network Analysis Based on Geography
+      description: 'View a provider network across different geographies (i.e. counties).
+
+
+        #### Example Use Case
+
+        In looking to expand to a new region, analyze existing provider networks in the region to understand how best to construct your own.
+
+        '
+      operationId: getNetworkAnalysis
+      tags:
+      - Networks
+      parameters:
+      - name: insurance_id
+        in: query
+        required: true
+        description: A unique identifier for a single provider network from the Insurances reference endpoint.
+        schema:
+          type: string
+          format: uuid
+          example: 000912ad-5674-4c23-9b00-dca4e76aaa07
+      - name: ssa_codes
+        in: query
+        required: true
+        description: "SSA codes of the counties to run a network analysis on. \n\nA maximum of 50 codes may be included in a single request.\n"
+        schema:
+          type: string
+          example: 14141,14150
+      - name: exclude_npis
+        in: query
+        required: false
+        description: 'When set to `true` the response will not list specific NPIs in the network but will continue to include the `npi_count` fields to let you know how many there are.
+
+
+          This parameter can be used to greater lower the amount of data sent back when specific NPIs are not necessary.
+
+          '
+        schema:
+          type: boolean
+          default: false
+          example: true
+      responses:
+        '200':
+          description: Returns the size of the provider network for the given insurance in the given counties.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - parameters
+                - data
+                properties:
+                  parameters:
+                    type: object
+                    required:
+                    - insurance_id
+                    - ssa_codes
+                    - npi_count
+                    properties:
+                      insurance_id:
+                        type: string
+                        format: uuid
+                        example: 000912ad-5674-4c23-9b00-dca4e76aaa07
+                        description: A unique identifier for a single provider network from the Insurances reference endpoint.
+                      ssa_codes:
+                        type: array
+                        items:
+                          type: string
+                          example: '14141'
+                        description: The SSA codes the network analysis was run on.
+                        example:
+                        - '14141'
+                        - '14150'
+                      npi_count:
+                        type: integer
+                        description: How many unique NPIs accept the given insurance across all requested counties.
+                        example: 2999
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - ssa_code
+                      - display
+                      - npi_count
+                      properties:
+                        ssa_code:
+                          type: string
+                          example: '14141'
+                          description: The SSA code of the county this data is for.
+                        display:
+                          type: string
+                          example: Cook, IL
+                          description: The display name of the county this data is for.
+                        npi_count:
+                          type: integer
+                          example: 2103
+                          description: How many unique NPIs accept the given insurance in this county.
+                        npis:
+                          type: array
+                          items:
+                            type: string
+                            example: '1234567890'
+                          description: 'The NPIs of providers who accept the given insurance in this county.
+
+
+                            If the `exclude_npis` parameter was set to true, this key will not be present.
+
+                            '
+        '400':
+          description: The given request was invalid - the required parameters were missing or invalid, or it specified too many SSA codes.
+          content:
+            application/json:
+              schema:
+                type: object
+                description: An error returned from the API
+                required:
+                - error
+                properties:
+                  error:
+                    type: object
+                    required:
+                    - status
+                    - code
+                    - message
+                    properties:
+                      status:
+                        type: integer
+                        description: The HTTP error code associated with this error
+                        example: 400
+                      code:
+                        type: string
+                        enum:
+                        - invalid_query_params
+                        - bad_request
+                      message:
+                        type:
+                        - object
+                        - string
+                        description: 'An object representing what exactly went wrong. The keys available in this object vary with the type of error  returned.
+
+                          '
+                        example:
+                          query:
+                            _schema:
+                            - parameters 'npis' and 'location_ids' cannot be used together
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

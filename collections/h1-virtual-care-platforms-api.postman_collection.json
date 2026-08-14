@@ -1,0 +1,473 @@
+{
+  "item": [
+    {
+      "id": "47f9c08e-9bd6-493e-97c9-5c0141a2738f",
+      "name": "Virtual Care Platforms",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "676f7da7-77f0-4a99-86bd-5fe92c6c6196",
+          "name": "Search Virtual Care Platforms",
+          "request": {
+            "name": "Search Virtual Care Platforms",
+            "description": {
+              "content": "Search for different at-home or virtual platforms.\n\n#### Example Use Case\nEnable a patient to find a virtual care platform that focuses on their speciality need, has licensure in the state they live in, and is in-network for their insurance plan.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "virtual_care_platforms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Search options based on aspects of the virtual care platform objects."
+                },
+                {
+                  "disabled": false,
+                  "key": "address_string",
+                  "value": "<string>",
+                  "description": "Search options based on aspects of the virtual care platform objects."
+                },
+                {
+                  "disabled": false,
+                  "key": "insurance_ids",
+                  "value": "<string>",
+                  "description": "Search options based on aspects of the virtual care platform objects."
+                },
+                {
+                  "disabled": false,
+                  "key": "specialty_ids",
+                  "value": "<string>",
+                  "description": "Search options based on aspects of the virtual care platform objects."
+                },
+                {
+                  "disabled": false,
+                  "key": "npis",
+                  "value": "<string>",
+                  "description": "Search options based on aspects of the virtual care platform objects."
+                },
+                {
+                  "disabled": false,
+                  "key": "offers_appts",
+                  "value": "<boolean>",
+                  "description": "Search options based on aspects of the virtual care platform objects."
+                },
+                {
+                  "disabled": false,
+                  "key": "panel_ages",
+                  "value": "<string,integer>",
+                  "description": "Search options based on aspects of the virtual care platform objects."
+                },
+                {
+                  "disabled": false,
+                  "key": "panel_sexes",
+                  "value": "<string>",
+                  "description": "Search options based on aspects of the virtual care platform objects."
+                },
+                {
+                  "disabled": false,
+                  "key": "payment_method",
+                  "value": "<string>",
+                  "description": "Search options based on aspects of the virtual care platform objects."
+                },
+                {
+                  "disabled": false,
+                  "key": "provider_types",
+                  "value": "<string>",
+                  "description": "Search options based on aspects of the virtual care platform objects."
+                },
+                {
+                  "disabled": false,
+                  "key": "profile_claimed",
+                  "value": "<boolean>",
+                  "description": "Search options based on aspects of the virtual care platform objects."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26427908-c748-4570-a58c-e4215b9427b8",
+              "name": "Returns an ordered list of matching virtual care platforms",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "virtual_care_platforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "Virtual Care Platform"
+                    },
+                    {
+                      "key": "address_string",
+                      "value": "100 Main Street"
+                    },
+                    {
+                      "key": "insurance_ids",
+                      "value": "7b815b2f-ba65-4024-80aa-0ac1a9dcd4e0"
+                    },
+                    {
+                      "key": "specialty_ids",
+                      "value": "fff41986-41dc-46c0-93f0-5fb3fbd47678"
+                    },
+                    {
+                      "key": "npis",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offers_appts",
+                      "value": "true"
+                    },
+                    {
+                      "key": "panel_ages",
+                      "value": "Adolescent"
+                    },
+                    {
+                      "key": "panel_sexes",
+                      "value": "Female"
+                    },
+                    {
+                      "key": "payment_method",
+                      "value": "Cash Pay"
+                    },
+                    {
+                      "key": "provider_types",
+                      "value": "Doctor"
+                    },
+                    {
+                      "key": "profile_claimed",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"parameters\": {\n    \"total_count\": 141,\n    \"page\": 1,\n    \"page_size\": 25,\n    \"specialty_ids\": [\n      \"058148f1-3a99-4bbe-9722-6c2a54ddb860\"\n    ],\n    \"insurance_ids\": [\n      \"0082f872-5383-44de-9319-511f090fc56b\"\n    ],\n    \"address\": \"408 broadway\",\n    \"geocoded_state\": \"NY\"\n  },\n  \"data\": [\n    {\n      \"uuid\": \"c8fdf322-e562-479b-840d-e44931fb4112\",\n      \"name\": \"RibbonCare Platform\",\n      \"website\": {},\n      \"description\": \"<p>RibbonCare is a virtual dermatology platform for eczema and psoriasis treatment.</p>\",\n      \"geographies_served\": [\n        \"NY\",\n        \"TX\",\n        \"CA\"\n      ],\n      \"npis\": [\n        1234567890,\n        1234567890\n      ],\n      \"specialties\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ],\n      \"specialties_detail\": \"<p>We focus on eczma and psoriasis care</p>\",\n      \"insurances\": [\n        \"0082f872-5383-44de-9319-511f090fc56b\",\n        \"0082f872-5383-44de-9319-511f090fc56b\"\n      ],\n      \"insurances_detail\": \"<p>We have flexibility to do single case agreements with other payers/plans not listed on our profile</p>\",\n      \"sign_up_instructions\": \"<ol><li>Create an account</li><li>Complete an online consultation to help your provider find the best treatment plan for your needs.</li><li>A provider trained in your specialty of concern will review your information and suggest a personalized treatment plan</li><li>If prescribed, we send your medication directly to your door</li><li>Get unlimited access messaging with your provider team to answer any questions and make changes as needed</li></ol>\",\n      \"care_delivery\": [\n        \"Virtual Care - Asynchronous\",\n        \"Virtual Care - Live\"\n      ],\n      \"provider_types\": [\n        \"Doctor\",\n        \"Doctor\"\n      ],\n      \"provider_types_detail\": \"<p>We also employ allied health professionals and lactation consultants</p>\",\n      \"panel_demographics\": {\n        \"ages\": [\n          \"Senior (65 and over)\"\n        ],\n        \"sexes\": [\n          \"Both female and male\"\n        ],\n        \"detail\": \"string\"\n      },\n      \"offers_appointments\": true,\n      \"appointment_booking_detail\": \"<p>Patients can book an appointment through the Age Bold website: https://www.ribbonvirtualcare.com/booking</p>\",\n      \"payment_method\": [\n        \"Cash Pay\",\n        \"Insurance\"\n      ],\n      \"pricing_detail\": \"<p>Patients have to join the RibbonCare membership to be able to consult with a doctor. The membership is an annual membership and cost $192 per year. </p><p>The visit is then billed through insurance (if we are in network with their insurance) or the cash price for a live visit is $42 per visit.</p>\",\n      \"claimed_profile\": true,\n      \"disclaimer\": \"string\"\n    },\n    {\n      \"uuid\": \"c8fdf322-e562-479b-840d-e44931fb4112\",\n      \"name\": \"RibbonCare Platform\",\n      \"website\": {},\n      \"description\": \"<p>RibbonCare is a virtual dermatology platform for eczema and psoriasis treatment.</p>\",\n      \"geographies_served\": [\n        \"NY\",\n        \"TX\",\n        \"CA\"\n      ],\n      \"npis\": [\n        1234567890,\n        1234567890\n      ],\n      \"specialties\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ],\n      \"specialties_detail\": \"<p>We focus on eczma and psoriasis care</p>\",\n      \"insurances\": [\n        \"0082f872-5383-44de-9319-511f090fc56b\",\n        \"0082f872-5383-44de-9319-511f090fc56b\"\n      ],\n      \"insurances_detail\": \"<p>We have flexibility to do single case agreements with other payers/plans not listed on our profile</p>\",\n      \"sign_up_instructions\": \"<ol><li>Create an account</li><li>Complete an online consultation to help your provider find the best treatment plan for your needs.</li><li>A provider trained in your specialty of concern will review your information and suggest a personalized treatment plan</li><li>If prescribed, we send your medication directly to your door</li><li>Get unlimited access messaging with your provider team to answer any questions and make changes as needed</li></ol>\",\n      \"care_delivery\": [\n        \"Virtual Care - Asynchronous\",\n        \"Virtual Care - Live\"\n      ],\n      \"provider_types\": [\n        \"Doctor\",\n        \"Doctor\"\n      ],\n      \"provider_types_detail\": \"<p>We also employ allied health professionals and lactation consultants</p>\",\n      \"panel_demographics\": {\n        \"ages\": [\n          \"Senior (65 and over)\"\n        ],\n        \"sexes\": [\n          \"Both female and male\"\n        ],\n        \"detail\": \"string\"\n      },\n      \"offers_appointments\": true,\n      \"appointment_booking_detail\": \"<p>Patients can book an appointment through the Age Bold website: https://www.ribbonvirtualcare.com/booking</p>\",\n      \"payment_method\": [\n        \"Cash Pay\",\n        \"Insurance\"\n      ],\n      \"pricing_detail\": \"<p>Patients have to join the RibbonCare membership to be able to consult with a doctor. The membership is an annual membership and cost $192 per year. </p><p>The visit is then billed through insurance (if we are in network with their insurance) or the cash price for a live visit is $42 per visit.</p>\",\n      \"claimed_profile\": true,\n      \"disclaimer\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3462031-f754-4ac9-ae1e-a91b7f0f39fb",
+              "name": "The search could not be completed as requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "virtual_care_platforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "Virtual Care Platform"
+                    },
+                    {
+                      "key": "address_string",
+                      "value": "100 Main Street"
+                    },
+                    {
+                      "key": "insurance_ids",
+                      "value": "7b815b2f-ba65-4024-80aa-0ac1a9dcd4e0"
+                    },
+                    {
+                      "key": "specialty_ids",
+                      "value": "fff41986-41dc-46c0-93f0-5fb3fbd47678"
+                    },
+                    {
+                      "key": "npis",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offers_appts",
+                      "value": "true"
+                    },
+                    {
+                      "key": "panel_ages",
+                      "value": "Adolescent"
+                    },
+                    {
+                      "key": "panel_sexes",
+                      "value": "Female"
+                    },
+                    {
+                      "key": "payment_method",
+                      "value": "Cash Pay"
+                    },
+                    {
+                      "key": "provider_types",
+                      "value": "Doctor"
+                    },
+                    {
+                      "key": "profile_claimed",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc0fb789-da6e-42b1-a883-f4cbc8995ef8",
+          "name": "Get Virtual Care Platform",
+          "request": {
+            "name": "Get Virtual Care Platform",
+            "description": {
+              "content": "Retrieve detailed information for any virtual care platform given its UUID.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "virtual_care_platforms",
+                ":virtual_care_platform_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "virtual_care_platform_uuid",
+                  "description": "(Required) The UUID of the target virtual care platform."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "039a9b1f-17b6-4b8c-9368-233406c5ecf2",
+              "name": "Returns a single virtual care platform",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "virtual_care_platforms",
+                    ":virtual_care_platform_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "virtual_care_platform_uuid",
+                      "description": "(Required) The UUID of the target virtual care platform."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"c8fdf322-e562-479b-840d-e44931fb4112\",\n  \"name\": \"RibbonCare Platform\",\n  \"website\": {},\n  \"description\": \"<p>RibbonCare is a virtual dermatology platform for eczema and psoriasis treatment.</p>\",\n  \"geographies_served\": [\n    \"NY\",\n    \"TX\",\n    \"CA\"\n  ],\n  \"npis\": [\n    1234567890,\n    1234567890\n  ],\n  \"specialties\": [\n    {\n      \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    }\n  ],\n  \"specialties_detail\": \"<p>We focus on eczma and psoriasis care</p>\",\n  \"insurances\": [\n    \"0082f872-5383-44de-9319-511f090fc56b\",\n    \"0082f872-5383-44de-9319-511f090fc56b\"\n  ],\n  \"insurances_detail\": \"<p>We have flexibility to do single case agreements with other payers/plans not listed on our profile</p>\",\n  \"sign_up_instructions\": \"<ol><li>Create an account</li><li>Complete an online consultation to help your provider find the best treatment plan for your needs.</li><li>A provider trained in your specialty of concern will review your information and suggest a personalized treatment plan</li><li>If prescribed, we send your medication directly to your door</li><li>Get unlimited access messaging with your provider team to answer any questions and make changes as needed</li></ol>\",\n  \"care_delivery\": [\n    \"Virtual Care - Asynchronous\",\n    \"Virtual Care - Live\"\n  ],\n  \"provider_types\": [\n    \"Doctor\",\n    \"Doctor\"\n  ],\n  \"provider_types_detail\": \"<p>We also employ allied health professionals and lactation consultants</p>\",\n  \"panel_demographics\": {\n    \"ages\": [\n      \"Senior (65 and over)\"\n    ],\n    \"sexes\": [\n      \"Both female and male\"\n    ],\n    \"detail\": \"string\"\n  },\n  \"offers_appointments\": true,\n  \"appointment_booking_detail\": \"<p>Patients can book an appointment through the Age Bold website: https://www.ribbonvirtualcare.com/booking</p>\",\n  \"payment_method\": [\n    \"Cash Pay\",\n    \"Insurance\"\n  ],\n  \"pricing_detail\": \"<p>Patients have to join the RibbonCare membership to be able to consult with a doctor. The membership is an annual membership and cost $192 per year. </p><p>The visit is then billed through insurance (if we are in network with their insurance) or the cash price for a live visit is $42 per visit.</p>\",\n  \"claimed_profile\": true,\n  \"disclaimer\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57abf6f1-8571-4913-b152-bb9091a767fc",
+              "name": "The given UUID cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "virtual_care_platforms",
+                    ":virtual_care_platform_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "virtual_care_platform_uuid",
+                      "description": "(Required) The UUID of the target virtual care platform."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ribbonhealth.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c446494a-5a37-4afe-85c3-7c83073c64e0",
+    "name": "Ribbon Health Virtual Care Platforms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.\n",
+      "type": "text/plain"
+    }
+  }
+}

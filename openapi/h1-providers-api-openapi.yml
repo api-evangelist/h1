@@ -1,0 +1,1863 @@
+openapi: 3.2.0
+info:
+  title: Ribbon Health Providers API
+  version: 1.0.0
+  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
+
+    '
+servers:
+- url: https://api.ribbonhealth.com/v1
+security:
+- BearerAuth: []
+tags:
+- name: Providers
+paths:
+  /custom/providers:
+    get:
+      summary: Search Providers
+      description: 'Allows you to quickly list doctors based on important search criteria.
+
+        '
+      operationId: getCustomProviders
+      tags:
+      - Providers
+      parameters:
+      - name: Pagination and Search Configuration Options
+        in: query
+        required: false
+        description: Options to control what data gets returned to you.
+        explode: true
+        schema:
+          type: object
+          properties:
+            page:
+              type: integer
+              example: 1
+              description: The page of the results which was returned.
+            page_size:
+              type: integer
+              example: 25
+              description: "How many results are in each page. \n\nNote that page_size is generally capped to 200 given the strict `max_locations * page_size <= 1000` requirement.\n"
+            max_locations:
+              type: integer
+              example: 5
+              description: 'The maximum number of locations that will be attached to any given provider. Note that there is a strict `max_locations * page_size <= 1000` requirement.
+
+
+                Defaults to 5.
+
+                '
+            fields:
+              type: string
+              example: locations,age
+              description: 'Comma separated list of fields within the provider object to return. Can be used to greatly reduce the size of the response by requesting only data you intend to use.
+
+
+                Cannot be used in tandem with `_excl_fields`.
+
+                '
+            _excl_fields:
+              type: string
+              example: locations,age
+              description: Comma separated list of fields within the provider object to exclude from the response. Can be used to greatly reduce the size of the response by requesting only data you intend to use.
+      - name: Provider Search Criteria
+        in: query
+        required: false
+        description: Search criteria based on aspects of the providers themselves.
+        explode: true
+        schema:
+          type: object
+          properties:
+            npis:
+              type: string
+              description: 'Comma separated list of desired NPIs (i.e. use this to search for 5 specific doctors).
+
+
+                A maximum of `100` NPIs can be passed in per request.
+
+
+                Note: This parameter cannot be used in combination with most other parameters. You may combine this parameter with `fields` or `_excl_fields`. You may use geographic search parameters `location` or `address`, which will be used to populate the `distance` on the returned providers but will **not** be used to filter them. All other parameters will be ignored.
+
+                '
+              example: 1234567890
+            name:
+              type: string
+              description: String input of a full, first, last, or partial name.
+              example: Doe
+            provider_types:
+              type: string
+              description: 'A comma-separated list of ''types'' of providers you are searching for. Provider types are higher level groupings of specialties. Here are a few key provider types:
+
+                - Doctor
+
+                - Nursing
+
+                - Dental Providers
+
+                - Optometry
+
+                - Chiropractic Providers
+
+
+                See the Specialties Reference Endpoint for a list of all specialties and their provider types.
+
+                '
+              example: Optometry
+            _excl_provider_types:
+              type: string
+              description: 'A comma-separated list of ''types'' of providers to exclude. Excludes providers with a matching provider type.
+
+                '
+              example: Optometry
+            gender:
+              type: string
+              enum:
+              - m
+              - f
+              description: String input of either m or f to filter to only medical providers of the inputted gender.
+              example: m
+            max_age:
+              type: integer
+              description: Integer input (i.e. 50) to filter to only medical providers under the inputted age.
+              example: 70
+            min_age:
+              type: integer
+              description: Integer input (i.e. 50) to filter to only medical providers above the inputted age.
+              example: 45
+            language:
+              type: string
+              description: Fuzzy search based on a string input (i.e. English) to filter to only medical providers providers who speak / whose office staff speak the inputted language.
+              example: English
+            _excl_language:
+              type: string
+              description: Fuzzy search based on a string input (i.e. English) to exclude medical providers providers who speak / whose office staff speak the inputted language.
+              example: English
+            min_rating:
+              type: integer
+              minimum: 0
+              maximum: 10
+              description: Integer input (from 0 to 10) to filter to only providers above the inputted value for the ratings_avg field.
+              example: 6
+      - name: Location Search Criteria
+        in: query
+        required: false
+        description: Criteria used to search for providers based on the locations at which they practice.
+        explode: true
+        schema:
+          type: object
+          properties:
+            address:
+              type: string
+              description: String input of an address that will be interpreted and geocoded in real time.
+              example: New York, NY
+            location_ids:
+              type: string
+              description: Comma separated list of desired practice location uuids. See all providers who see patients at any of the given practice locations.
+              example: 34ecc98a-e49e-49e3-84f9-b0ab2ff00495
+            _excl_location_ids:
+              type: string
+              description: Comma separated list of practice location uuids to exclude. Excludes providers who see patients at any of the given practice locations.
+              example: 34ecc98a-e49e-49e3-84f9-b0ab2ff00495
+            location:
+              type: string
+              description: Latitude/longitude pair of coordinates in lieu of a string address.
+              example: 37.7489816,-122.4802092
+            min_location_confidence:
+              type: integer
+              minimum: 0
+              maximum: 5
+              description: 'Integer input (0-5) of the minimum confidence threshold for returned provider locations. min_location_confidence=3 will only display providers'' locations that have a confidence 3 or higher. If a provider has a 5 locations, one of which is greater than 3, only the high confidence location will be included in the returned JSON output.
+
+
+                Note: when this parameter is in use, the maximum number of records accessible is 1000 (i.e. if you maintain the default page_size of 25, the last page that can be paginated to is 40)
+
+                '
+              example: 3
+            min_confidence:
+              type: integer
+              minimum: 0
+              maximum: 5
+              description: Integer input (0-5) of the minimum confidence location you wish the returned providers to have (i.e. min_confidence=4 will only display providers who have a location with confidence 4 or higher). This is a more performant but 'simpler' version of `min_location_confidence` parameter.
+              example: 3
+            distance:
+              type: integer
+              example: 10
+              description: "The proximity radius of providers returned.\n\n Note: When using `min_location_confidence` and `location_insurance_ids` parameters, limit `distance` to be less than 50 miles to ensure high quality results.\n"
+            state:
+              type: string
+              example: NY
+              description: Two-letter state abbreviation of provider locations to filter to. Note that this parameter will override `address` and `location` parameters if used together.
+      - name: Insurance Search Criteria
+        in: query
+        required: false
+        description: Criteria used to search for providers based on the insurances they accept.
+        explode: true
+        schema:
+          type: object
+          properties:
+            insurance_ids:
+              type: string
+              description: Please use the location_insurance_ids parameter instead. These parameters have the same behavior and filter for insurance objects at the provider.location level.
+              example: e527f6e3-fe42-4932-bf34-d81f1c1fd652
+            _excl_insurance_ids:
+              type: string
+              description: Comma separated list of insurance uuids to exclude. Exclude providers who accept a given insurance(s).
+              example: e527f6e3-fe42-4932-bf34-d81f1c1fd652
+            insurance_carrier_name:
+              type: string
+              description: 'String input of carrier_name in order to search for all providers that take at least one plan from a given insurance carrier.
+
+
+                Find the individual valid carrier_name values from the insurance objects returned in the Insurances Reference Endpoint.
+
+
+                Note: This input must be an exact string match to work
+
+                '
+              example: Aetna
+            location_insurance_ids:
+              type: string
+              description: 'Comma separated list of desired insurance uuids. See all provider locations that accept a given insurance(s).
+
+
+                Note, this parameter cannot be combined with `insurance_ids` to filter on provider insurances and provider location insurances.
+
+                '
+              example: 34ecc98a-e49e-49e3-84f9-b0ab2ff00495
+            _excl_location_insurance_ids:
+              type: string
+              description: Comma separated list of insurance uuids to exclude. Excludes provider locations that accept a given insurance(s).
+              example: 34ecc98a-e49e-49e3-84f9-b0ab2ff00495
+            national_bluecard:
+              type: boolean
+              example: true
+              description: Boolean input that enables an API search to automatically default to the National BlueCard EPO/PPO Network whenever a member searches for out-of-state, in-network care and is covered by a BCBS Association PPO insurance plan. Use the parameter in conjunction with the address parameter and either the insurance_ids or insurance fuzzy search parameters. Defaults to true unless otherwise specified.
+      - name: Specialty Search Criteria
+        in: query
+        required: false
+        description: Criteria used to search for providers based on their specialties.
+        explode: true
+        schema:
+          type: object
+          properties:
+            specialty_ids:
+              type: string
+              description: 'Comma separated list of desired specialty uuids. See all providers who specialize in the given specialties.
+
+
+                Cannot be used in tandem with `specialty_ids_primary`, `specialty`, or `specialty_primary`.
+
+                '
+              example: 1de33770-eb1c-47fa-ab3e-f9a4ab924d9d
+            _excl_specialty_ids:
+              type: string
+              description: Comma separated list of specialties uuids to exclude. Exclude providers who specialize in the given specialties.
+              example: 1de33770-eb1c-47fa-ab3e-f9a4ab924d9d
+            specialty:
+              type: string
+              description: 'String input of a provider specialty that will be interpreted and matched to the single closest specialty, dealing with basic typos and colloquial names for providers. For example, to find Gastroenterologists you could search any of the following
+
+                - gastroenterology
+
+                - gastroenterologist
+
+                - gastro
+
+                - stomach doc
+
+                - gastrooentrology
+
+
+                This parameter can make use of our specialty grouping logic. To learn more about this logic and/or to opt out, please use the `apply_specialty_grouping` parameter.
+
+
+                Cannot be used in tandem with `specialty_primary`, `specialty_ids`, or `specialty_ids_primary`.
+
+                '
+              example: gastroenterology
+            specialty_ids_primary:
+              type: string
+              description: 'Comma separated list of specialty uuids. See all providers whose primary specialties are in the given specialties.
+
+
+                Cannot be used in tandem with `specialty_ids`, `specialty`, or `specialty_primary`.
+
+                '
+              example: 1de33770-eb1c-47fa-ab3e-f9a4ab924d9d
+            _excl_specialty_ids_primary:
+              type: string
+              description: Comma separated list of specialties uuids to exclude. Exclude providers whose primary specialties are in the given specialties.
+              example: 1de33770-eb1c-47fa-ab3e-f9a4ab924d9d
+            specialty_primary:
+              type: string
+              description: 'String input of a provider specialty that will be interpreted and matched to the single closest specialty, similar to the `specialty` parameter. See all providers whose primary specialty is the given specialty.
+
+
+                Cannot be used in tandem with `specialty`, `specialty_ids` or `specialty_ids_primary`.
+
+                '
+              example: gastroenterology
+            apply_specialty_grouping:
+              type: boolean
+              description: 'Boolean input that enables an API search to automatically default to apply the inclusions and exclusions logic for grouping relevant specialties when using the `specialty` or `specialty_primary` parameter. Defaults to `true`.
+
+                For details, please read [our guide on searching by specialties](https://ribbon.readme.io/docs/search-for-specialties).
+
+                '
+              example: false
+      - name: Procedure Search Criteria
+        in: query
+        required: false
+        description: Criteria used to search for providers based on procedures they perform.
+        explode: true
+        schema:
+          type: object
+          properties:
+            procedure_ids:
+              type: string
+              description: Comma separated list of desired procedure uuids. Filter to only providers who perform the given procedure.
+              example: 9f3fd9e8-96b0-4cc7-ab2c-8d538e9164ae
+            _excl_procedure_ids:
+              type: string
+              description: Comma separated list of procedure uuids to exclude. Exclude providers who perform the given procedure.
+              example: 9f3fd9e8-96b0-4cc7-ab2c-8d538e9164ae
+            procedure:
+              type: string
+              description: String input that is fuzzy matched to the most relevant procedure `display` field. Only a single procedure will be selected. Filter to only providers who perform the given procedure.
+              example: MRI, thoracic spine
+            min_experience_index:
+              type: float
+              description: 'Float input of the minimum experience index for procedures. min_experience_index=4 will only return providers that have an experience index of 4 or higher for at least one of the given procedure uuids.
+
+
+                Note: This parameter must be used with `procedure_ids`.
+
+                '
+              example: 4
+            max_cost_index:
+              type: float
+              description: 'Float input of the maximum cost index for procedures. max_cost_index=4 will only return providers that have a cost index of 4 or less for at least one of the given procedure uuids.
+
+
+                Note: This parameter must be used with `procedure_ids`.
+
+                '
+              example: 4
+      - name: Focus Area Search Criteria
+        in: query
+        required: false
+        description: Criteria used to search for providers based on their Focus Areas.
+        explode: true
+        schema:
+          type: object
+          properties:
+            clinical_area:
+              type: string
+              description: 'String input that is fuzzy matched to the most relevant `clinical_area.display` field. Only a single clinical area will be selected.
+
+
+                Returns all providers with this clinical area.
+
+                '
+              example: Mental Health
+            clinical_area_ids:
+              type: string
+              description: 'Comma-separated list of desired clinical area ids.
+
+
+                Returns all providers with a clinical area exactly matching any of the entered IDs.
+
+
+                (Note: Use the `/clinical_areas/` reference endpoint to identify relevant IDs)
+
+                '
+              example: a7da792c-fae3-4b46-bab7-220e0c54e376
+            _excl_clinical_area_ids:
+              type: string
+              description: 'Comma-separated list of clinical area ids to exclude.
+
+
+                Returns all providers without a clinical area exactly matching any of the entered IDs.
+
+
+                (Note: Use the `/clinical_areas/` reference endpoint to identify relevant IDs)
+
+                '
+              example: a7da792c-fae3-4b46-bab7-220e0c54e376
+            condition:
+              type: string
+              description: 'String input that is fuzzy matched to the most relevant `condition.display` field. Only a single condition will be selected.
+
+
+                Returns all providers with this condition.
+
+                '
+              example: depression
+            condition_ids:
+              type: string
+              description: 'Comma-separated list of desired condition ids.
+
+                Returns all providers with a `conditions.uuid` field exactly matching any of the entered IDs.
+
+
+                (Note: Use the `/conditions/` reference endpoint  to identify relevant IDs)
+
+                '
+              example: fd7c10f3-fbec-482a-929b-be94a8bb3bc1
+            _excl_condition_ids:
+              type: string
+              description: 'Comma-separated list of condition ids to exclude.
+
+                Returns all providers without a `conditions.uuid` field exactly matching any of the entered IDs.
+
+
+                (Note: Use the `/conditions/` reference endpoint  to identify relevant IDs)
+
+                '
+              example: fd7c10f3-fbec-482a-929b-be94a8bb3bc1
+            treatment:
+              type: string
+              description: 'String input that is fuzzy matched to the most relevant `treatments.display` field. Only a single treatment will be selected.
+
+
+                Returns all providers with this treatment.
+
+                '
+              example: Psychological Therapy
+            treatment_ids:
+              type: string
+              description: 'Comma-separated list of desired treatment ids.
+
+                Returns all providers with a `treatments.uuid` field exactly matching any of the entered IDs.
+
+
+                (Note: Use the /treatments/ reference endpoint (docs) to identify relevant IDs)
+
+                '
+              example: 11016779-e286-4b17-bd45-2d78660a9f28
+            _excl_treatment_ids:
+              type: string
+              description: 'Comma-separated list of treatment ids to exclude.
+
+                Returns all providers without a `treatments.uuid` field exactly matching any of the entered IDs.
+
+
+                (Note: Use the /treatments/ reference endpoint (docs) to identify relevant IDs)
+
+                '
+              example: 11016779-e286-4b17-bd45-2d78660a9f28
+            panel_ages:
+              type: string
+              description: "Comma-separated list of desired Panel Ages strings. Options are:\n  `Pediatric (0-12)`\n  `Adolescent (13-21)`\n  `Adult (22-44)`\n  `Adult (45-64)`\n  `Senior (65 and over)`\n\nReturns all providers with a `panel_ages` label field exactly matching any of the entered strings.\n"
+              example: Pediatric (0-12),Adolescent (13-21)
+            _excl_panel_ages:
+              type: string
+              description: "Comma-separated list of Panel Ages strings to exclude. Options are:\n  `Pediatric (0-12)`\n  `Adolescent (13-21)`\n  `Adult (22-44)`\n  `Adult (45-64)`\n  `Senior (65 and over)`\n\nReturns all providers without a `panel_ages` label field exactly matching any of the entered strings.\n"
+              example: Pediatric (0-12),Adolescent (13-21)
+            panel_sexes:
+              type: string
+              description: "Desired Panel Sexes string. Options are:\n\n  `Both female and male`\n  `Primarily female`\n  `Primarily male`\n\nReturns all providers with a panel sexes label field exactly matching the entered string.\n"
+              example: Primarily female
+      - name: Cost and Quality Criteria
+        in: query
+        required: false
+        description: Criteria used to search for providers based on Cost and Quality scores.
+        explode: true
+        schema:
+          type: object
+          properties:
+            min_outcomes_index:
+              type: integer
+              minimum: 1
+              maximum: 5
+              description: 'Accepts a single integer input between 1 and 5.
+
+
+                Returns providers with an aggregate Outcomes Quality score (field: `performance.aggregate.quality.outcomes_index`) greater than or equal to the entered parameter.
+
+                '
+            min_efficiency_index:
+              type: integer
+              minimum: 1
+              maximum: 5
+              description: 'Accepts a single integer input between 1 and 5.
+
+
+                Returns providers with an aggregate Cost Efficiency score (field: `performance.aggregate.cost.efficiency_index`) greater than or equal to the entered parameter.
+
+                '
+            max_unit_cost_index:
+              type: integer
+              minimum: 1
+              maximum: 10
+              description: 'Accepts a single integer input between 1 and 10.
+
+
+                Returns providers with an aggregate Unit Cost Index score (field: `performance.aggregate.cost.unit_cost_index`) less than or equal to the entered parameter.
+
+                '
+            max_ribbon_cost_score:
+              type: integer
+              minimum: 1
+              maximum: 10
+              description: 'Accepts a single integer input between 1 and 10.
+
+
+                Returns providers with an aggregate Ribbon Cost Score (field: `performance.aggregate.cost.ribbon_cost_score`) less than or equal to the entered parameter.
+
+
+                Note: this search parameter is only available to customers that have purchased our Cost and Quality data.
+
+                '
+      - name: Organization Search Criteria
+        in: query
+        required: false
+        description: Criteria used to search for providers based on the organizations they belong to.
+        explode: true
+        schema:
+          type: object
+          properties:
+            location_organization_ids:
+              type: string
+              description: 'Comma separated list of desired organization uuids. Filters to only providers who have the given organization uuid(s) listed in the `provider.organizations` field.
+
+
+                Using this parameter will also filter the `provider.locations` returned in order to only surface `provider.locations` that have the given organization(s) in the `provider.locations.organizations` field.
+
+                '
+              example: 497a1ac1-52cc-43a9-b796-844dabde10fc
+            _excl_location_organization_ids:
+              type: string
+              description: Comma separated list of organization uuids to exclude. Excludes providers who have the given organization uuid(s) listed in the `provider.organizations` field.
+              example: 497a1ac1-52cc-43a9-b796-844dabde10fc
+      - name: TINs Search Criteria
+        in: query
+        required: false
+        description: Criteria used to search for providers based on the TINs they are associated with.
+        explode: true
+        schema:
+          type: object
+          properties:
+            tin_ids:
+              type: string
+              description: 'Comma separated list of desired TINs. Filters to only providers who have the given TINs listed in the `provider.location` field.
+
+                Note: This parameter cannot be used in combination with any other TINs related parameters. All other TINs related parameters will be ignored.
+
+                '
+            tin_name:
+              type: string
+              description: String input that is fuzzy matched against the `tins.name` field. Filters to only providers who have the given TINs name listed in the `provider.location` field.
+            tin_legal_name:
+              type: string
+              description: String input that is fuzzy matched against the `tins.legal_name` field. Filters to only providers who have the given TINs legal name listed in the `provider.location` field.
+      responses:
+        '200':
+          description: Returns an ordered list of matching providers
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - parameters
+                - data
+                properties:
+                  parameters:
+                    allOf:
+                    - type: object
+                      properties:
+                        total_count:
+                          type: integer
+                          example: 141
+                          description: The total number of results matched, across all pages.
+                        sort_by:
+                          type: string
+                          example: distance
+                          description: The main criteria used to sort results in the record set.
+                        geo:
+                          type: object
+                          properties:
+                            latitude:
+                              type: number
+                              example: 40.7351327
+                              description: The latitude the search was focused on.
+                            longitude:
+                              type: number
+                              example: -73.9881657
+                              description: The longitude the search was focused on.
+                    - type: object
+                      properties:
+                        page:
+                          type: integer
+                          example: 1
+                          description: The page of the results which was returned.
+                        page_size:
+                          type: integer
+                          example: 25
+                          description: How many results are in each page.
+                        max_locations:
+                          type: integer
+                          example: 5
+                          description: The maximum number of locations attached to any given provider. Defaults to 5 (not shown if unspecified).
+                        fields:
+                          type: array
+                          items:
+                            type: string
+                            example: locations
+                          example:
+                          - locations
+                          - age
+                          description: 'List of fields within the provider object to return. Can be used to greatly reduce the size of the response by requesting only data you intend to use.
+
+
+                            Cannot be used in tandem with `_excl_fields`
+
+                            '
+                        _excl_fields:
+                          type: array
+                          items:
+                            type: string
+                            example: locations
+                          example:
+                          - locations
+                          - age
+                          description: List of fields within the provider object to exclude from the response. Can be used to greatly reduce the size of the response by requesting only data you intend to use.
+                    - type: object
+                      properties:
+                        npis:
+                          type: array
+                          items:
+                            type: string
+                            example: 1234567890
+                          description: 'List of desired NPIs (i.e. use this to search for 5 specific doctors).
+
+
+                            Note: This parameter cannot be used in combination with any other parameters. All other parameters will be ignored.
+
+                            '
+                          example:
+                          - 1234567890
+                        name:
+                          type: string
+                          description: String input of a full, first, last, or partial name.
+                          example: Doe
+                        provider_types:
+                          type: array
+                          items:
+                            type: string
+                            example: Optometry
+                          description: 'The ''types'' of providers you searched for. Provider types are higher level groupings of specialties. Here are a few key provider types:
+
+                            - Doctor
+
+                            - Nursing
+
+                            - Dental Providers
+
+                            - Optometry
+
+                            - Chiropractic Providers
+
+
+                            See the Specialties Reference Endpoint for a list of all specialties and their provider types.
+
+                            '
+                          example:
+                          - Optometry
+                        gender:
+                          type: string
+                          enum:
+                          - m
+                          - f
+                          description: String input of either m or f to filter to only medical providers of the inputted gender.
+                          example: m
+                        max_age:
+                          type: integer
+                          description: Integer input (i.e. 50) to filter to only medical providers under the inputted age.
+                          example: 70
+                        min_age:
+                          type: integer
+                          description: Integer input (i.e. 50) to filter to only medical providers above the inputted age.
+                          example: 45
+                        language:
+                          type: object
+                          properties:
+                            results:
+                              type: array
+                              items:
+                                type: string
+                                example: french
+                              description: The languages that matched the given `language` parameter
+                            value:
+                              type: string
+                              example: English
+                            description: The given input to the `language` parameter
+                        min_rating:
+                          type: integer
+                          minimum: 0
+                          maximum: 10
+                          description: Integer input (from 0 to 10) to filter to only providers above the inputted value for the ratings_avg field.
+                          example: 6
+                    - type: object
+                      properties:
+                        address:
+                          type: string
+                          description: String input of an address that will be interpreted and geocoded in real time.
+                          example: New York, NY
+                        location_ids:
+                          type: array
+                          items:
+                            type: string
+                            format: uuid
+                            example: 34ecc98a-e49e-49e3-84f9-b0ab2ff00495
+                          description: List of desired practice location uuids. See all providers who see patients at any of the given practice locations.
+                          example:
+                          - 34ecc98a-e49e-49e3-84f9-b0ab2ff00495
+                        min_location_confidence:
+                          type: integer
+                          minimum: 0
+                          maximum: 5
+                          description: 'Integer input (0-5) of the minimum confidence threshold for returned provider locations. min_location_confidence=3 will only display providers'' locations that have a confidence 3 or higher. If a provider has a 5 locations, one of which is greater than 3, only the high confidence location will be included in the returned JSON output.
+
+
+                            Note: when this parameter is in use, the maximum number of records accessible is 1000 (i.e. if you maintain the default page_size of 25, the last page that can be paginated to is 40)
+
+                            '
+                          example: 3
+                        min_confidence:
+                          type: integer
+                          minimum: 0
+                          maximum: 5
+                          description: Integer input (0-5) of the minimum confidence location you wish the returned providers to have (i.e. min_confidence=4 will only display providers who have a location with confidence 4 or higher). This is a more performant but 'simpler' version of `min_location_confidence` parameter.
+                          example: 3
+                        distance:
+                          type: integer
+                          example: 10
+                          description: "The proximity radius of providers returned.\n\n Note: When using `min_location_confidence` and `location_insurance_ids` parameters, limit `distance` to be less than 50 miles to ensure high quality results.\n"
+                        state:
+                          type: string
+                          example: NY
+                          description: Two-letter state abbreviation of provider locations to filter to. Note that this parameter will override `address` and `location` parameters if used together.
+                    - type: object
+                      properties:
+                        insurance_ids:
+                          type: array
+                          items:
+                            type: string
+                            format: uuid
+                            example: e527f6e3-fe42-4932-bf34-d81f1c1fd652
+                          description: List of desired insurance uuids. See all providers who accept a given insurance(s).
+                          example:
+                          - e527f6e3-fe42-4932-bf34-d81f1c1fd652
+                        insurance_carrier_name:
+                          type: string
+                          description: 'String input of carrier_name in order to search for all providers that take at least one plan from a given insurance carrier.
+
+
+                            Find the individual valid carrier_name values from the insurance objects returned in the Insurances Reference Endpoint.
+
+
+                            Note: This input must be an exact string match to work
+
+                            '
+                          example: Aetna
+                        location_insurance_ids:
+                          type: array
+                          items:
+                            type: string
+                            format: uuid
+                            example: 34ecc98a-e49e-49e3-84f9-b0ab2ff00495
+                          description: 'List of desired insurance uuids. See all provider locations that accept a given insurance(s).
+
+
+                            Note, this parameter cannot be combined with `insurance_ids` to filter on provider insurances and provider location insurances.
+
+                            '
+                          example:
+                          - 34ecc98a-e49e-49e3-84f9-b0ab2ff00495
+                        national_bluecard:
+                          type: boolean
+                          example: true
+                          description: Boolean input that enables an API search to automatically default to the National BlueCard EPO/PPO Network whenever a member searches for out-of-state, in-network care and is covered by a BCBS Association PPO insurance plan. Use the parameter in conjunction with the address parameter and either the insurance_ids or insurance fuzzy search parameters. Defaults to true unless otherwise specified.
+                    - type: object
+                      properties:
+                        specialty_ids:
+                          type: array
+                          items:
+                            type: string
+                            format: uuid
+                            example: 1de33770-eb1c-47fa-ab3e-f9a4ab924d9d
+                          description: 'List of desired specialty uuids. See all providers who specialize in the given specialties.
+
+
+                            Cannot be used in tandem with `specialty_ids_primary` or `specialty_primary`.
+
+                            '
+                          example:
+                          - 1de33770-eb1c-47fa-ab3e-f9a4ab924d9d
+                        specialty:
+                          $ref: '#/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema'
+                        specialty_ids_primary:
+                          type: array
+                          items:
+                            type: string
+                            format: uuid
+                            example: 1de33770-eb1c-47fa-ab3e-f9a4ab924d9d
+                          description: 'List of specialty uuids. See all providers whose primary specialties are in the given specialties.
+
+
+                            Cannot be used in tandem with `specialty_ids` or `specialty`.
+
+                            '
+                          example:
+                          - 1de33770-eb1c-47fa-ab3e-f9a4ab924d9d
+                        primary_specialty:
+                          $ref: '#/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema'
+                        apply_specialty_grouping:
+                          type: boolean
+                          description: 'Boolean input that enables an API search to automatically default to apply the inclusions and exclusions logic for grouping relevant specialties when using the `specialty` or `specialty_primary` parameter. Defaults to `true`.
+
+                            For details, please read [our guide on searching by specialties](https://ribbon.readme.io/docs/search-for-specialties).
+
+                            '
+                          example: false
+                    - type: object
+                      properties:
+                        procedure_ids:
+                          type: array
+                          items:
+                            type: string
+                            format: uuid
+                            example: 9f3fd9e8-96b0-4cc7-ab2c-8d538e9164ae
+                          description: Comma separated list of desired procedure uuids. Filter to only providers who perform the given procedure.
+                          example:
+                          - 9f3fd9e8-96b0-4cc7-ab2c-8d538e9164ae
+                        procedure:
+                          $ref: '#/paths/~1procedures~1%7Bprocedure_uuid%7D/get/responses/200/content/application~1json/schema'
+                        min_experience_index:
+                          type: float
+                          minimum: 0
+                          description: 'Float input of the minimum experience index for procedures. min_experience_index=4 will only return providers that have an experience index of 4 or higher for at least one of the given procedure uuids.
+
+
+                            Note: This parameter must be used with `procedure_ids`.
+
+                            '
+                          example: 4
+                        max_cost_index:
+                          type: float
+                          minimum: 0
+                          description: 'Float input of the maximum cost index for procedures. max_cost_index=4 will only return providers that have a cost index of 4 or less for at least one of the given procedure uuids.
+
+
+                            Note: This parameter must be used with `procedure_ids`.
+
+                            '
+                          example: 4
+                    - type: object
+                      properties:
+                        clinical_area:
+                          type: string
+                          description: 'String input that is fuzzy matched to the most relevant `clinical_area.display` field. Only a single clinical area will be selected.
+
+
+                            Returns all providers with this clinical area.
+
+                            '
+                          example: Mental Health
+                        clinical_area_ids:
+                          $ref: '#/paths/~1custom~1clinical_areas~1%7Bclinical_area_uuid%7D/get/responses/200/content/application~1json/schema'
+                        condition:
+                          $ref: '#/paths/~1custom~1conditions~1%7Bcondition_uuid%7D/get/responses/200/content/application~1json/schema'
+                        condition_ids:
+                          type: array
+                          items:
+                            type: string
+                            format: uuid
+                            example: fd7c10f3-fbec-482a-929b-be94a8bb3bc1
+                          description: 'List of desired condition ids.
+
+                            Returns all providers with a `conditions.uuid` field exactly matching any of the entered IDs.
+
+
+                            (Note: Use the `/conditions/` reference endpoint  to identify relevant IDs)
+
+                            '
+                          example:
+                          - fd7c10f3-fbec-482a-929b-be94a8bb3bc1
+                        treatment:
+                          $ref: '#/paths/~1custom~1treatments~1%7Btreatment_uuid%7D/get/responses/200/content/application~1json/schema'
+                        treatment_ids:
+                          type: array
+                          items:
+                            type: string
+                            format: uuid
+                            example: 11016779-e286-4b17-bd45-2d78660a9f28
+                          description: 'List of desired treatment ids.
+
+                            Returns all providers with a `treatments.uuid` field exactly matching any of the entered IDs.
+
+
+                            (Note: Use the /treatments/ reference endpoint (docs) to identify relevant IDs)
+
+                            '
+                          example:
+                          - 11016779-e286-4b17-bd45-2d78660a9f28
+                        panel_ages:
+                          type: array
+                          items:
+                            type: string
+                            example:
+                            - Pediatric (0-12)
+                          description: "List of desired Panel Ages strings. Options are:\n  `Pediatric (0-12)`\n  `Adolescent (13-21)`\n  `Adult (22-44)`\n  `Adult (45-64)`\n  `Senior (65 and over)`\n\nReturns all providers with a `panel_ages` label field exactly matching any of the entered strings.\n"
+                          example:
+                          - Pediatric (0-12)
+                          - Adolescent (13-21)
+                        panel_sexes:
+                          type: string
+                          description: "Desired Panel Sexes string. Options are:\n\n  `Both female and male`\n  `Primarily female`\n  `Primarily male`\n\nReturns all providers with a panel sexes label field exactly matching the entered string.\n"
+                          example: Primarily female
+                    - $ref: '#/paths/~1custom~1providers/get/parameters/7/schema'
+                    - type: object
+                      properties:
+                        location_organization_ids:
+                          type: array
+                          items:
+                            type: string
+                            format: uuid
+                            example: 497a1ac1-52cc-43a9-b796-844dabde10fc
+                          description: 'List of desired organization uuids. Filters to only providers who have the given organization uuid(s) listed in the `provider.organizations` field.
+
+
+                            Using this parameter will also filter the `provider.locations` returned in order to only surface `provider.locations` that have the given organization(s) in the `provider.locations.organizations` field.
+
+                            '
+                          example:
+                          - 497a1ac1-52cc-43a9-b796-844dabde10fc
+                    - type: object
+                      properties:
+                        tin_ids:
+                          type: string
+                          description: List of desired TINs.
+                        tin_name:
+                          type: string
+                        tin_legal_name:
+                          type: string
+                    - type: object
+                      properties:
+                        inclusions:
+                          type: object
+                          properties:
+                            specialty_ids:
+                              type: array
+                              items:
+                                type: string
+                                format: uuid
+                                example: ec41ff31-571d-422e-a8b5-806bed6a6c04
+                              example:
+                              - ec41ff31-571d-422e-a8b5-806bed6a6c04
+                              description: A list of specialty IDs included in the search based on the fuzzy-matched `specialty` parameter.
+                            specialty_ids_primary:
+                              type: array
+                              items:
+                                type: string
+                                format: uuid
+                                example: ec41ff31-571d-422e-a8b5-806bed6a6c04
+                              example:
+                              - ec41ff31-571d-422e-a8b5-806bed6a6c04
+                              description: A list of primary specialty IDs included in the search based on the fuzzy-matched `specialty_primary` parameter.
+                    - type: object
+                      properties:
+                        exclusions:
+                          type: object
+                          properties:
+                            provider_types:
+                              type: array
+                              items:
+                                type: string
+                                example: Optometry
+                              description: List of 'types' of providers excluded. Excludes any providers with a matching provider type.
+                              example:
+                              - Optometry
+                            insurance_ids:
+                              type: array
+                              items:
+                                type: string
+                                format: uuid
+                                example: e527f6e3-fe42-4932-bf34-d81f1c1fd652
+                              description: List of insurance uuids excluded. Excludes any providers who accept a given insurance(s).
+                              example:
+                              - e527f6e3-fe42-4932-bf34-d81f1c1fd652
+                            location_insurance_ids:
+                              type: array
+                              items:
+                                type: string
+                                format: uuid
+                                example: 34ecc98a-e49e-49e3-84f9-b0ab2ff00495
+                              description: List of insurance uuids excluded. Excludes any provider locations that accept a given insurance(s).
+                              example:
+                              - 34ecc98a-e49e-49e3-84f9-b0ab2ff00495
+                            location_ids:
+                              type: array
+                              items:
+                                type: string
+                                format: uuid
+                                example: 34ecc98a-e49e-49e3-84f9-b0ab2ff00495
+                              description: List of practice location uuids to exclude. Excludes providers who see patients at any of the given practice locations.
+                              example:
+                              - 34ecc98a-e49e-49e3-84f9-b0ab2ff00495
+                            location_organization_ids:
+                              type: array
+                              items:
+                                type: string
+                                format: uuid
+                                example: 497a1ac1-52cc-43a9-b796-844dabde10fc
+                              description: List of organization uuids to exclude. Excludes providers who have the given organization uuid(s) listed in the `provider.organizations` field.
+                              example:
+                              - 497a1ac1-52cc-43a9-b796-844dabde10fc
+                            specialty_ids:
+                              type: array
+                              items:
+                                type: string
+                                format: uuid
+                                example: ec41ff31-571d-422e-a8b5-806bed6a6c04
+                              example:
+                              - ec41ff31-571d-422e-a8b5-806bed6a6c04
+                              description: A list of specialty IDs excluded from the search. This can be the result of using `_excl_specialty_ids` or exclusions based on the fuzzy-matched `specialty` parameter.
+                            specialty_ids_primary:
+                              type: array
+                              items:
+                                type: string
+                                format: uuid
+                                example: ec41ff31-571d-422e-a8b5-806bed6a6c04
+                              example:
+                              - ec41ff31-571d-422e-a8b5-806bed6a6c04
+                              description: A list of primary specialty IDs excluded from the search. This can be the result of using `_excl_specialty_ids_primary` or exclusions based on the fuzzy-matched `specialty_primary` parameter.
+                            procedure_ids:
+                              type: array
+                              items:
+                                type: string
+                                format: uuid
+                                example: 9f3fd9e8-96b0-4cc7-ab2c-8d538e9164ae
+                              description: Comma separated list of procedure uuids to exclude. Exclude providers who perform the given procedure.
+                              example:
+                              - 9f3fd9e8-96b0-4cc7-ab2c-8d538e9164ae
+                            language:
+                              type: object
+                              properties:
+                                value:
+                                  type: string
+                                  example: english
+                                results:
+                                  type: array
+                                  items:
+                                    type: string
+                                    example: english
+                                  example:
+                                  - english
+                              description: Fuzzy search based on a string input (i.e. English) to exclude medical providers providers who speak / whose office staff speak the inputted language.
+                  data:
+                    type: array
+                    items:
+                      allOf:
+                      - $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D/get/responses/200/content/application~1json/schema'
+                      - type: object
+                        properties:
+                          locations:
+                            type: array
+                            items:
+                              $ref: '#/paths/~1custom~1locations/get/responses/200/content/application~1json/schema/properties/data/items'
+                            description: List of all locations this provider is known to practice at including any known phone numbers at these locations
+        '400':
+          description: The search could not be completed as requested
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '403':
+          description: Trial accounts do not have access to custom provider directories
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+  /custom/providers/{npi}:
+    get:
+      summary: Get Provider
+      description: 'Retrieve detailed information for any provider given their NPI, such as locations, contact information, education, patient satisfaction, etc.
+
+        '
+      operationId: getCustomProvider
+      tags:
+      - Providers
+      parameters:
+      - name: npi
+        in: path
+        required: true
+        description: The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch.
+        schema:
+          type: string
+          pattern: ^\d{10}$
+          example: '1861664294'
+      - name: max_insurances
+        in: query
+        required: false
+        description: If provided, returns only up to this many insurances per location. Useful to limit the amount of data returned when you do not need the entire list of accepted insurances.
+        schema:
+          type: integer
+          example: 50
+      responses:
+        '200':
+          description: Returns a single provider
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  npi:
+                    type: string
+                    pattern: ^\d{10}$
+                    example: '1861664294'
+                    description: The healthcare provider's 10-digit National Provider Identifier (NPI)
+                  first_name:
+                    type: string
+                    example: Jane
+                    description: First name of the provider
+                  middle_name:
+                    type:
+                    - string
+                    - 'null'
+                    example: J
+                    description: Middle name of the provider
+                  last_name:
+                    type: string
+                    example: Doe
+                    description: Last name of the provider
+                  age:
+                    type:
+                    - integer
+                    - 'null'
+                    example: 38
+                    description: The estimated age of the provider
+                  gender:
+                    type: string
+                    enum:
+                    - m
+                    - f
+                    description: The gender of the provider
+                  ratings_count:
+                    type: integer
+                    example: 20
+                    description: Total number of ratings collected across different sources
+                  ratings_avg:
+                    type:
+                    - number
+                    - 'null'
+                    example: 9.8
+                    description: Average patient satisfaction rating out of 10 points across multiple sources
+                  degrees:
+                    type: array
+                    items:
+                      type: string
+                      example: MD
+                    description: Lists all degrees associated with this provider (e.g. MD, OD, PhD)
+                  specialties:
+                    type: array
+                    items:
+                      $ref: '#/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema'
+                    description: This lists all the specialties for a given provider
+                  languages:
+                    type: array
+                    items:
+                      type: string
+                      example: english
+                    description: List of confirmed languages spoken
+                  educations:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - education
+                      - type
+                      - year
+                      properties:
+                        education:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: Stritch School of Medicine
+                            uuid:
+                              type: string
+                              format: uuid
+                              example: 0b26c31a-d74a-4327-9702-57753b82a126
+                        type:
+                          type:
+                          - string
+                          - 'null'
+                        year:
+                          type:
+                          - integer
+                          - 'null'
+                          example: 2007
+                    description: List of the schools attended by the provider
+                  insurances:
+                    type: array
+                    items:
+                      $ref: '#/paths/~1custom~1insurances/post/requestBody/content/application~1json/schema'
+                    description: List of insurances the provider accepts
+                  provider_types:
+                    type: array
+                    items:
+                      type: string
+                      example: Doctor
+                    description: There are high level classifications for different provider types -- e.g. "Doctor", "Optometry", "Dental Providers", "Nursing", etc.
+                  locations:
+                    type: array
+                    items:
+                      $ref: '#/paths/~1custom~1locations~1%7Blocation_uuid%7D/get/responses/200/content/application~1json/schema'
+                    description: List of all locations this provider is known to practice at including any known phone numbers at these locations
+                  online_profiles:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                    description: We aggregate profiles across a variety of different online sources, including booking platforms
+                  organizations:
+                    type:
+                    - array
+                    - 'null'
+                    items:
+                      $ref: '#/paths/~1custom~1organizations~1%7Borganization_uuid%7D/get/responses/200/content/application~1json/schema'
+                    description: List of all organizations this provider is known to be affiliated with. Note, this is a premium field and may not be enabled in your API index. Please reach out to H1 Support (support@h1.co) for additional information
+                  panel_demographics:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      ages:
+                        type: array
+                        items:
+                          type: string
+                      sexes:
+                        type: string
+                    description: Note, this is a premium field and may not be enabled in your API index. Please reach out to H1 Support (support@h1.co) for additional information
+                  clinical_areas:
+                    type:
+                    - array
+                    - 'null'
+                    items:
+                      $ref: '#/paths/~1custom~1clinical_areas~1%7Bclinical_area_uuid%7D/get/responses/200/content/application~1json/schema'
+                    description: Note, this is a premium field and may not be enabled in your API index. Please reach out to H1 Support (support@h1.co) for additional information
+                  conditions:
+                    type:
+                    - array
+                    - 'null'
+                    items:
+                      type: object
+                      properties:
+                        uuid:
+                          type: string
+                          format: uuid
+                        display:
+                          type: string
+                    description: Note, this is a premium field and may not be enabled in your API index. Please reach out to H1 Support (support@h1.co) for additional information
+                  treatments:
+                    type:
+                    - array
+                    - 'null'
+                    items:
+                      type: object
+                      properties:
+                        uuid:
+                          type: string
+                          format: uuid
+                        display:
+                          type: string
+                    description: Note, this is a premium field and may not be enabled in your API index. Please reach out to H1 Support (support@h1.co) for additional information
+                  procedures:
+                    type:
+                    - array
+                    - 'null'
+                    items:
+                      type: object
+                      properties:
+                        uuid:
+                          type: string
+                          format: uuid
+                        display:
+                          type: string
+                        cost:
+                          type: object
+                          properties:
+                            cost_index:
+                              type:
+                              - number
+                              - 'null'
+                        quality:
+                          type: object
+                          properties:
+                            experience_index:
+                              type:
+                              - number
+                              - 'null'
+                    description: Note, this is a premium field and may not be enabled in your API index. Please reach out to H1 Support (support@h1.co) for additional information
+                  performance:
+                    description: Note, this is a premium field and may not be enabled in your API index. Please reach out to H1 Support (support@h1.co) for additional information
+                    type: object
+                    properties:
+                      aggregate:
+                        type: object
+                        properties:
+                          cost:
+                            type: object
+                            properties:
+                              efficiency_index:
+                                type: number
+                          quality:
+                            type: object
+                            properties:
+                              outcomes_index:
+                                type: number
+                  board_certifications:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        board:
+                          type: string
+                        source:
+                          type: string
+                        end_date:
+                          type: string
+                        start_date:
+                          type: string
+                        specialty_taxonomy_code:
+                          type: string
+                    description: Note, this is a premium field and may not be enabled in your API index. Please reach out to H1 Support (support@h1.co) for additional information
+        '403':
+          description: Trial accounts do not have access to custom provider directories
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+        '404':
+          description: The given NPI cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+    put:
+      summary: Modify Provider Fields
+      description: 'Edit all fields that do not fall under `specialties`, `locations`, or `insurances`. You may also add new fields or remove existing fields.
+
+
+        #### Looking For The Old Documentation?
+
+        We''re in the process of revamping our documentation. You can find the old page for this endpoint [here](https://ribbon.readme.io/docs/add-or-edit-provider-fields-old).
+
+        '
+      operationId: putCustomProvider
+      tags:
+      - Providers
+      parameters:
+      - $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D/get/parameters/0'
+      requestBody:
+        required: true
+        description: A JSON object mapping the name of the field to update to its new value
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                remove_fields:
+                  type: array
+                  items:
+                    type: string
+                  description: An optional list of custom fields name to remove.
+              additionalProperties:
+                type:
+                - string
+                - integer
+                - boolean
+                - 'null'
+              example:
+                c_section_rate: 7.8
+                c_section_sample_size: 435
+      responses:
+        '200':
+          description: The specified fields were successfully updated or added
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D/put/requestBody/content/application~1json/schema'
+        '400':
+          description: This request attempted to update fields which cannot be customized or attempted to set a provider_type value which does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '403':
+          description: Trial accounts do not have access to custom provider directories
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+        '404':
+          description: The given NPI cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+  /custom/providers/{npi}/locations:
+    put:
+      summary: Add Or Remove Provider Locations
+      description: 'Add or remove locations a provider practices at using our standard location UUIDs.
+
+        '
+      operationId: putCustomProviderLocations
+      tags:
+      - Providers
+      parameters:
+      - $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D/get/parameters/0'
+      requestBody:
+        required: true
+        description: A set of instructions for how to update the provider's locations.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                add:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+                    example: 003aa14f-31ed-4c20-8888-07055d69afb6
+                  description: A list of UUIDs to add to this provider's set.
+                  example:
+                  - 003aa14f-31ed-4c20-8888-07055d69afb6
+                remove:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+                    example: 000914b4-d165-4343-bd17-0054505faaa5
+                  description: A list of UUIDs to remove to this provider's set.
+                  example:
+                  - 000914b4-d165-4343-bd17-0054505faaa5
+                override:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+                    example: 000914b4-d165-4343-bd17-0054505faaa5
+                  description: 'A list of UUIDs to remove to completely replace this provider''s set with.
+
+                    Not supported in combination with either `add` or `remove`.'
+              example:
+                add:
+                - 003aa14f-31ed-4c20-8888-07055d69afb6
+                remove:
+                - 000914b4-d165-4343-bd17-0054505faaa5
+      responses:
+        '200':
+          description: The locations list was successfully modified.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D~1locations/put/requestBody/content/application~1json/schema'
+        '400':
+          description: This request attempted to use fields which are not supported.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '403':
+          description: Trial accounts do not have access to custom provider directories
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+        '404':
+          description: The given NPI cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+  /custom/providers/{npi}/locations/{location_uuid}:
+    put:
+      summary: Modify Provider Location Fields
+      description: 'Edit all fields that do not fall under `uuid`, `google_maps_link`, `latitude`, or `longitude`. You may also add new fields or remove existing fields.
+
+        These updates are provider-specific and will not affect other providers practicing at the same location.
+
+        '
+      operationId: putCustomProviderLocation
+      tags:
+      - Providers
+      parameters:
+      - $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D/get/parameters/0'
+      - $ref: '#/paths/~1custom~1locations~1%7Blocation_uuid%7D/get/parameters/0'
+      requestBody:
+        required: true
+        description: A JSON object mapping the name of the field to update to its new value
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D/put/requestBody/content/application~1json/schema'
+      responses:
+        '200':
+          description: The location was successfully modified.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D/put/requestBody/content/application~1json/schema'
+        '400':
+          description: This request attempted to use fields which are not supported.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '403':
+          description: Trial accounts do not have access to custom provider directories
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+        '404':
+          description: The given NPI or location cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+  /custom/providers/{npi}/specialties:
+    put:
+      summary: Add Or Remove Provider Specialties
+      description: 'Add or remove specialties for a provider using our standard specialty UUIDs.
+
+        '
+      operationId: putCustomProviderSpecialties
+      tags:
+      - Providers
+      parameters:
+      - $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D/get/parameters/0'
+      requestBody:
+        required: true
+        description: A set of instructions for how to update the provider's specialties.
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D~1locations/put/requestBody/content/application~1json/schema'
+              - type: object
+                properties:
+                  is_primary:
+                    type: boolean
+                    example: false
+                    description: 'Whether or not these specialties are the provider''s primary specialties. When not provided, defaults to `false`.
+
+                      Not supported in combination with `remove`.'
+      responses:
+        '200':
+          description: The specialties list was successfully modified.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D~1specialties/put/requestBody/content/application~1json/schema'
+        '400':
+          description: This request attempted to use fields which are not supported or use items that are not valid UUIDs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '403':
+          description: Trial accounts do not have access to custom provider directories
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+        '404':
+          description: The given NPI cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+  /custom/providers/{npi}/specialties/{specialty_uuid}:
+    put:
+      summary: Modify A Provider's Primary Specialties
+      description: 'Edit whether a single specialty is one of the provider''s primary specialties.
+
+        '
+      operationId: putCustomProviderPrimarySpecialties
+      tags:
+      - Providers
+      parameters:
+      - $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D/get/parameters/0'
+      - $ref: '#/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/parameters/0'
+      requestBody:
+        required: true
+        description: Whether or not this specialty is a primary specialty.
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - is_primary
+              properties:
+                is_primary:
+                  type: boolean
+                  example: false
+                  description: Whether or not this specialty is one of the provider's primary specialties.
+      responses:
+        '200':
+          description: The specialty was successfully modified.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D~1specialties~1%7Bspecialty_uuid%7D/put/requestBody/content/application~1json/schema'
+        '400':
+          description: This request attempted to use fields which are not supported.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '403':
+          description: Trial accounts do not have access to custom provider directories
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+        '404':
+          description: The given NPI or specialty cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+  /custom/providers/{npi}/procedures:
+    put:
+      summary: Add Or Remove Provider Procedures
+      description: 'Add or remove procedures for a provider using our standard procedure UUIDs.
+
+        '
+      operationId: putCustomProviderProcedures
+      tags:
+      - Providers
+      parameters:
+      - $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D/get/parameters/0'
+      requestBody:
+        required: true
+        description: A set of instructions for how to update the provider's procedures.
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D~1locations/put/requestBody/content/application~1json/schema'
+      responses:
+        '200':
+          description: The procedures list was successfully modified.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D~1locations/put/requestBody/content/application~1json/schema'
+        '400':
+          description: This request attempted to use fields which are not supported or use items that are not valid UUIDs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '403':
+          description: Trial accounts do not have access to custom provider directories
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+        '404':
+          description: The given NPI cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+  /custom/providers/{npi}/clinical_areas:
+    put:
+      summary: Add Or Remove Provider Clinical Areas
+      description: 'Add or remove clinical areas for a provider using our standard clinical area UUIDs.
+
+        '
+      operationId: putCustomProviderClinicalAreas
+      tags:
+      - Providers
+      parameters:
+      - $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D/get/parameters/0'
+      requestBody:
+        required: true
+        description: A set of instructions for how to update the provider's clinical areas.
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D~1locations/put/requestBody/content/application~1json/schema'
+      responses:
+        '200':
+          description: The clinical areas list was successfully modified.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D~1locations/put/requestBody/content/application~1json/schema'
+        '400':
+          description: This request attempted to use fields which are not supported or use items that are not valid UUIDs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '403':
+          description: Trial accounts do not have access to custom provider directories
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+        '404':
+          description: The given NPI cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+  /custom/providers/{npi}/locations/{location_uuid}/insurances:
+    put:
+      summary: Add Or Remove Provider Insurances At A Location
+      description: 'Add or remove insurances accepted by a provider at a specific location using our standard insurance UUIDs.
+
+        '
+      operationId: putCustomProviderLocationInsurances
+      tags:
+      - Providers
+      parameters:
+      - $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D/get/parameters/0'
+      - $ref: '#/paths/~1custom~1locations~1%7Blocation_uuid%7D/get/parameters/0'
+      requestBody:
+        required: true
+        description: A set of instructions for how to update the provider's insurances at this location.
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D~1locations/put/requestBody/content/application~1json/schema'
+      responses:
+        '200':
+          description: The insurances list was successfully modified.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D~1locations/put/requestBody/content/application~1json/schema'
+        '400':
+          description: This request attempted to use fields which are not supported or use items that are not valid UUIDs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '403':
+          description: Trial accounts do not have access to custom provider directories
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+        '404':
+          description: The given NPI or location UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+  /custom/providers/{npi}/locations/{location_uuid}/organizations:
+    put:
+      summary: Add Or Remove Provider Organizations At A Location
+      description: 'Add or remove organizations accepted by a provider at a specific location using our standard organization UUIDs.
+
+        '
+      operationId: putCustomProviderLocationOrganizations
+      tags:
+      - Providers
+      parameters:
+      - $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D/get/parameters/0'
+      - $ref: '#/paths/~1custom~1locations~1%7Blocation_uuid%7D/get/parameters/0'
+      requestBody:
+        required: true
+        description: A set of instructions for how to update the provider's organizations at this location.
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D~1locations/put/requestBody/content/application~1json/schema'
+      responses:
+        '200':
+          description: The organizations list was successfully modified.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1providers~1%7Bnpi%7D~1locations/put/requestBody/content/application~1json/schema'
+        '400':
+          description: This request attempted to use fields which are not supported or use items that are not valid UUIDs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '403':
+          description: Trial accounts do not have access to custom provider directories
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
+        '404':
+          description: The given NPI or location UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

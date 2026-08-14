@@ -1,0 +1,415 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ribbon Health Reference Endpoints API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reference Endpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Insurances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/insurances",
+            "params": [
+              {
+                "name": "Insurance Search Parameters",
+                "value": "",
+                "type": "query",
+                "description": "Search parameters for the insurances reference endpoint."
+              }
+            ]
+          },
+          "docs": "Search and list insurances that exist within the Ribbon API.\n"
+        },
+        {
+          "info": {
+            "name": "Create Insurance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ribbonhealth.com/v1/custom/insurances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a insurance with desired field values.\n"
+        },
+        {
+          "info": {
+            "name": "Get Insurance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/insurances/:insurance_uuid",
+            "params": [
+              {
+                "name": "insurance_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the target insurance."
+              }
+            ]
+          },
+          "docs": "Retrieve data on a specific insurance.\n"
+        },
+        {
+          "info": {
+            "name": "Edit Insurance Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/insurances/:insurance_uuid",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit fields of a custom created insurance or a Ribbon created insurance.\n"
+        },
+        {
+          "info": {
+            "name": "Delete Insurance",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ribbonhealth.com/v1/custom/insurances/:insurance_uuid"
+          },
+          "docs": "Delete an insurance.\n\nNote: If you've added this insurance to doctors, you are deleting all instances of this UUID, and Ribbon will not be able to regenerate them.\n"
+        },
+        {
+          "info": {
+            "name": "Search Specialties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/specialties",
+            "params": [
+              {
+                "name": "Specialty Search Parameters",
+                "value": "",
+                "type": "query",
+                "description": "Search parameters for the specialty reference endpoint."
+              }
+            ]
+          },
+          "docs": "Search and list specialties that exist within the Ribbon API.\n"
+        },
+        {
+          "info": {
+            "name": "Create Specialty",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ribbonhealth.com/v1/custom/specialties",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a custom specialty with desired field values.\n"
+        },
+        {
+          "info": {
+            "name": "Get Specialty",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/specialties/:specialty_uuid",
+            "params": [
+              {
+                "name": "specialty_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the target specialty."
+              }
+            ]
+          },
+          "docs": "Retrieve data on a specific specialty.\n"
+        },
+        {
+          "info": {
+            "name": "Edit Specialty Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/specialties/:specialty_uuid",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit fields of a custom created specialty.\n\nNote: You cannot edit a Ribbon created specialty.\n"
+        },
+        {
+          "info": {
+            "name": "Delete Specialty",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ribbonhealth.com/v1/custom/specialties/:specialty_uuid"
+          },
+          "docs": "Delete a specialty.\n\nNote: You cannot delete a Ribbon created specialty.\n"
+        },
+        {
+          "info": {
+            "name": "Search Provider Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/provider_types",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search parameter for reference endpoints (Provider Type, Location Type, Languages)"
+              }
+            ]
+          },
+          "docs": "Search and list provider types that exist within the Ribbon API.\n"
+        },
+        {
+          "info": {
+            "name": "Create Provider Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ribbonhealth.com/v1/custom/provider_types",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a custom provider type with desired field values.\n"
+        },
+        {
+          "info": {
+            "name": "Get Provider Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/provider_types/:provider_type_uuid",
+            "params": [
+              {
+                "name": "provider_type_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the target provider type."
+              }
+            ]
+          },
+          "docs": "Retrieve data on a specific provider type.\n"
+        },
+        {
+          "info": {
+            "name": "Edit Provider Type Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/provider_types/:provider_type_uuid",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit fields of a custom created provider type.\n\nNote: You cannot edit a Ribbon created provider type.\n"
+        },
+        {
+          "info": {
+            "name": "Delete Provider Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ribbonhealth.com/v1/custom/provider_types/:provider_type_uuid"
+          },
+          "docs": "Delete a provider type.\n\nNote: You cannot edit a Ribbon created provider type.\n"
+        },
+        {
+          "info": {
+            "name": "Search Location Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/location_types",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search parameter for reference endpoints (Provider Type, Location Type, Languages)"
+              }
+            ]
+          },
+          "docs": "Search and list location types that exist within the Ribbon API.\n"
+        },
+        {
+          "info": {
+            "name": "Create Location Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ribbonhealth.com/v1/custom/location_types",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a location type with desired field values.\n"
+        },
+        {
+          "info": {
+            "name": "Get Location Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/location_types/:location_type_uuid",
+            "params": [
+              {
+                "name": "location_type_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the target location type."
+              }
+            ]
+          },
+          "docs": "Retrieve data on a specific location type.\n"
+        },
+        {
+          "info": {
+            "name": "Edit Location Type Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/location_types/:location_type_uuid",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit fields of a custom created location type.\n\nNote: You cannot edit a Ribbon created location type.\n"
+        },
+        {
+          "info": {
+            "name": "Delete Location Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ribbonhealth.com/v1/custom/location_types/:location_type_uuid"
+          },
+          "docs": "Delete a location type.\n\nNote: You cannot edit a Ribbon created location type.\n"
+        },
+        {
+          "info": {
+            "name": "Search Procedures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/procedures",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search parameter for reference endpoints (Provider Type, Location Type, Languages)"
+              },
+              {
+                "name": "procedure_code",
+                "value": "",
+                "type": "query",
+                "description": "A specific billing code (e.g., CPT, DRG) to search for"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page of the results which was returned."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "How many results are in each page."
+              }
+            ]
+          },
+          "docs": "Search and list procedures that exist within the Ribbon API.\n"
+        },
+        {
+          "info": {
+            "name": "Get Procedure",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/procedures/:procedure_uuid",
+            "params": [
+              {
+                "name": "procedure_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the target procedure."
+              }
+            ]
+          },
+          "docs": "Retrieve data on a specific procedure.\n"
+        },
+        {
+          "info": {
+            "name": "Search Languages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/languages",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search parameter for reference endpoints (Provider Type, Location Type, Languages)"
+              }
+            ]
+          },
+          "docs": "Search and list provider languages that exist in the Ribbon API.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

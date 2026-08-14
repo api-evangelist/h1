@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ribbon Health Price Transparency API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Price Transparency",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Provider Price Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/pricing/providers",
+            "params": [
+              {
+                "name": "Provider Price Search Criteria",
+                "value": "",
+                "type": "query",
+                "description": "Criteria used to search for providers based on their specialties."
+              }
+            ]
+          },
+          "docs": "Search for providers that perform a given procedure and find the lowest insurance-specific price for a procedure in your area.\n\n#### Example Use Case\nSearch for all applicable provider negotiated rates, given a specific insurance and procedure (and optionally, a specific location/address and distance). For example, search for all providers near me who perform Leg MRIs and who take a given insurance, sorted by lowest price.\n"
+        },
+        {
+          "info": {
+            "name": "Provider Procedures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/pricing/providers/:npi/procedures",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "Search for negotiated rates for the insurance plan with this UUID."
+              }
+            ]
+          },
+          "docs": "Fetch the list of procedures that a single provider performs, with the lowest available negotiated rates specific to a given insurance for each procedure.\n\n#### Example Use Case\nFor a given provider, search the full list of procedures that they are likely to perform where there are negotiated rates available for a particular insurance, and return the minimum price for each procedure.\n"
+        },
+        {
+          "info": {
+            "name": "Provider Procedure Pricing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/pricing/providers/:npi/procedures/:procedure_uuid",
+            "params": [
+              {
+                "name": "procedure_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the target procedure. If the target procedure is a procedure bundle but we do not have any data for it, we will return data for its anchor procedure instead."
+              }
+            ]
+          },
+          "docs": "Find the prices offered by a single provider for a specific procedure, with a given insurance, across practice locations.\n\n#### Example Use Case\nCompare insurance-specific price estimates of a Leg MRI for a single provider at multiple relevant practices (e.g., compare this provider's rates when performing the procedure at both the provider's private outpatient facility, as well as a nearby hospital system clinic where they also practice).\n"
+        },
+        {
+          "info": {
+            "name": "Provider Location Procedure Pricing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/pricing/providers/:npi/procedures/:procedure_uuid/locations/:location_uuid"
+          },
+          "docs": "Search for a price estimate for a specific procedure from a specific provider at a specific location, with a given insurance plan.\n\n#### Example Use Case\nGiven an insurance, identify the expected price of a particular procedure from a specific provider at a known facility.\n"
+        },
+        {
+          "info": {
+            "name": "List Carriers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/pricing/carriers"
+          },
+          "docs": "This endpoint will show the carriers for which we have data. This can be used to fetch the recency of the data used per carrier.\n"
+        },
+        {
+          "info": {
+            "name": "Get Carrier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/pricing/carrier/:carrier_uuid",
+            "params": [
+              {
+                "name": "carrier_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the insurance carrier."
+              }
+            ]
+          },
+          "docs": "Fetch metadata including the recency of the pricing data used for a specific carrier.\n"
+        },
+        {
+          "info": {
+            "name": "Carrier Names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/pricing/version"
+          },
+          "docs": "This endpoint will the names of the carriers for which we have data. This can be used to fetch the recency of the data used per carrier.\n\nThis endpoint is deprecated. Please use [List Carriers](./getpricingcarriers) instead.\n"
+        },
+        {
+          "info": {
+            "name": "Carrier Data Versions By Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/pricing/version/:carrier_name",
+            "params": [
+              {
+                "name": "carrier_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the insurance carrier."
+              }
+            ]
+          },
+          "docs": "Fetch the recency of the pricing data used for a specific carrier by name.\n\nThis endpoint is deprecated. Please use [Get Carrier](./getpricingcarrier) instead.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

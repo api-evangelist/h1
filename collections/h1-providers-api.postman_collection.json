@@ -1,0 +1,4343 @@
+{
+  "item": [
+    {
+      "id": "5db60f37-0843-46ec-85e8-621a9f4afe79",
+      "name": "Providers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6354be1b-b43d-480c-a858-5d6e5cae624d",
+          "name": "Search Providers",
+          "request": {
+            "name": "Search Providers",
+            "description": {
+              "content": "Allows you to quickly list doctors based on important search criteria.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Options to control what data gets returned to you."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "Options to control what data gets returned to you."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_locations",
+                  "value": "<integer>",
+                  "description": "Options to control what data gets returned to you."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Options to control what data gets returned to you."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_fields",
+                  "value": "<string>",
+                  "description": "Options to control what data gets returned to you."
+                },
+                {
+                  "disabled": false,
+                  "key": "npis",
+                  "value": "<string>",
+                  "description": "Search criteria based on aspects of the providers themselves."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Search criteria based on aspects of the providers themselves."
+                },
+                {
+                  "disabled": false,
+                  "key": "provider_types",
+                  "value": "<string>",
+                  "description": "Search criteria based on aspects of the providers themselves."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_provider_types",
+                  "value": "<string>",
+                  "description": "Search criteria based on aspects of the providers themselves."
+                },
+                {
+                  "disabled": false,
+                  "key": "gender",
+                  "value": "<string>",
+                  "description": "Search criteria based on aspects of the providers themselves."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_age",
+                  "value": "<integer>",
+                  "description": "Search criteria based on aspects of the providers themselves."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_age",
+                  "value": "<integer>",
+                  "description": "Search criteria based on aspects of the providers themselves."
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "Search criteria based on aspects of the providers themselves."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_language",
+                  "value": "<string>",
+                  "description": "Search criteria based on aspects of the providers themselves."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_rating",
+                  "value": "<integer>",
+                  "description": "Search criteria based on aspects of the providers themselves."
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the locations at which they practice."
+                },
+                {
+                  "disabled": false,
+                  "key": "location_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the locations at which they practice."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_location_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the locations at which they practice."
+                },
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the locations at which they practice."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_location_confidence",
+                  "value": "<integer>",
+                  "description": "Criteria used to search for providers based on the locations at which they practice."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_confidence",
+                  "value": "<integer>",
+                  "description": "Criteria used to search for providers based on the locations at which they practice."
+                },
+                {
+                  "disabled": false,
+                  "key": "distance",
+                  "value": "<integer>",
+                  "description": "Criteria used to search for providers based on the locations at which they practice."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the locations at which they practice."
+                },
+                {
+                  "disabled": false,
+                  "key": "insurance_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the insurances they accept."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_insurance_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the insurances they accept."
+                },
+                {
+                  "disabled": false,
+                  "key": "insurance_carrier_name",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the insurances they accept."
+                },
+                {
+                  "disabled": false,
+                  "key": "location_insurance_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the insurances they accept."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_location_insurance_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the insurances they accept."
+                },
+                {
+                  "disabled": false,
+                  "key": "national_bluecard",
+                  "value": "<boolean>",
+                  "description": "Criteria used to search for providers based on the insurances they accept."
+                },
+                {
+                  "disabled": false,
+                  "key": "specialty_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_specialty_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "specialty",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "specialty_ids_primary",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_specialty_ids_primary",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "specialty_primary",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "apply_specialty_grouping",
+                  "value": "<boolean>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "procedure_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on procedures they perform."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_procedure_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on procedures they perform."
+                },
+                {
+                  "disabled": false,
+                  "key": "procedure",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on procedures they perform."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_experience_index",
+                  "value": "<float>",
+                  "description": "Criteria used to search for providers based on procedures they perform."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_cost_index",
+                  "value": "<float>",
+                  "description": "Criteria used to search for providers based on procedures they perform."
+                },
+                {
+                  "disabled": false,
+                  "key": "clinical_area",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their Focus Areas."
+                },
+                {
+                  "disabled": false,
+                  "key": "clinical_area_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their Focus Areas."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_clinical_area_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their Focus Areas."
+                },
+                {
+                  "disabled": false,
+                  "key": "condition",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their Focus Areas."
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their Focus Areas."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_condition_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their Focus Areas."
+                },
+                {
+                  "disabled": false,
+                  "key": "treatment",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their Focus Areas."
+                },
+                {
+                  "disabled": false,
+                  "key": "treatment_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their Focus Areas."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_treatment_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their Focus Areas."
+                },
+                {
+                  "disabled": false,
+                  "key": "panel_ages",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their Focus Areas."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_panel_ages",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their Focus Areas."
+                },
+                {
+                  "disabled": false,
+                  "key": "panel_sexes",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their Focus Areas."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_outcomes_index",
+                  "value": "<integer>",
+                  "description": "Criteria used to search for providers based on Cost and Quality scores."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_efficiency_index",
+                  "value": "<integer>",
+                  "description": "Criteria used to search for providers based on Cost and Quality scores."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_unit_cost_index",
+                  "value": "<integer>",
+                  "description": "Criteria used to search for providers based on Cost and Quality scores."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_ribbon_cost_score",
+                  "value": "<integer>",
+                  "description": "Criteria used to search for providers based on Cost and Quality scores."
+                },
+                {
+                  "disabled": false,
+                  "key": "location_organization_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the organizations they belong to."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_location_organization_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the organizations they belong to."
+                },
+                {
+                  "disabled": false,
+                  "key": "tin_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the TINs they are associated with."
+                },
+                {
+                  "disabled": false,
+                  "key": "tin_name",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the TINs they are associated with."
+                },
+                {
+                  "disabled": false,
+                  "key": "tin_legal_name",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on the TINs they are associated with."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ecdc7b2f-fb2c-4cc9-902d-22ca1e7669b8",
+              "name": "Returns an ordered list of matching providers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "max_locations",
+                      "value": "5"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "locations,age"
+                    },
+                    {
+                      "key": "_excl_fields",
+                      "value": "locations,age"
+                    },
+                    {
+                      "key": "npis",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Doe"
+                    },
+                    {
+                      "key": "provider_types",
+                      "value": "Optometry"
+                    },
+                    {
+                      "key": "_excl_provider_types",
+                      "value": "Optometry"
+                    },
+                    {
+                      "key": "gender",
+                      "value": "m"
+                    },
+                    {
+                      "key": "max_age",
+                      "value": "70"
+                    },
+                    {
+                      "key": "min_age",
+                      "value": "45"
+                    },
+                    {
+                      "key": "language",
+                      "value": "English"
+                    },
+                    {
+                      "key": "_excl_language",
+                      "value": "English"
+                    },
+                    {
+                      "key": "min_rating",
+                      "value": "6"
+                    },
+                    {
+                      "key": "address",
+                      "value": "New York, NY"
+                    },
+                    {
+                      "key": "location_ids",
+                      "value": "34ecc98a-e49e-49e3-84f9-b0ab2ff00495"
+                    },
+                    {
+                      "key": "_excl_location_ids",
+                      "value": "34ecc98a-e49e-49e3-84f9-b0ab2ff00495"
+                    },
+                    {
+                      "key": "location",
+                      "value": "37.7489816,-122.4802092"
+                    },
+                    {
+                      "key": "min_location_confidence",
+                      "value": "3"
+                    },
+                    {
+                      "key": "min_confidence",
+                      "value": "3"
+                    },
+                    {
+                      "key": "distance",
+                      "value": "10"
+                    },
+                    {
+                      "key": "state",
+                      "value": "NY"
+                    },
+                    {
+                      "key": "insurance_ids",
+                      "value": "e527f6e3-fe42-4932-bf34-d81f1c1fd652"
+                    },
+                    {
+                      "key": "_excl_insurance_ids",
+                      "value": "e527f6e3-fe42-4932-bf34-d81f1c1fd652"
+                    },
+                    {
+                      "key": "insurance_carrier_name",
+                      "value": "Aetna"
+                    },
+                    {
+                      "key": "location_insurance_ids",
+                      "value": "34ecc98a-e49e-49e3-84f9-b0ab2ff00495"
+                    },
+                    {
+                      "key": "_excl_location_insurance_ids",
+                      "value": "34ecc98a-e49e-49e3-84f9-b0ab2ff00495"
+                    },
+                    {
+                      "key": "national_bluecard",
+                      "value": "true"
+                    },
+                    {
+                      "key": "specialty_ids",
+                      "value": "1de33770-eb1c-47fa-ab3e-f9a4ab924d9d"
+                    },
+                    {
+                      "key": "_excl_specialty_ids",
+                      "value": "1de33770-eb1c-47fa-ab3e-f9a4ab924d9d"
+                    },
+                    {
+                      "key": "specialty",
+                      "value": "gastroenterology"
+                    },
+                    {
+                      "key": "specialty_ids_primary",
+                      "value": "1de33770-eb1c-47fa-ab3e-f9a4ab924d9d"
+                    },
+                    {
+                      "key": "_excl_specialty_ids_primary",
+                      "value": "1de33770-eb1c-47fa-ab3e-f9a4ab924d9d"
+                    },
+                    {
+                      "key": "specialty_primary",
+                      "value": "gastroenterology"
+                    },
+                    {
+                      "key": "apply_specialty_grouping",
+                      "value": "false"
+                    },
+                    {
+                      "key": "procedure_ids",
+                      "value": "9f3fd9e8-96b0-4cc7-ab2c-8d538e9164ae"
+                    },
+                    {
+                      "key": "_excl_procedure_ids",
+                      "value": "9f3fd9e8-96b0-4cc7-ab2c-8d538e9164ae"
+                    },
+                    {
+                      "key": "procedure",
+                      "value": "MRI, thoracic spine"
+                    },
+                    {
+                      "key": "min_experience_index",
+                      "value": "4"
+                    },
+                    {
+                      "key": "max_cost_index",
+                      "value": "4"
+                    },
+                    {
+                      "key": "clinical_area",
+                      "value": "Mental Health"
+                    },
+                    {
+                      "key": "clinical_area_ids",
+                      "value": "a7da792c-fae3-4b46-bab7-220e0c54e376"
+                    },
+                    {
+                      "key": "_excl_clinical_area_ids",
+                      "value": "a7da792c-fae3-4b46-bab7-220e0c54e376"
+                    },
+                    {
+                      "key": "condition",
+                      "value": "depression"
+                    },
+                    {
+                      "key": "condition_ids",
+                      "value": "fd7c10f3-fbec-482a-929b-be94a8bb3bc1"
+                    },
+                    {
+                      "key": "_excl_condition_ids",
+                      "value": "fd7c10f3-fbec-482a-929b-be94a8bb3bc1"
+                    },
+                    {
+                      "key": "treatment",
+                      "value": "Psychological Therapy"
+                    },
+                    {
+                      "key": "treatment_ids",
+                      "value": "11016779-e286-4b17-bd45-2d78660a9f28"
+                    },
+                    {
+                      "key": "_excl_treatment_ids",
+                      "value": "11016779-e286-4b17-bd45-2d78660a9f28"
+                    },
+                    {
+                      "key": "panel_ages",
+                      "value": "Pediatric (0-12),Adolescent (13-21)"
+                    },
+                    {
+                      "key": "_excl_panel_ages",
+                      "value": "Pediatric (0-12),Adolescent (13-21)"
+                    },
+                    {
+                      "key": "panel_sexes",
+                      "value": "Primarily female"
+                    },
+                    {
+                      "key": "min_outcomes_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_efficiency_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_unit_cost_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_ribbon_cost_score",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_organization_ids",
+                      "value": "497a1ac1-52cc-43a9-b796-844dabde10fc"
+                    },
+                    {
+                      "key": "_excl_location_organization_ids",
+                      "value": "497a1ac1-52cc-43a9-b796-844dabde10fc"
+                    },
+                    {
+                      "key": "tin_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tin_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tin_legal_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"parameters\": {\n    \"total_count\": 141,\n    \"sort_by\": \"distance\",\n    \"geo\": {\n      \"latitude\": 40.7351327,\n      \"longitude\": -73.9881657\n    },\n    \"page\": 1,\n    \"page_size\": 25,\n    \"max_locations\": 5,\n    \"fields\": [\n      \"locations\",\n      \"age\"\n    ],\n    \"_excl_fields\": [\n      \"locations\",\n      \"age\"\n    ],\n    \"npis\": [\n      \"string\",\n      \"string\"\n    ],\n    \"name\": \"Doe\",\n    \"provider_types\": [\n      \"Optometry\"\n    ],\n    \"gender\": \"m\",\n    \"max_age\": 70,\n    \"min_age\": 45,\n    \"language\": {\n      \"results\": [\n        \"french\",\n        \"french\"\n      ],\n      \"value\": \"English\",\n      \"description\": {}\n    },\n    \"min_rating\": 6,\n    \"address\": \"New York, NY\",\n    \"location_ids\": [\n      \"34ecc98a-e49e-49e3-84f9-b0ab2ff00495\"\n    ],\n    \"min_location_confidence\": 3,\n    \"min_confidence\": 3,\n    \"distance\": 10,\n    \"state\": \"NY\",\n    \"insurance_ids\": [\n      \"e527f6e3-fe42-4932-bf34-d81f1c1fd652\"\n    ],\n    \"insurance_carrier_name\": \"Aetna\",\n    \"location_insurance_ids\": [\n      \"34ecc98a-e49e-49e3-84f9-b0ab2ff00495\"\n    ],\n    \"national_bluecard\": true,\n    \"specialty_ids\": [\n      \"1de33770-eb1c-47fa-ab3e-f9a4ab924d9d\"\n    ],\n    \"specialty\": {\n      \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    \"specialty_ids_primary\": [\n      \"1de33770-eb1c-47fa-ab3e-f9a4ab924d9d\"\n    ],\n    \"primary_specialty\": {\n      \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    \"apply_specialty_grouping\": false,\n    \"procedure_ids\": [\n      \"9f3fd9e8-96b0-4cc7-ab2c-8d538e9164ae\"\n    ],\n    \"procedure\": {\n      \"value\": \"reference #/paths/~1procedures~1%7Bprocedure_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    \"min_experience_index\": 4,\n    \"max_cost_index\": 4,\n    \"clinical_area\": \"Mental Health\",\n    \"clinical_area_ids\": {\n      \"value\": \"reference #/paths/~1custom~1clinical_areas~1%7Bclinical_area_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    \"condition\": {\n      \"value\": \"reference #/paths/~1custom~1conditions~1%7Bcondition_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    \"condition_ids\": [\n      \"fd7c10f3-fbec-482a-929b-be94a8bb3bc1\"\n    ],\n    \"treatment\": {\n      \"value\": \"reference #/paths/~1custom~1treatments~1%7Btreatment_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    \"treatment_ids\": [\n      \"11016779-e286-4b17-bd45-2d78660a9f28\"\n    ],\n    \"panel_ages\": [\n      \"Pediatric (0-12)\",\n      \"Adolescent (13-21)\"\n    ],\n    \"panel_sexes\": \"Primarily female\",\n    \"min_outcomes_index\": \"<integer>\",\n    \"min_efficiency_index\": \"<integer>\",\n    \"max_unit_cost_index\": \"<integer>\",\n    \"max_ribbon_cost_score\": \"<integer>\",\n    \"location_organization_ids\": [\n      \"497a1ac1-52cc-43a9-b796-844dabde10fc\"\n    ],\n    \"tin_ids\": \"string\",\n    \"tin_name\": \"string\",\n    \"tin_legal_name\": \"string\",\n    \"inclusions\": {\n      \"specialty_ids\": [\n        \"ec41ff31-571d-422e-a8b5-806bed6a6c04\"\n      ],\n      \"specialty_ids_primary\": [\n        \"ec41ff31-571d-422e-a8b5-806bed6a6c04\"\n      ]\n    },\n    \"exclusions\": {\n      \"provider_types\": [\n        \"Optometry\"\n      ],\n      \"insurance_ids\": [\n        \"e527f6e3-fe42-4932-bf34-d81f1c1fd652\"\n      ],\n      \"location_insurance_ids\": [\n        \"34ecc98a-e49e-49e3-84f9-b0ab2ff00495\"\n      ],\n      \"location_ids\": [\n        \"34ecc98a-e49e-49e3-84f9-b0ab2ff00495\"\n      ],\n      \"location_organization_ids\": [\n        \"497a1ac1-52cc-43a9-b796-844dabde10fc\"\n      ],\n      \"specialty_ids\": [\n        \"ec41ff31-571d-422e-a8b5-806bed6a6c04\"\n      ],\n      \"specialty_ids_primary\": [\n        \"ec41ff31-571d-422e-a8b5-806bed6a6c04\"\n      ],\n      \"procedure_ids\": [\n        \"9f3fd9e8-96b0-4cc7-ab2c-8d538e9164ae\"\n      ],\n      \"language\": {\n        \"value\": \"english\",\n        \"results\": [\n          \"english\"\n        ]\n      }\n    }\n  },\n  \"data\": [\n    {\n      \"npi\": \"1861664294\",\n      \"first_name\": \"Jane\",\n      \"middle_name\": \"J\",\n      \"last_name\": \"Doe\",\n      \"age\": 38,\n      \"gender\": \"f\",\n      \"ratings_count\": 20,\n      \"ratings_avg\": 9.8,\n      \"degrees\": [\n        \"MD\",\n        \"MD\"\n      ],\n      \"specialties\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ],\n      \"languages\": [\n        \"english\",\n        \"english\"\n      ],\n      \"educations\": [\n        {\n          \"education\": {\n            \"name\": \"Stritch School of Medicine\",\n            \"uuid\": \"0b26c31a-d74a-4327-9702-57753b82a126\"\n          },\n          \"type\": null,\n          \"year\": 2007\n        },\n        {\n          \"education\": {\n            \"name\": \"Stritch School of Medicine\",\n            \"uuid\": \"0b26c31a-d74a-4327-9702-57753b82a126\"\n          },\n          \"type\": null,\n          \"year\": 2007\n        }\n      ],\n      \"insurances\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1insurances/post/requestBody/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1insurances/post/requestBody/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ],\n      \"provider_types\": [\n        \"Doctor\",\n        \"Doctor\"\n      ],\n      \"locations\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1locations~1%7Blocation_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1locations~1%7Blocation_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ],\n      \"online_profiles\": [\n        {\n          \"url\": \"string\"\n        },\n        {\n          \"url\": \"string\"\n        }\n      ],\n      \"organizations\": null,\n      \"panel_demographics\": {\n        \"ages\": [\n          \"string\",\n          \"string\"\n        ],\n        \"sexes\": \"string\"\n      },\n      \"clinical_areas\": [\n        \"\",\n        \"\"\n      ],\n      \"conditions\": [\n        {\n          \"uuid\": \"25726ce9-1fc7-5c31-d108-2e567a325bac\",\n          \"display\": \"string\"\n        },\n        {\n          \"uuid\": \"e739c205-1434-9e24-1e52-e10ee7d92440\",\n          \"display\": \"string\"\n        }\n      ],\n      \"treatments\": null,\n      \"procedures\": [\n        {\n          \"uuid\": \"d41b9deb-509c-a13f-eebe-d0986b425abf\",\n          \"display\": \"string\",\n          \"cost\": {\n            \"cost_index\": null\n          },\n          \"quality\": {\n            \"experience_index\": 6328.3534880457555\n          }\n        },\n        {\n          \"uuid\": \"86e0f8ec-97c5-fe4f-3482-b20c06275d53\",\n          \"display\": \"string\",\n          \"cost\": {\n            \"cost_index\": null\n          },\n          \"quality\": {\n            \"experience_index\": null\n          }\n        }\n      ],\n      \"performance\": {\n        \"aggregate\": {\n          \"cost\": {\n            \"efficiency_index\": 2867.9660927580144\n          },\n          \"quality\": {\n            \"outcomes_index\": 9693.152739057668\n          }\n        }\n      },\n      \"board_certifications\": [\n        {\n          \"name\": \"string\",\n          \"board\": \"string\",\n          \"source\": \"string\",\n          \"end_date\": \"string\",\n          \"start_date\": \"string\",\n          \"specialty_taxonomy_code\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"board\": \"string\",\n          \"source\": \"string\",\n          \"end_date\": \"string\",\n          \"start_date\": \"string\",\n          \"specialty_taxonomy_code\": \"string\"\n        }\n      ]\n    },\n    {\n      \"npi\": \"1861664294\",\n      \"first_name\": \"Jane\",\n      \"middle_name\": \"J\",\n      \"last_name\": \"Doe\",\n      \"age\": 38,\n      \"gender\": \"m\",\n      \"ratings_count\": 20,\n      \"ratings_avg\": 9.8,\n      \"degrees\": [\n        \"MD\",\n        \"MD\"\n      ],\n      \"specialties\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ],\n      \"languages\": [\n        \"english\",\n        \"english\"\n      ],\n      \"educations\": [\n        {\n          \"education\": {\n            \"name\": \"Stritch School of Medicine\",\n            \"uuid\": \"0b26c31a-d74a-4327-9702-57753b82a126\"\n          },\n          \"type\": null,\n          \"year\": 2007\n        },\n        {\n          \"education\": {\n            \"name\": \"Stritch School of Medicine\",\n            \"uuid\": \"0b26c31a-d74a-4327-9702-57753b82a126\"\n          },\n          \"type\": \"string\",\n          \"year\": 2007\n        }\n      ],\n      \"insurances\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1insurances/post/requestBody/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1insurances/post/requestBody/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ],\n      \"provider_types\": [\n        \"Doctor\",\n        \"Doctor\"\n      ],\n      \"locations\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1locations~1%7Blocation_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1locations~1%7Blocation_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ],\n      \"online_profiles\": [\n        {\n          \"url\": \"string\"\n        },\n        {\n          \"url\": \"string\"\n        }\n      ],\n      \"organizations\": null,\n      \"panel_demographics\": {\n        \"ages\": [\n          \"string\",\n          \"string\"\n        ],\n        \"sexes\": \"string\"\n      },\n      \"clinical_areas\": null,\n      \"conditions\": [\n        {\n          \"uuid\": \"9c17b2bd-7914-0090-4e2c-070483690688\",\n          \"display\": \"string\"\n        },\n        {\n          \"uuid\": \"3f736647-36c8-c12a-586f-2aecb7fb3a05\",\n          \"display\": \"string\"\n        }\n      ],\n      \"treatments\": [\n        {\n          \"uuid\": \"b024422f-d6f0-17e5-c813-91cc3c8f6b94\",\n          \"display\": \"string\"\n        },\n        {\n          \"uuid\": \"a06922ca-53c7-a9bc-3a74-1e90a73592ce\",\n          \"display\": \"string\"\n        }\n      ],\n      \"procedures\": null,\n      \"performance\": {\n        \"aggregate\": {\n          \"cost\": {\n            \"efficiency_index\": 7581.549475701342\n          },\n          \"quality\": {\n            \"outcomes_index\": 9520.845317280178\n          }\n        }\n      },\n      \"board_certifications\": [\n        {\n          \"name\": \"string\",\n          \"board\": \"string\",\n          \"source\": \"string\",\n          \"end_date\": \"string\",\n          \"start_date\": \"string\",\n          \"specialty_taxonomy_code\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"board\": \"string\",\n          \"source\": \"string\",\n          \"end_date\": \"string\",\n          \"start_date\": \"string\",\n          \"specialty_taxonomy_code\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38d24075-9040-420d-bd3f-bd04f5cac094",
+              "name": "The search could not be completed as requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "max_locations",
+                      "value": "5"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "locations,age"
+                    },
+                    {
+                      "key": "_excl_fields",
+                      "value": "locations,age"
+                    },
+                    {
+                      "key": "npis",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Doe"
+                    },
+                    {
+                      "key": "provider_types",
+                      "value": "Optometry"
+                    },
+                    {
+                      "key": "_excl_provider_types",
+                      "value": "Optometry"
+                    },
+                    {
+                      "key": "gender",
+                      "value": "m"
+                    },
+                    {
+                      "key": "max_age",
+                      "value": "70"
+                    },
+                    {
+                      "key": "min_age",
+                      "value": "45"
+                    },
+                    {
+                      "key": "language",
+                      "value": "English"
+                    },
+                    {
+                      "key": "_excl_language",
+                      "value": "English"
+                    },
+                    {
+                      "key": "min_rating",
+                      "value": "6"
+                    },
+                    {
+                      "key": "address",
+                      "value": "New York, NY"
+                    },
+                    {
+                      "key": "location_ids",
+                      "value": "34ecc98a-e49e-49e3-84f9-b0ab2ff00495"
+                    },
+                    {
+                      "key": "_excl_location_ids",
+                      "value": "34ecc98a-e49e-49e3-84f9-b0ab2ff00495"
+                    },
+                    {
+                      "key": "location",
+                      "value": "37.7489816,-122.4802092"
+                    },
+                    {
+                      "key": "min_location_confidence",
+                      "value": "3"
+                    },
+                    {
+                      "key": "min_confidence",
+                      "value": "3"
+                    },
+                    {
+                      "key": "distance",
+                      "value": "10"
+                    },
+                    {
+                      "key": "state",
+                      "value": "NY"
+                    },
+                    {
+                      "key": "insurance_ids",
+                      "value": "e527f6e3-fe42-4932-bf34-d81f1c1fd652"
+                    },
+                    {
+                      "key": "_excl_insurance_ids",
+                      "value": "e527f6e3-fe42-4932-bf34-d81f1c1fd652"
+                    },
+                    {
+                      "key": "insurance_carrier_name",
+                      "value": "Aetna"
+                    },
+                    {
+                      "key": "location_insurance_ids",
+                      "value": "34ecc98a-e49e-49e3-84f9-b0ab2ff00495"
+                    },
+                    {
+                      "key": "_excl_location_insurance_ids",
+                      "value": "34ecc98a-e49e-49e3-84f9-b0ab2ff00495"
+                    },
+                    {
+                      "key": "national_bluecard",
+                      "value": "true"
+                    },
+                    {
+                      "key": "specialty_ids",
+                      "value": "1de33770-eb1c-47fa-ab3e-f9a4ab924d9d"
+                    },
+                    {
+                      "key": "_excl_specialty_ids",
+                      "value": "1de33770-eb1c-47fa-ab3e-f9a4ab924d9d"
+                    },
+                    {
+                      "key": "specialty",
+                      "value": "gastroenterology"
+                    },
+                    {
+                      "key": "specialty_ids_primary",
+                      "value": "1de33770-eb1c-47fa-ab3e-f9a4ab924d9d"
+                    },
+                    {
+                      "key": "_excl_specialty_ids_primary",
+                      "value": "1de33770-eb1c-47fa-ab3e-f9a4ab924d9d"
+                    },
+                    {
+                      "key": "specialty_primary",
+                      "value": "gastroenterology"
+                    },
+                    {
+                      "key": "apply_specialty_grouping",
+                      "value": "false"
+                    },
+                    {
+                      "key": "procedure_ids",
+                      "value": "9f3fd9e8-96b0-4cc7-ab2c-8d538e9164ae"
+                    },
+                    {
+                      "key": "_excl_procedure_ids",
+                      "value": "9f3fd9e8-96b0-4cc7-ab2c-8d538e9164ae"
+                    },
+                    {
+                      "key": "procedure",
+                      "value": "MRI, thoracic spine"
+                    },
+                    {
+                      "key": "min_experience_index",
+                      "value": "4"
+                    },
+                    {
+                      "key": "max_cost_index",
+                      "value": "4"
+                    },
+                    {
+                      "key": "clinical_area",
+                      "value": "Mental Health"
+                    },
+                    {
+                      "key": "clinical_area_ids",
+                      "value": "a7da792c-fae3-4b46-bab7-220e0c54e376"
+                    },
+                    {
+                      "key": "_excl_clinical_area_ids",
+                      "value": "a7da792c-fae3-4b46-bab7-220e0c54e376"
+                    },
+                    {
+                      "key": "condition",
+                      "value": "depression"
+                    },
+                    {
+                      "key": "condition_ids",
+                      "value": "fd7c10f3-fbec-482a-929b-be94a8bb3bc1"
+                    },
+                    {
+                      "key": "_excl_condition_ids",
+                      "value": "fd7c10f3-fbec-482a-929b-be94a8bb3bc1"
+                    },
+                    {
+                      "key": "treatment",
+                      "value": "Psychological Therapy"
+                    },
+                    {
+                      "key": "treatment_ids",
+                      "value": "11016779-e286-4b17-bd45-2d78660a9f28"
+                    },
+                    {
+                      "key": "_excl_treatment_ids",
+                      "value": "11016779-e286-4b17-bd45-2d78660a9f28"
+                    },
+                    {
+                      "key": "panel_ages",
+                      "value": "Pediatric (0-12),Adolescent (13-21)"
+                    },
+                    {
+                      "key": "_excl_panel_ages",
+                      "value": "Pediatric (0-12),Adolescent (13-21)"
+                    },
+                    {
+                      "key": "panel_sexes",
+                      "value": "Primarily female"
+                    },
+                    {
+                      "key": "min_outcomes_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_efficiency_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_unit_cost_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_ribbon_cost_score",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_organization_ids",
+                      "value": "497a1ac1-52cc-43a9-b796-844dabde10fc"
+                    },
+                    {
+                      "key": "_excl_location_organization_ids",
+                      "value": "497a1ac1-52cc-43a9-b796-844dabde10fc"
+                    },
+                    {
+                      "key": "tin_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tin_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tin_legal_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3545e4a0-238f-4dcb-83a3-4e6c24c741d4",
+              "name": "Trial accounts do not have access to custom provider directories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "max_locations",
+                      "value": "5"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "locations,age"
+                    },
+                    {
+                      "key": "_excl_fields",
+                      "value": "locations,age"
+                    },
+                    {
+                      "key": "npis",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Doe"
+                    },
+                    {
+                      "key": "provider_types",
+                      "value": "Optometry"
+                    },
+                    {
+                      "key": "_excl_provider_types",
+                      "value": "Optometry"
+                    },
+                    {
+                      "key": "gender",
+                      "value": "m"
+                    },
+                    {
+                      "key": "max_age",
+                      "value": "70"
+                    },
+                    {
+                      "key": "min_age",
+                      "value": "45"
+                    },
+                    {
+                      "key": "language",
+                      "value": "English"
+                    },
+                    {
+                      "key": "_excl_language",
+                      "value": "English"
+                    },
+                    {
+                      "key": "min_rating",
+                      "value": "6"
+                    },
+                    {
+                      "key": "address",
+                      "value": "New York, NY"
+                    },
+                    {
+                      "key": "location_ids",
+                      "value": "34ecc98a-e49e-49e3-84f9-b0ab2ff00495"
+                    },
+                    {
+                      "key": "_excl_location_ids",
+                      "value": "34ecc98a-e49e-49e3-84f9-b0ab2ff00495"
+                    },
+                    {
+                      "key": "location",
+                      "value": "37.7489816,-122.4802092"
+                    },
+                    {
+                      "key": "min_location_confidence",
+                      "value": "3"
+                    },
+                    {
+                      "key": "min_confidence",
+                      "value": "3"
+                    },
+                    {
+                      "key": "distance",
+                      "value": "10"
+                    },
+                    {
+                      "key": "state",
+                      "value": "NY"
+                    },
+                    {
+                      "key": "insurance_ids",
+                      "value": "e527f6e3-fe42-4932-bf34-d81f1c1fd652"
+                    },
+                    {
+                      "key": "_excl_insurance_ids",
+                      "value": "e527f6e3-fe42-4932-bf34-d81f1c1fd652"
+                    },
+                    {
+                      "key": "insurance_carrier_name",
+                      "value": "Aetna"
+                    },
+                    {
+                      "key": "location_insurance_ids",
+                      "value": "34ecc98a-e49e-49e3-84f9-b0ab2ff00495"
+                    },
+                    {
+                      "key": "_excl_location_insurance_ids",
+                      "value": "34ecc98a-e49e-49e3-84f9-b0ab2ff00495"
+                    },
+                    {
+                      "key": "national_bluecard",
+                      "value": "true"
+                    },
+                    {
+                      "key": "specialty_ids",
+                      "value": "1de33770-eb1c-47fa-ab3e-f9a4ab924d9d"
+                    },
+                    {
+                      "key": "_excl_specialty_ids",
+                      "value": "1de33770-eb1c-47fa-ab3e-f9a4ab924d9d"
+                    },
+                    {
+                      "key": "specialty",
+                      "value": "gastroenterology"
+                    },
+                    {
+                      "key": "specialty_ids_primary",
+                      "value": "1de33770-eb1c-47fa-ab3e-f9a4ab924d9d"
+                    },
+                    {
+                      "key": "_excl_specialty_ids_primary",
+                      "value": "1de33770-eb1c-47fa-ab3e-f9a4ab924d9d"
+                    },
+                    {
+                      "key": "specialty_primary",
+                      "value": "gastroenterology"
+                    },
+                    {
+                      "key": "apply_specialty_grouping",
+                      "value": "false"
+                    },
+                    {
+                      "key": "procedure_ids",
+                      "value": "9f3fd9e8-96b0-4cc7-ab2c-8d538e9164ae"
+                    },
+                    {
+                      "key": "_excl_procedure_ids",
+                      "value": "9f3fd9e8-96b0-4cc7-ab2c-8d538e9164ae"
+                    },
+                    {
+                      "key": "procedure",
+                      "value": "MRI, thoracic spine"
+                    },
+                    {
+                      "key": "min_experience_index",
+                      "value": "4"
+                    },
+                    {
+                      "key": "max_cost_index",
+                      "value": "4"
+                    },
+                    {
+                      "key": "clinical_area",
+                      "value": "Mental Health"
+                    },
+                    {
+                      "key": "clinical_area_ids",
+                      "value": "a7da792c-fae3-4b46-bab7-220e0c54e376"
+                    },
+                    {
+                      "key": "_excl_clinical_area_ids",
+                      "value": "a7da792c-fae3-4b46-bab7-220e0c54e376"
+                    },
+                    {
+                      "key": "condition",
+                      "value": "depression"
+                    },
+                    {
+                      "key": "condition_ids",
+                      "value": "fd7c10f3-fbec-482a-929b-be94a8bb3bc1"
+                    },
+                    {
+                      "key": "_excl_condition_ids",
+                      "value": "fd7c10f3-fbec-482a-929b-be94a8bb3bc1"
+                    },
+                    {
+                      "key": "treatment",
+                      "value": "Psychological Therapy"
+                    },
+                    {
+                      "key": "treatment_ids",
+                      "value": "11016779-e286-4b17-bd45-2d78660a9f28"
+                    },
+                    {
+                      "key": "_excl_treatment_ids",
+                      "value": "11016779-e286-4b17-bd45-2d78660a9f28"
+                    },
+                    {
+                      "key": "panel_ages",
+                      "value": "Pediatric (0-12),Adolescent (13-21)"
+                    },
+                    {
+                      "key": "_excl_panel_ages",
+                      "value": "Pediatric (0-12),Adolescent (13-21)"
+                    },
+                    {
+                      "key": "panel_sexes",
+                      "value": "Primarily female"
+                    },
+                    {
+                      "key": "min_outcomes_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_efficiency_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_unit_cost_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_ribbon_cost_score",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_organization_ids",
+                      "value": "497a1ac1-52cc-43a9-b796-844dabde10fc"
+                    },
+                    {
+                      "key": "_excl_location_organization_ids",
+                      "value": "497a1ac1-52cc-43a9-b796-844dabde10fc"
+                    },
+                    {
+                      "key": "tin_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tin_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tin_legal_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "590f4ee6-2dfb-4c97-8099-ba4efccd0530",
+          "name": "Get Provider",
+          "request": {
+            "name": "Get Provider",
+            "description": {
+              "content": "Retrieve detailed information for any provider given their NPI, such as locations, contact information, education, patient satisfaction, etc.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "providers",
+                ":npi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "max_insurances",
+                  "value": "<integer>",
+                  "description": "If provided, returns only up to this many insurances per location. Useful to limit the amount of data returned when you do not need the entire list of accepted insurances."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "npi",
+                  "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47237d74-a0cf-4473-adbb-1fc7cec39dce",
+              "name": "Returns a single provider",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_insurances",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"npi\": \"1861664294\",\n  \"first_name\": \"Jane\",\n  \"middle_name\": \"J\",\n  \"last_name\": \"Doe\",\n  \"age\": 38,\n  \"gender\": \"f\",\n  \"ratings_count\": 20,\n  \"ratings_avg\": 9.8,\n  \"degrees\": [\n    \"MD\",\n    \"MD\"\n  ],\n  \"specialties\": [\n    {\n      \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    }\n  ],\n  \"languages\": [\n    \"english\",\n    \"english\"\n  ],\n  \"educations\": [\n    {\n      \"education\": {\n        \"name\": \"Stritch School of Medicine\",\n        \"uuid\": \"0b26c31a-d74a-4327-9702-57753b82a126\"\n      },\n      \"type\": null,\n      \"year\": 2007\n    },\n    {\n      \"education\": {\n        \"name\": \"Stritch School of Medicine\",\n        \"uuid\": \"0b26c31a-d74a-4327-9702-57753b82a126\"\n      },\n      \"type\": null,\n      \"year\": 2007\n    }\n  ],\n  \"insurances\": [\n    {\n      \"value\": \"reference #/paths/~1custom~1insurances/post/requestBody/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference #/paths/~1custom~1insurances/post/requestBody/content/application~1json/schema not found in the OpenAPI spec\"\n    }\n  ],\n  \"provider_types\": [\n    \"Doctor\",\n    \"Doctor\"\n  ],\n  \"locations\": [\n    {\n      \"value\": \"reference #/paths/~1custom~1locations~1%7Blocation_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference #/paths/~1custom~1locations~1%7Blocation_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    }\n  ],\n  \"online_profiles\": [\n    {\n      \"url\": \"string\"\n    },\n    {\n      \"url\": \"string\"\n    }\n  ],\n  \"organizations\": [\n    \"\",\n    \"\"\n  ],\n  \"panel_demographics\": {\n    \"ages\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sexes\": \"string\"\n  },\n  \"clinical_areas\": [\n    \"\",\n    \"\"\n  ],\n  \"conditions\": [\n    {\n      \"uuid\": \"52cda495-4cb1-875e-ee00-6420862ff13f\",\n      \"display\": \"string\"\n    },\n    {\n      \"uuid\": \"aa0035b8-1d9e-8e74-1d68-9c380ef1eaeb\",\n      \"display\": \"string\"\n    }\n  ],\n  \"treatments\": [\n    {\n      \"uuid\": \"8adf06d7-acdb-e3d3-d812-305453929ab9\",\n      \"display\": \"string\"\n    },\n    {\n      \"uuid\": \"f92e3f63-02a2-7a3d-820d-38c909e2ee0f\",\n      \"display\": \"string\"\n    }\n  ],\n  \"procedures\": [\n    {\n      \"uuid\": \"310ad32b-da73-5e63-9df9-215a2c99dc26\",\n      \"display\": \"string\",\n      \"cost\": {\n        \"cost_index\": null\n      },\n      \"quality\": {\n        \"experience_index\": null\n      }\n    },\n    {\n      \"uuid\": \"5e308b08-edfd-d819-9900-39f5e414d9ae\",\n      \"display\": \"string\",\n      \"cost\": {\n        \"cost_index\": null\n      },\n      \"quality\": {\n        \"experience_index\": null\n      }\n    }\n  ],\n  \"performance\": {\n    \"aggregate\": {\n      \"cost\": {\n        \"efficiency_index\": 144.6368785851948\n      },\n      \"quality\": {\n        \"outcomes_index\": 4691.382911877567\n      }\n    }\n  },\n  \"board_certifications\": [\n    {\n      \"name\": \"string\",\n      \"board\": \"string\",\n      \"source\": \"string\",\n      \"end_date\": \"string\",\n      \"start_date\": \"string\",\n      \"specialty_taxonomy_code\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"board\": \"string\",\n      \"source\": \"string\",\n      \"end_date\": \"string\",\n      \"start_date\": \"string\",\n      \"specialty_taxonomy_code\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2102487e-750e-40c1-a9cd-32f9f7713451",
+              "name": "Trial accounts do not have access to custom provider directories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_insurances",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e8e6275-788d-470a-8ed6-88806be70eb4",
+              "name": "The given NPI cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_insurances",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9be9279-cfc3-46dd-b13d-805f33926f35",
+          "name": "Modify Provider Fields",
+          "request": {
+            "name": "Modify Provider Fields",
+            "description": {
+              "content": "Edit all fields that do not fall under `specialties`, `locations`, or `insurances`. You may also add new fields or remove existing fields.\n\n#### Looking For The Old Documentation?\nWe're in the process of revamping our documentation. You can find the old page for this endpoint [here](https://ribbon.readme.io/docs/add-or-edit-provider-fields-old).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "providers",
+                ":npi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "npi",
+                  "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"remove_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_0\": \"<string,integer,boolean,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c52e5e1-81bf-4a1b-977e-c1094fea363c",
+              "name": "The specified fields were successfully updated or added",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"remove_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_0\": \"<string,integer,boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"remove_fields\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_0\": \"<string,integer,boolean,null>\",\n    \"key_1\": \"<string,integer,boolean,null>\",\n    \"key_2\": \"<string,integer,boolean,null>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbfd008b-2d85-45fd-9c24-846591e57c27",
+              "name": "This request attempted to update fields which cannot be customized or attempted to set a provider_type value which does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"remove_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_0\": \"<string,integer,boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d42791d-5034-448e-b9d1-2666fede3be9",
+              "name": "Trial accounts do not have access to custom provider directories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"remove_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_0\": \"<string,integer,boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14849e34-dd81-4e33-961b-1f028b1abf09",
+              "name": "The given NPI cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"remove_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_0\": \"<string,integer,boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3fe390dd-32b5-4bb1-a9b8-020e514c62e7",
+          "name": "Add Or Remove Provider Locations",
+          "request": {
+            "name": "Add Or Remove Provider Locations",
+            "description": {
+              "content": "Add or remove locations a provider practices at using our standard location UUIDs.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "providers",
+                ":npi",
+                "locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "npi",
+                  "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"add\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"remove\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"override\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c1f64ff9-c0d6-4f09-a407-05b6f3d74600",
+              "name": "The locations list was successfully modified.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"add\": [\n      \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n    ],\n    \"remove\": [\n      \"000914b4-d165-4343-bd17-0054505faaa5\"\n    ],\n    \"override\": [\n      \"000914b4-d165-4343-bd17-0054505faaa5\",\n      \"000914b4-d165-4343-bd17-0054505faaa5\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dba4bcef-2183-4a3b-83a8-d6f42fd28e6c",
+              "name": "This request attempted to use fields which are not supported.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bee65eda-1a2f-49b1-ad04-edba10e7c3e3",
+              "name": "Trial accounts do not have access to custom provider directories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65e91486-1ce8-4b33-bb23-03eedd7dedfa",
+              "name": "The given NPI cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0f3e796-b968-4aa6-8593-1cc9e54e0080",
+          "name": "Modify Provider Location Fields",
+          "request": {
+            "name": "Modify Provider Location Fields",
+            "description": {
+              "content": "Edit all fields that do not fall under `uuid`, `google_maps_link`, `latitude`, or `longitude`. You may also add new fields or remove existing fields.\nThese updates are provider-specific and will not affect other providers practicing at the same location.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "providers",
+                ":npi",
+                "locations",
+                ":location_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "npi",
+                  "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"remove_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_0\": \"<string,integer,boolean,null>\",\n  \"key_1\": \"<string,integer,boolean,null>\",\n  \"key_2\": \"<string,integer,boolean,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1dc42281-5a90-4a75-b1f1-d07e8f478f55",
+              "name": "The location was successfully modified.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations",
+                    ":location_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"remove_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_0\": \"<string,integer,boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"remove_fields\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_0\": \"<string,integer,boolean,null>\",\n    \"key_1\": \"<string,integer,boolean,null>\",\n    \"key_2\": \"<string,integer,boolean,null>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ffaed3a-0b6d-4b28-8d52-8d5a2f073ed1",
+              "name": "This request attempted to use fields which are not supported.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations",
+                    ":location_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"remove_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_0\": \"<string,integer,boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6cd52b2-15d0-46d7-a655-b987ac79ed6f",
+              "name": "Trial accounts do not have access to custom provider directories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations",
+                    ":location_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"remove_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_0\": \"<string,integer,boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b47747e-9aae-4355-b61f-2cb7ce8c05fb",
+              "name": "The given NPI or location cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations",
+                    ":location_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"remove_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_0\": \"<string,integer,boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a113d4f7-bf08-4194-8d34-b72b3622c2dc",
+          "name": "Add Or Remove Provider Specialties",
+          "request": {
+            "name": "Add Or Remove Provider Specialties",
+            "description": {
+              "content": "Add or remove specialties for a provider using our standard specialty UUIDs.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "providers",
+                ":npi",
+                "specialties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "npi",
+                  "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"add\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"remove\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"override\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"is_primary\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd390152-d378-4f54-b19f-a4bb07ad90d4",
+              "name": "The specialties list was successfully modified.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "specialties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"is_primary\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"add\": [\n      \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n    ],\n    \"remove\": [\n      \"000914b4-d165-4343-bd17-0054505faaa5\"\n    ],\n    \"override\": [\n      \"000914b4-d165-4343-bd17-0054505faaa5\",\n      \"000914b4-d165-4343-bd17-0054505faaa5\"\n    ],\n    \"is_primary\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b5f29d6-c5d0-46a1-835f-835978169c91",
+              "name": "This request attempted to use fields which are not supported or use items that are not valid UUIDs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "specialties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"is_primary\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0fbe804-6e85-4bee-95c6-d48f88481f37",
+              "name": "Trial accounts do not have access to custom provider directories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "specialties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"is_primary\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca6f32f0-0009-4861-9bb6-9987f13883da",
+              "name": "The given NPI cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "specialties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"is_primary\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85493360-b88c-4ca8-a5a7-e82c515a1f7a",
+          "name": "Modify A Provider's Primary Specialties",
+          "request": {
+            "name": "Modify A Provider's Primary Specialties",
+            "description": {
+              "content": "Edit whether a single specialty is one of the provider's primary specialties.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "providers",
+                ":npi",
+                "specialties",
+                ":specialty_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "npi",
+                  "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_primary\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e07977a1-08b6-4234-bdc5-c7ed3d4aa79e",
+              "name": "The specialty was successfully modified.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "specialties",
+                    ":specialty_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_primary\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"is_primary\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4258e938-5463-4300-a22c-728f19ecc741",
+              "name": "This request attempted to use fields which are not supported.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "specialties",
+                    ":specialty_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_primary\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f955e61-b28c-43d8-a8e3-b42fec6ef53b",
+              "name": "Trial accounts do not have access to custom provider directories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "specialties",
+                    ":specialty_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_primary\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83270092-d724-497a-8c46-20ba730bb7d8",
+              "name": "The given NPI or specialty cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "specialties",
+                    ":specialty_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_primary\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "758f9ba2-a6a9-4edd-8612-8316a548d9f1",
+          "name": "Add Or Remove Provider Procedures",
+          "request": {
+            "name": "Add Or Remove Provider Procedures",
+            "description": {
+              "content": "Add or remove procedures for a provider using our standard procedure UUIDs.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "providers",
+                ":npi",
+                "procedures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "npi",
+                  "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"add\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"remove\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"override\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fde6ffbb-b751-477d-8693-adc25081ffa6",
+              "name": "The procedures list was successfully modified.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "procedures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"add\": [\n      \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n    ],\n    \"remove\": [\n      \"000914b4-d165-4343-bd17-0054505faaa5\"\n    ],\n    \"override\": [\n      \"000914b4-d165-4343-bd17-0054505faaa5\",\n      \"000914b4-d165-4343-bd17-0054505faaa5\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d4b749e-1caa-4f25-8492-afe4c4056342",
+              "name": "This request attempted to use fields which are not supported or use items that are not valid UUIDs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "procedures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ceac907e-5643-4f6f-92db-3b39dc0edeb6",
+              "name": "Trial accounts do not have access to custom provider directories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "procedures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24b76554-436f-4d9c-ba34-2b1821bb37e9",
+              "name": "The given NPI cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "procedures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2876a27-5629-4345-b9b4-2b240a50a7b2",
+          "name": "Add Or Remove Provider Clinical Areas",
+          "request": {
+            "name": "Add Or Remove Provider Clinical Areas",
+            "description": {
+              "content": "Add or remove clinical areas for a provider using our standard clinical area UUIDs.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "providers",
+                ":npi",
+                "clinical_areas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "npi",
+                  "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"add\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"remove\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"override\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bf4e124b-ec70-4970-be8f-ab8dcff12aae",
+              "name": "The clinical areas list was successfully modified.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "clinical_areas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"add\": [\n      \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n    ],\n    \"remove\": [\n      \"000914b4-d165-4343-bd17-0054505faaa5\"\n    ],\n    \"override\": [\n      \"000914b4-d165-4343-bd17-0054505faaa5\",\n      \"000914b4-d165-4343-bd17-0054505faaa5\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2afdcacc-141e-4733-a303-1473d5d31321",
+              "name": "This request attempted to use fields which are not supported or use items that are not valid UUIDs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "clinical_areas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10578438-db31-4d2f-a4b1-93eb71eb7943",
+              "name": "Trial accounts do not have access to custom provider directories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "clinical_areas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91e0e6de-fb58-4b66-a39f-3c3d1a5aea08",
+              "name": "The given NPI cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "clinical_areas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "565a475b-b532-488f-84e6-754b00b13150",
+          "name": "Add Or Remove Provider Insurances At A Location",
+          "request": {
+            "name": "Add Or Remove Provider Insurances At A Location",
+            "description": {
+              "content": "Add or remove insurances accepted by a provider at a specific location using our standard insurance UUIDs.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "providers",
+                ":npi",
+                "locations",
+                ":location_uuid",
+                "insurances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "npi",
+                  "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"add\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"remove\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"override\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0e571fc7-712d-46d3-b24e-b0bf6228e618",
+              "name": "The insurances list was successfully modified.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations",
+                    ":location_uuid",
+                    "insurances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"add\": [\n      \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n    ],\n    \"remove\": [\n      \"000914b4-d165-4343-bd17-0054505faaa5\"\n    ],\n    \"override\": [\n      \"000914b4-d165-4343-bd17-0054505faaa5\",\n      \"000914b4-d165-4343-bd17-0054505faaa5\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0efc685-e835-462b-b50b-5c4c530fec70",
+              "name": "This request attempted to use fields which are not supported or use items that are not valid UUIDs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations",
+                    ":location_uuid",
+                    "insurances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a867537-6f0a-4c73-bfc2-47cb26bb2a00",
+              "name": "Trial accounts do not have access to custom provider directories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations",
+                    ":location_uuid",
+                    "insurances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a334134-236c-4ff1-a727-684e63ce898f",
+              "name": "The given NPI or location UUID cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations",
+                    ":location_uuid",
+                    "insurances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4322397-4830-439f-b75c-a4045ee5a28b",
+          "name": "Add Or Remove Provider Organizations At A Location",
+          "request": {
+            "name": "Add Or Remove Provider Organizations At A Location",
+            "description": {
+              "content": "Add or remove organizations accepted by a provider at a specific location using our standard organization UUIDs.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "providers",
+                ":npi",
+                "locations",
+                ":location_uuid",
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "npi",
+                  "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"add\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"remove\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"override\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ab2271e-e5e1-40b2-a46e-c18c0c91937f",
+              "name": "The organizations list was successfully modified.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations",
+                    ":location_uuid",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"add\": [\n      \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n    ],\n    \"remove\": [\n      \"000914b4-d165-4343-bd17-0054505faaa5\"\n    ],\n    \"override\": [\n      \"000914b4-d165-4343-bd17-0054505faaa5\",\n      \"000914b4-d165-4343-bd17-0054505faaa5\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3aae7a1d-4d6b-4a24-acd9-65bfd2a3201d",
+              "name": "This request attempted to use fields which are not supported or use items that are not valid UUIDs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations",
+                    ":location_uuid",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5aa9d42c-8eec-485a-a78a-3abccdec61ac",
+              "name": "Trial accounts do not have access to custom provider directories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations",
+                    ":location_uuid",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70e26c26-3ae6-49c5-9d38-d9632c1fa8c2",
+              "name": "The given NPI or location UUID cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "providers",
+                    ":npi",
+                    "locations",
+                    ":location_uuid",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "npi",
+                      "description": "(Required) The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    \"003aa14f-31ed-4c20-8888-07055d69afb6\"\n  ],\n  \"remove\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ],\n  \"override\": [\n    \"000914b4-d165-4343-bd17-0054505faaa5\",\n    \"000914b4-d165-4343-bd17-0054505faaa5\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ribbonhealth.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c5969b24-c9f8-4af4-99b9-72279cb62527",
+    "name": "Ribbon Health Providers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.\n",
+      "type": "text/plain"
+    }
+  }
+}

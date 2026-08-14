@@ -1,0 +1,257 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ribbon Health Providers API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/providers",
+            "params": [
+              {
+                "name": "Pagination and Search Configuration Options",
+                "value": "",
+                "type": "query",
+                "description": "Options to control what data gets returned to you."
+              },
+              {
+                "name": "Provider Search Criteria",
+                "value": "",
+                "type": "query",
+                "description": "Search criteria based on aspects of the providers themselves."
+              },
+              {
+                "name": "Location Search Criteria",
+                "value": "",
+                "type": "query",
+                "description": "Criteria used to search for providers based on the locations at which they practice."
+              },
+              {
+                "name": "Insurance Search Criteria",
+                "value": "",
+                "type": "query",
+                "description": "Criteria used to search for providers based on the insurances they accept."
+              },
+              {
+                "name": "Specialty Search Criteria",
+                "value": "",
+                "type": "query",
+                "description": "Criteria used to search for providers based on their specialties."
+              },
+              {
+                "name": "Procedure Search Criteria",
+                "value": "",
+                "type": "query",
+                "description": "Criteria used to search for providers based on procedures they perform."
+              },
+              {
+                "name": "Focus Area Search Criteria",
+                "value": "",
+                "type": "query",
+                "description": "Criteria used to search for providers based on their Focus Areas."
+              },
+              {
+                "name": "Cost and Quality Criteria",
+                "value": "",
+                "type": "query",
+                "description": "Criteria used to search for providers based on Cost and Quality scores."
+              },
+              {
+                "name": "Organization Search Criteria",
+                "value": "",
+                "type": "query",
+                "description": "Criteria used to search for providers based on the organizations they belong to."
+              },
+              {
+                "name": "TINs Search Criteria",
+                "value": "",
+                "type": "query",
+                "description": "Criteria used to search for providers based on the TINs they are associated with."
+              }
+            ]
+          },
+          "docs": "Allows you to quickly list doctors based on important search criteria.\n"
+        },
+        {
+          "info": {
+            "name": "Get Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/providers/:npi",
+            "params": [
+              {
+                "name": "npi",
+                "value": "",
+                "type": "path",
+                "description": "The 10-digit National Provider Identifier (NPI) of the healthcare provider to fetch."
+              },
+              {
+                "name": "max_insurances",
+                "value": "",
+                "type": "query",
+                "description": "If provided, returns only up to this many insurances per location. Useful to limit the amount of data returned when you do not need the entire list of accepted insurances."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for any provider given their NPI, such as locations, contact information, education, patient satisfaction, etc.\n"
+        },
+        {
+          "info": {
+            "name": "Modify Provider Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/providers/:npi",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit all fields that do not fall under `specialties`, `locations`, or `insurances`. You may also add new fields or remove existing fields.\n\n#### Looking For The Old Documentation?\nWe're in the process of revamping our documentation. You can find the old page for this endpoint [here](https://ribbon.readme.io/docs/add-or-edit-provider-fields-old).\n"
+        },
+        {
+          "info": {
+            "name": "Add Or Remove Provider Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/providers/:npi/locations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or remove locations a provider practices at using our standard location UUIDs.\n"
+        },
+        {
+          "info": {
+            "name": "Modify Provider Location Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/providers/:npi/locations/:location_uuid",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit all fields that do not fall under `uuid`, `google_maps_link`, `latitude`, or `longitude`. You may also add new fields or remove existing fields.\nThese updates are provider-specific and will not affect other providers practicing at the same location.\n"
+        },
+        {
+          "info": {
+            "name": "Add Or Remove Provider Specialties",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/providers/:npi/specialties",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or remove specialties for a provider using our standard specialty UUIDs.\n"
+        },
+        {
+          "info": {
+            "name": "Modify A Provider's Primary Specialties",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/providers/:npi/specialties/:specialty_uuid",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit whether a single specialty is one of the provider's primary specialties.\n"
+        },
+        {
+          "info": {
+            "name": "Add Or Remove Provider Procedures",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/providers/:npi/procedures",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or remove procedures for a provider using our standard procedure UUIDs.\n"
+        },
+        {
+          "info": {
+            "name": "Add Or Remove Provider Clinical Areas",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/providers/:npi/clinical_areas",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or remove clinical areas for a provider using our standard clinical area UUIDs.\n"
+        },
+        {
+          "info": {
+            "name": "Add Or Remove Provider Insurances At A Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/providers/:npi/locations/:location_uuid/insurances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or remove insurances accepted by a provider at a specific location using our standard insurance UUIDs.\n"
+        },
+        {
+          "info": {
+            "name": "Add Or Remove Provider Organizations At A Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/providers/:npi/locations/:location_uuid/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or remove organizations accepted by a provider at a specific location using our standard organization UUIDs.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

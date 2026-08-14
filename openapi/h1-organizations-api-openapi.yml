@@ -1,0 +1,233 @@
+openapi: 3.2.0
+info:
+  title: Ribbon Health Organizations API
+  version: 1.0.0
+  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
+
+    '
+servers:
+- url: https://api.ribbonhealth.com/v1
+security:
+- BearerAuth: []
+tags:
+- name: Organizations
+paths:
+  /custom/organizations:
+    get:
+      summary: Search Organizations
+      description: 'Search for different organizations.
+
+
+        #### Example Use Case
+
+        Display a map of all of all nearby health systems and their relevant information so that a patient can find care.
+
+        '
+      operationId: getOrganizations
+      tags:
+      - Organizations
+      parameters:
+      - name: address
+        in: query
+        required: false
+        description: String input of an address that will be interpreted and geocoded in real time.
+        schema:
+          type: string
+          example: New York, NY
+      - name: name
+        in: query
+        required: false
+        description: String input that is fuzzy matched to against the `organization.name` field.
+        schema:
+          type: string
+          example: baptist
+      - name: distance
+        in: query
+        required: false
+        description: Constrains the search to within this many miles of the center point
+        schema:
+          type: integer
+          example: 10
+      - name: location
+        in: query
+        required: false
+        description: Latitude/longitude pair of coordinates in lieu of a string address.
+        schema:
+          type: string
+          example: 37.7489816,-122.4802092
+      - $ref: '#/paths/~1procedures/get/parameters/2'
+      - $ref: '#/paths/~1procedures/get/parameters/3'
+      responses:
+        '200':
+          description: Specialties returned from a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - parameters
+                - data
+                properties:
+                  parameters:
+                    type: object
+                    properties:
+                      page:
+                        type: integer
+                        example: 1
+                        description: The page of the results which was returned.
+                      page_size:
+                        type: integer
+                        example: 25
+                        description: How many results are in each page.
+                      total_count:
+                        type: integer
+                        example: 141
+                        description: The total number of results matched, across all pages.
+                      sort_by:
+                        type: string
+                        example: distance
+                        description: The main criteria used to sort results in the record set.
+                      distance:
+                        type: integer
+                        example: 10
+                        description: The proximity radius of locations returned.
+                      geo:
+                        type: object
+                        properties:
+                          latitude:
+                            type: number
+                            example: 40.7351327
+                            description: The latitude the search was focused on.
+                          longitude:
+                            type: number
+                            example: -73.9881657
+                            description: The longitude the search was focused on.
+                      address:
+                        type:
+                        - string
+                        - 'null'
+                        description: String input of an address that will be interpreted and geocoded in real time.
+                        example: Jacksonville, FL, USA
+                      name:
+                        type: string
+                        description: String input that is fuzzy matched to against the `organization.name` field.
+                        example: baptist
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/paths/~1custom~1organizations~1%7Borganization_uuid%7D/get/responses/200/content/application~1json/schema'
+  /custom/organizations/{organization_uuid}:
+    get:
+      summary: Get Organization
+      description: 'Retrieve detailed information for any organization given its UUID
+
+        '
+      operationId: getOrganization
+      tags:
+      - Organizations
+      parameters:
+      - name: organization_uuid
+        in: path
+        required: true
+        description: The UUID of the target organization.
+        schema:
+          type: string
+          format: uuid
+          example: a1dbf998-a65b-4780-8361-648357785d96
+      responses:
+        '200':
+          description: The requested organization is returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid:
+                    type: string
+                    format: uuid
+                    example: a1dbf998-a65b-4780-8361-648357785d96
+                    description: A UUID uniquely identifying this organization
+                  name:
+                    type: string
+                    example: Baptist Health (Jacksonville)
+                  organization_types:
+                    type: array
+                    items:
+                      type: string
+                      enum:
+                      - Health System
+                    description: The types of this organization. We currently only support `Health System` organizations, but plan to expand this in the future
+                  websites:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: https://www.baptistjax.com/
+                    description: Website(s) of this organization
+                  ids:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '5'
+                        id_type:
+                          type: string
+                          example: AHA_ID
+                  address:
+                    type: string
+                    example: '841 Prudential Dr # 1601, Jacksonville, FL 32207, US'
+                  address_details:
+                    type: object
+                    properties:
+                      zip:
+                        type: string
+                        example: '32207'
+                      city:
+                        type: string
+                        example: Jacksonville
+                      state:
+                        type: string
+                        example: FL
+                      street:
+                        type: string
+                        example: '841 Prudential Dr # 1601'
+                      address_line_1:
+                        type: string
+                        example: 841 Prudential Dr
+                      address_line_2:
+                        type:
+                        - string
+                        - 'null'
+                        example: '# 1601'
+                  latitude:
+                    type: number
+                    example: 30.3159499
+                  longitude:
+                    type: number
+                    example: 81.6630919
+                  phone_numbers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        phone:
+                          type: string
+                          example: '9042022000'
+                        detail:
+                          type: string
+                          example: primary
+        '404':
+          description: The given UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

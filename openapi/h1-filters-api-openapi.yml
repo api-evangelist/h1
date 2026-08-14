@@ -1,0 +1,409 @@
+openapi: 3.2.0
+info:
+  title: Ribbon Health Filters API
+  version: 1.0.0
+  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
+
+    '
+servers:
+- url: https://api.ribbonhealth.com/v1
+security:
+- BearerAuth: []
+tags:
+- name: Filters
+paths:
+  /custom/providers/filters:
+    get:
+      summary: Get Provider Filters
+      description: 'Fetch all previously created filters for providers.
+
+        '
+      operationId: getCustomProviderFilters
+      tags:
+      - Filters
+      responses:
+        '200':
+          description: Returns a list of provider filters
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/paths/~1custom~1providers~1filters/post/responses/201/content/application~1json/schema/properties/data'
+    post:
+      summary: Create Provider Filter
+      description: "Create new filters to be used when searching for providers in the [Search Providers](./getcustomproviders) endpoint. \nYou can create filters for both Ribbon's existing data fields as well as any custom data fields you create.\n\n#### Example Use Case:\nLet's say you add a new field to a bunch of providers that match your use case, for instance `c_section_rate`. You could make this field searchable so that your search through [Search Providers](./getcustomproviders) when you pass through a certain parameter that specifies a maximum threshold.\n"
+      operationId: createCustomProviderFilter
+      tags:
+      - Filters
+      requestBody:
+        required: true
+        description: The new filter to create
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - parameter
+              - field
+              - value_type
+              - filter_type
+              properties:
+                parameter:
+                  type: string
+                  description: 'The name of filter which will be used when applying to a search
+
+                    '
+                  example: max_c_section_rate
+                field:
+                  type: string
+                  description: 'The name of the field that the filter will be applied to
+
+
+                    You can specify nested fields by placing a `.` between each level within the JSON object. For example, `educations.education.uuid`
+
+                    '
+                  example: c_section_rate
+                value_type:
+                  type: string
+                  enum:
+                  - string
+                  - float
+                  - integer
+                  - boolean
+                  - list
+                  description: The data type of the value passed into this filter
+                filter_type:
+                  type: string
+                  enum:
+                  - less_than
+                  - greater_than
+                  - equals
+                  - contains
+                  - boost
+                  - equals_any
+                  - contains_any
+                  - fuzzy
+                  description: "The type of comparison that will occur between the value passed into this filter and the field specified in the `field` parameter\n\nNote that `boost` filters have several limitations:\n- A Boost Filter cannot use the following `value_type`s: `float`\n- If a Boost Filter's `field` targets something that is within a list of objects, such as ‘educations.education.name’, we will not reorder the list to bring these items to the front. We will merely boost records where there is an entry in the list that matches the filter, wherever it is.\n  - There is one exception to this: `locations`. If you search for a provider and boost fields nested within the `locations` list, we will reorder the locations to put matching locations first.\n"
+      responses:
+        '201':
+          description: The specified filter was successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                    - uuid
+                    - filter
+                    properties:
+                      uuid:
+                        type: string
+                        format: uuid
+                        description: A UUID uniquely identifying this filter
+                        example: 9da04268-65e4-4422-a095-98208695b8b9
+                      filter:
+                        $ref: '#/paths/~1custom~1providers~1filters/post/requestBody/content/application~1json/schema'
+        '400':
+          description: The filter you attempted to create was malformed
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '409':
+          description: A filter with the given `parameter` name already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+  /custom/providers/filters/{filter_uuid}:
+    put:
+      summary: Edit Provider Filter
+      description: 'Edit any of the fields in a custom provider filter you have already created.
+
+        '
+      operationId: editCustomProviderFilter
+      tags:
+      - Filters
+      parameters:
+      - name: filter_uuid
+        in: path
+        required: true
+        description: The UUID of the filter you want to edit.
+        schema:
+          type: string
+          format: uuid
+          example: b5458763-968e-4690-bc70-f29d3a7459a9
+      requestBody:
+        required: true
+        description: A JSON object mapping the name of the field to update to its new value.
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1custom~1providers~1filters/post/requestBody/content/application~1json/schema'
+      responses:
+        '200':
+          description: The specified filter was successfully updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1providers~1filters/post/responses/201/content/application~1json/schema/properties/data'
+        '400':
+          description: The filter updates you are trying to make are invalid or malformed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '404':
+          description: The given filter UUID cannot be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+        '409':
+          description: A filter with the given parameter already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1locations/post/responses/409/content/application~1json/schema'
+    delete:
+      summary: Delete Provider Filter
+      description: 'Delete a provider filter.
+
+        '
+      operationId: deleteCustomProviderFilter
+      tags:
+      - Filters
+      parameters:
+      - name: filter_uuid
+        in: path
+        required: true
+        description: The UUID of the filter you want to delete.
+        schema:
+          type: string
+          format: uuid
+          example: b5458763-968e-4690-bc70-f29d3a7459a9
+      responses:
+        '204':
+          description: Filter was successfully deleted
+        '404':
+          description: The given filter UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+  /custom/locations/filters:
+    get:
+      summary: Get Location Filters
+      description: 'Fetch all previously created custom filters for locations.
+
+        '
+      operationId: getCustomLocationFilters
+      tags:
+      - Filters
+      responses:
+        '200':
+          description: Returns a list of location filters
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/paths/~1custom~1providers~1filters/post/responses/201/content/application~1json/schema/properties/data'
+    post:
+      summary: Create Location Filter
+      description: "Create new filters to be used when searching for locations in the [Search Locations](./getcustomlocations) endpoint. \nYou can create filters for both Ribbon's existing data fields as well as any custom data fields you create.\n\n#### Example Use Case:\nLet's say you add a new field to a bunch of locations that match your use case, for instance `c_section_rate`. You could make this field searchable so that your search through [Search Locations](./getcustomlocations) when you pass through a certain parameter that specifies a maximum threshold.\n"
+      operationId: createCustomLocationFilter
+      tags:
+      - Filters
+      requestBody:
+        required: true
+        description: The new filter to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1custom~1providers~1filters/post/requestBody/content/application~1json/schema'
+      responses:
+        '201':
+          description: The specified filter was successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/paths/~1custom~1providers~1filters/post/responses/201/content/application~1json/schema/properties/data'
+        '400':
+          description: The filter you attempted to create was malformed
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '409':
+          description: A filter with the given `parameter` name already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+  /custom/locations/filters/{filter_uuid}:
+    put:
+      summary: Edit Location Filter
+      description: 'Edit any of the fields in a custom location filter you have already created.
+
+        '
+      operationId: editCustomLocationFilter
+      tags:
+      - Filters
+      parameters:
+      - name: filter_uuid
+        in: path
+        required: true
+        description: The UUID of the filter you want to edit.
+        schema:
+          type: string
+          format: uuid
+          example: b5458763-968e-4690-bc70-f29d3a7459a9
+      requestBody:
+        required: true
+        description: A JSON object mapping the name of the field to update to its new value.
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - parameter
+              - field
+              - value_type
+              - filter_type
+              properties:
+                parameter:
+                  type: string
+                  description: 'The name of filter which will be used when applying to a search
+
+                    '
+                  example: location_types_filter
+                field:
+                  type: string
+                  description: 'The name of the field that the filter will be applied to
+
+
+                    You can specify nested fields by placing a `.` between each level within the JSON object. For example, `address_details.state`
+
+                    '
+                  example: location_types
+                value_type:
+                  type: string
+                  enum:
+                  - string
+                  - float
+                  - integer
+                  - boolean
+                  - list
+                  description: The data type of the value passed into this filter
+                  example: list
+                filter_type:
+                  type: string
+                  enum:
+                  - less_than
+                  - greater_than
+                  - equals
+                  - contains
+                  - boost
+                  - equals_any
+                  - contains_any
+                  - fuzzy
+                  description: "The type of comparison that will occur between the value passed into this filter and the field specified in the `field` parameter\n\nNote that `boost` filters have several limitations:\n- A Boost Filter cannot use the following `value_type`s: `float`\n- If a Boost Filter's `field` targets something that is within a list of objects, such as ‘educations.education.name’, we will not reorder the list to bring these items to the front. We will merely boost records where there is an entry in the list that matches the filter, wherever it is.\n  - There is one exception to this: `locations`. If you search for a provider and boost fields nested within the `locations` list, we will reorder the locations to put matching locations first.\n"
+                  example: contains_any
+      responses:
+        '200':
+          description: The specified filter was successfully updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                    - uuid
+                    - filter
+                    properties:
+                      uuid:
+                        type: string
+                        format: uuid
+                        description: A UUID uniquely identifying this filter
+                        example: 9da04268-65e4-4422-a095-98208695b8b9
+                      filter:
+                        $ref: '#/paths/~1custom~1locations~1filters~1%7Bfilter_uuid%7D/put/requestBody/content/application~1json/schema'
+        '400':
+          description: The filter updates you are trying to make are invalid or malformed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
+        '404':
+          description: The given filter UUID cannot be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+        '409':
+          description: A filter with the given parameter already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1locations/post/responses/409/content/application~1json/schema'
+    delete:
+      summary: Delete Location Filter
+      description: 'Delete a location filter.
+
+        '
+      operationId: deleteCustomLocationFilter
+      tags:
+      - Filters
+      parameters:
+      - name: filter_uuid
+        in: path
+        required: true
+        description: The UUID of the filter you want to delete.
+        schema:
+          type: string
+          format: uuid
+          example: b5458763-968e-4690-bc70-f29d3a7459a9
+      responses:
+        '204':
+          description: Filter was successfully deleted
+        '404':
+          description: The given filter UUID cannot be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

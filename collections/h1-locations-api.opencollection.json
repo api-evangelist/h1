@@ -1,0 +1,172 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ribbon Health Locations API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/locations",
+            "params": [
+              {
+                "name": "Pagination and Search Configuration Options",
+                "value": "",
+                "type": "query",
+                "description": "Options to control what data gets returned to you."
+              },
+              {
+                "name": "Location Search Options",
+                "value": "",
+                "type": "query",
+                "description": "Search options based on aspects of the location objects."
+              },
+              {
+                "name": "Organization Search Criteria",
+                "value": "",
+                "type": "query",
+                "description": "Criteria used to search for locations based on the organizations they belong to."
+              },
+              {
+                "name": "Focus Area Search Criteria",
+                "value": "",
+                "type": "query",
+                "description": "Criteria used to search for locations based on their Focus Areas."
+              },
+              {
+                "name": "TINs Search Criteria",
+                "value": "",
+                "type": "query",
+                "description": "Criteria used to search for locations based on the TINs they are associated with."
+              }
+            ]
+          },
+          "docs": "Allows you to search for different service locations, including specific location types.\n"
+        },
+        {
+          "info": {
+            "name": "Create Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ribbonhealth.com/v1/custom/locations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new locations and facilities.\n\n#### Example Use Case\nYou want to add new urgent care locations (or labs, imaging centers, therapy centers, etc.) to an area that are not yet included in the existing Ribbon locations listings.\n"
+        },
+        {
+          "info": {
+            "name": "Get Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/locations/:location_uuid",
+            "params": [
+              {
+                "name": "location_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the target location."
+              }
+            ]
+          },
+          "docs": "Retrieve data on a specific location.\n"
+        },
+        {
+          "info": {
+            "name": "Add or Edit Location Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/locations/:location_uuid",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit all fields that do not fall under `insurances`, `google_maps_link`, `latitude`, or `longitude`. You may also add new fields or remove existing fields.\n"
+        },
+        {
+          "info": {
+            "name": "Delete Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ribbonhealth.com/v1/custom/locations/:location_uuid"
+          },
+          "docs": "Delete a location.\n"
+        },
+        {
+          "info": {
+            "name": "Add Or Remove Location Insurances",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/locations/:location_uuid/insurances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or remove insurances from a location using our standard insurance UUIDs.\n"
+        },
+        {
+          "info": {
+            "name": "Add Or Remove Location Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/locations/:location_uuid/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or remove organizations from a location using our standard organization UUIDs.\n"
+        },
+        {
+          "info": {
+            "name": "Add Or Remove Location Clinical Areas",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ribbonhealth.com/v1/custom/locations/:location_uuid/clinical_areas",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or remove clinical areas from a location using our standard clinical area UUIDs.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

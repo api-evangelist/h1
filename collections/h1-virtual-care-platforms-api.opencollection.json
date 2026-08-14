@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ribbon Health Virtual Care Platforms API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Virtual Care Platforms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Virtual Care Platforms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/virtual_care_platforms",
+            "params": [
+              {
+                "name": "Virtual Care Platform Search Options",
+                "value": "",
+                "type": "query",
+                "description": "Search options based on aspects of the virtual care platform objects."
+              }
+            ]
+          },
+          "docs": "Search for different at-home or virtual platforms.\n\n#### Example Use Case\nEnable a patient to find a virtual care platform that focuses on their speciality need, has licensure in the state they live in, and is in-network for their insurance plan.\n"
+        },
+        {
+          "info": {
+            "name": "Get Virtual Care Platform",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/virtual_care_platforms/:virtual_care_platform_uuid",
+            "params": [
+              {
+                "name": "virtual_care_platform_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the target virtual care platform."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for any virtual care platform given its UUID.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

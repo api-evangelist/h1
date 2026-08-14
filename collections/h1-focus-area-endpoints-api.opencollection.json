@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ribbon Health Focus Area Endpoints API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Focus Area Endpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Clinical Areas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/clinical_areas",
+            "params": [
+              {
+                "name": "Clinical Area Search Parameters",
+                "value": "",
+                "type": "query",
+                "description": "Search parameters for the clinical area endpoint."
+              }
+            ]
+          },
+          "docs": "Returns clinical areas that exist within the Ribbon API.\n"
+        },
+        {
+          "info": {
+            "name": "Get Clinical Area",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/clinical_areas/:clinical_area_uuid",
+            "params": [
+              {
+                "name": "clinical_area_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the target clinical area."
+              }
+            ]
+          },
+          "docs": "Retrieve data on a specific clinical area.\n"
+        },
+        {
+          "info": {
+            "name": "Search Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/conditions",
+            "params": [
+              {
+                "name": "Condition Search Parameters",
+                "value": "",
+                "type": "query",
+                "description": "Search parameters for the condition endpoint."
+              }
+            ]
+          },
+          "docs": "Returns conditions that exist within the Ribbon API.\n"
+        },
+        {
+          "info": {
+            "name": "Get Condition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/conditions/:condition_uuid",
+            "params": [
+              {
+                "name": "condition_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the target condition."
+              }
+            ]
+          },
+          "docs": "Retrieve data on a specific condition.\n"
+        },
+        {
+          "info": {
+            "name": "Search Treatments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/treatments",
+            "params": [
+              {
+                "name": "Treatment Search Parameters",
+                "value": "",
+                "type": "query",
+                "description": "Search parameters for the treatment endpoint."
+              }
+            ]
+          },
+          "docs": "Returns treatments that exist within the Ribbon API.\n"
+        },
+        {
+          "info": {
+            "name": "Get Treatment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ribbonhealth.com/v1/custom/treatments/:treatment_uuid",
+            "params": [
+              {
+                "name": "treatment_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the target treatment."
+              }
+            ]
+          },
+          "docs": "Retrieve data on a specific treatment.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

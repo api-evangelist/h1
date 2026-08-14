@@ -1,0 +1,1128 @@
+{
+  "item": [
+    {
+      "id": "44ad24e8-3fef-4117-a0ef-290d43607299",
+      "name": "Focus Area Endpoints",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "25a66590-bdb5-49bc-a4bb-c38d1efd88ef",
+          "name": "Search Clinical Areas",
+          "request": {
+            "name": "Search Clinical Areas",
+            "description": {
+              "content": "Returns clinical areas that exist within the Ribbon API.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "clinical_areas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Search parameters for the clinical area endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "Search parameters for the clinical area endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search parameters for the clinical area endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "clinical_area",
+                  "value": "<string>",
+                  "description": "Search parameters for the clinical area endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_clinical_area_ids",
+                  "value": "<string>",
+                  "description": "Search parameters for the clinical area endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "specialty_ids",
+                  "value": "<string>",
+                  "description": "Search parameters for the clinical area endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "condition",
+                  "value": "<string>",
+                  "description": "Search parameters for the clinical area endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_ids",
+                  "value": "<string>",
+                  "description": "Search parameters for the clinical area endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "treatment",
+                  "value": "<string>",
+                  "description": "Search parameters for the clinical area endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "treatment_ids",
+                  "value": "<string>",
+                  "description": "Search parameters for the clinical area endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Search parameters for the clinical area endpoint."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bca501af-480d-41c8-93dc-00dbed0a0fc1",
+              "name": "Clinical areas returned from a valid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "clinical_areas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "search",
+                      "value": "X-ray"
+                    },
+                    {
+                      "key": "clinical_area",
+                      "value": "Nutrition"
+                    },
+                    {
+                      "key": "_excl_clinical_area_ids",
+                      "value": "ffce41b2-aba4-4202-beba-6aa9dc51ef37,fe7d808b-5f53-4024-af9d-2662515bcd83"
+                    },
+                    {
+                      "key": "specialty_ids",
+                      "value": "fcc9a22c-7a0f-4405-b0c9-c5f8ad83b93e,8b5d3998-d7e2-4b9e-91d1-17c19cd089f5"
+                    },
+                    {
+                      "key": "condition",
+                      "value": "Sleep Disorders"
+                    },
+                    {
+                      "key": "condition_ids",
+                      "value": "45c9a22c-7a0f-4405-b0c9-c5f8ad83ba32,219d3998-d7e2-4b9e-91d1-17c19cd0bbc2"
+                    },
+                    {
+                      "key": "treatment",
+                      "value": "ACL Surgery"
+                    },
+                    {
+                      "key": "treatment_ids",
+                      "value": "bb2ca22c-7a0f-4405-b0c9-c5f8ad839898,2ce33998-d7e2-4b9e-91d1-17c19cd06012"
+                    },
+                    {
+                      "key": "type",
+                      "value": "providers"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 107,\n  \"next\": \"https://api.ribbonhealth.com/v1/custom/clinical_areas?page=3\",\n  \"previous\": \"https://api.ribbonhealth.com/v1/custom/clinical_areas?page=1\",\n  \"parameters\": {},\n  \"results\": [\n    {\n      \"uuid\": \"f352b596-dfb0-494f-9a03-224794f5d182\",\n      \"display\": \"Substance Disorders (e.g. Opioid, Cocaine, Alcohol)\",\n      \"types\": [\n        \"locations\",\n        \"providers\"\n      ],\n      \"conditions\": [\n        {\n          \"uuid\": \"99f4762e-c4c2-4d1d-983a-2b8b303e691d\",\n          \"display\": \"Chronic Depression\",\n          \"types\": [\n            \"focus_areas\",\n            \"condition_cost_estimate\"\n          ],\n          \"specialties\": [\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            },\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            }\n          ],\n          \"modules\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"uuid\": \"99f4762e-c4c2-4d1d-983a-2b8b303e691d\",\n          \"display\": \"Chronic Depression\",\n          \"types\": [\n            \"condition_cost_estimate\",\n            \"condition_cost_estimate\"\n          ],\n          \"specialties\": [\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            },\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            }\n          ],\n          \"modules\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"treatments\": [\n        {\n          \"uuid\": \"88a70b34-d0a7-47e2-89ac-4fed203eca2f\",\n          \"display\": \"Knee Replacement\",\n          \"types\": [\n            \"locations\",\n            \"locations\"\n          ],\n          \"specialties\": [\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            },\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            }\n          ]\n        },\n        {\n          \"uuid\": \"88a70b34-d0a7-47e2-89ac-4fed203eca2f\",\n          \"display\": \"Knee Replacement\",\n          \"types\": [\n            \"locations\",\n            \"locations\"\n          ],\n          \"specialties\": [\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            },\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            }\n          ]\n        }\n      ],\n      \"specialties\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ]\n    },\n    {\n      \"uuid\": \"f352b596-dfb0-494f-9a03-224794f5d182\",\n      \"display\": \"Substance Disorders (e.g. Opioid, Cocaine, Alcohol)\",\n      \"types\": [\n        \"providers\",\n        \"locations\"\n      ],\n      \"conditions\": [\n        {\n          \"uuid\": \"99f4762e-c4c2-4d1d-983a-2b8b303e691d\",\n          \"display\": \"Chronic Depression\",\n          \"types\": [\n            \"focus_areas\",\n            \"focus_areas\"\n          ],\n          \"specialties\": [\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            },\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            }\n          ],\n          \"modules\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"uuid\": \"99f4762e-c4c2-4d1d-983a-2b8b303e691d\",\n          \"display\": \"Chronic Depression\",\n          \"types\": [\n            \"focus_areas\",\n            \"focus_areas\"\n          ],\n          \"specialties\": [\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            },\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            }\n          ],\n          \"modules\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"treatments\": [\n        {\n          \"uuid\": \"88a70b34-d0a7-47e2-89ac-4fed203eca2f\",\n          \"display\": \"Knee Replacement\",\n          \"types\": [\n            \"providers\",\n            \"locations\"\n          ],\n          \"specialties\": [\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            },\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            }\n          ]\n        },\n        {\n          \"uuid\": \"88a70b34-d0a7-47e2-89ac-4fed203eca2f\",\n          \"display\": \"Knee Replacement\",\n          \"types\": [\n            \"locations\",\n            \"providers\"\n          ],\n          \"specialties\": [\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            },\n            {\n              \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n            }\n          ]\n        }\n      ],\n      \"specialties\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac95af71-fce6-420f-9b4f-53aebf45eded",
+              "name": "Each request can only perform one search",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "clinical_areas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "search",
+                      "value": "X-ray"
+                    },
+                    {
+                      "key": "clinical_area",
+                      "value": "Nutrition"
+                    },
+                    {
+                      "key": "_excl_clinical_area_ids",
+                      "value": "ffce41b2-aba4-4202-beba-6aa9dc51ef37,fe7d808b-5f53-4024-af9d-2662515bcd83"
+                    },
+                    {
+                      "key": "specialty_ids",
+                      "value": "fcc9a22c-7a0f-4405-b0c9-c5f8ad83b93e,8b5d3998-d7e2-4b9e-91d1-17c19cd089f5"
+                    },
+                    {
+                      "key": "condition",
+                      "value": "Sleep Disorders"
+                    },
+                    {
+                      "key": "condition_ids",
+                      "value": "45c9a22c-7a0f-4405-b0c9-c5f8ad83ba32,219d3998-d7e2-4b9e-91d1-17c19cd0bbc2"
+                    },
+                    {
+                      "key": "treatment",
+                      "value": "ACL Surgery"
+                    },
+                    {
+                      "key": "treatment_ids",
+                      "value": "bb2ca22c-7a0f-4405-b0c9-c5f8ad839898,2ce33998-d7e2-4b9e-91d1-17c19cd06012"
+                    },
+                    {
+                      "key": "type",
+                      "value": "providers"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20f9e23b-d98a-4a70-a769-55dccb669f70",
+          "name": "Get Clinical Area",
+          "request": {
+            "name": "Get Clinical Area",
+            "description": {
+              "content": "Retrieve data on a specific clinical area.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "clinical_areas",
+                ":clinical_area_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clinical_area_uuid",
+                  "description": "(Required) The UUID of the target clinical area."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6fdb3218-3874-49f4-863b-47805531e4ca",
+              "name": "Returns a single clinical area",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "clinical_areas",
+                    ":clinical_area_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clinical_area_uuid",
+                      "description": "(Required) The UUID of the target clinical area."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"f352b596-dfb0-494f-9a03-224794f5d182\",\n  \"display\": \"Substance Disorders (e.g. Opioid, Cocaine, Alcohol)\",\n  \"types\": [\n    \"providers\",\n    \"locations\"\n  ],\n  \"conditions\": [\n    {\n      \"uuid\": \"99f4762e-c4c2-4d1d-983a-2b8b303e691d\",\n      \"display\": \"Chronic Depression\",\n      \"types\": [\n        \"focus_areas\",\n        \"focus_areas\"\n      ],\n      \"specialties\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ],\n      \"modules\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"uuid\": \"99f4762e-c4c2-4d1d-983a-2b8b303e691d\",\n      \"display\": \"Chronic Depression\",\n      \"types\": [\n        \"condition_cost_estimate\",\n        \"focus_areas\"\n      ],\n      \"specialties\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ],\n      \"modules\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"treatments\": [\n    {\n      \"uuid\": \"88a70b34-d0a7-47e2-89ac-4fed203eca2f\",\n      \"display\": \"Knee Replacement\",\n      \"types\": [\n        \"locations\",\n        \"providers\"\n      ],\n      \"specialties\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ]\n    },\n    {\n      \"uuid\": \"88a70b34-d0a7-47e2-89ac-4fed203eca2f\",\n      \"display\": \"Knee Replacement\",\n      \"types\": [\n        \"locations\",\n        \"providers\"\n      ],\n      \"specialties\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ]\n    }\n  ],\n  \"specialties\": [\n    {\n      \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02c62bad-7798-43c2-b657-ba123538e760",
+              "name": "The given clinical area UUID cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "clinical_areas",
+                    ":clinical_area_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clinical_area_uuid",
+                      "description": "(Required) The UUID of the target clinical area."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76bba453-e501-4403-ae0f-ea516d2b360a",
+          "name": "Search Conditions",
+          "request": {
+            "name": "Search Conditions",
+            "description": {
+              "content": "Returns conditions that exist within the Ribbon API.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "conditions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Search parameters for the condition endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "Search parameters for the condition endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search parameters for the condition endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_condition_ids",
+                  "value": "<string>",
+                  "description": "Search parameters for the condition endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "specialty_ids",
+                  "value": "<string>",
+                  "description": "Search parameters for the condition endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "module",
+                  "value": "<string>",
+                  "description": "Search parameters for the condition endpoint."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31b64cad-dcc9-4a08-b0e5-30b4d7697d19",
+              "name": "Conditions returned from a valid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "search",
+                      "value": "depression"
+                    },
+                    {
+                      "key": "_excl_condition_ids",
+                      "value": "2938baf9-f064-44d6-8251-6e4b9fbb6fd2,c9d21735-8a78-45fe-982b-d216cb94beb7"
+                    },
+                    {
+                      "key": "specialty_ids",
+                      "value": "fcc9a22c-7a0f-4405-b0c9-c5f8ad83b93e,8b5d3998-d7e2-4b9e-91d1-17c19cd089f5"
+                    },
+                    {
+                      "key": "module",
+                      "value": "focus_areas"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 480,\n  \"next\": \"https://api.ribbonhealth.com/v1/custom/conditions?page=3\",\n  \"previous\": \"https://api.ribbonhealth.com/v1/custom/conditions?page=1\",\n  \"parameters\": {},\n  \"results\": [\n    {\n      \"uuid\": \"99f4762e-c4c2-4d1d-983a-2b8b303e691d\",\n      \"display\": \"Chronic Depression\",\n      \"types\": [\n        \"focus_areas\",\n        \"focus_areas\"\n      ],\n      \"specialties\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ],\n      \"modules\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"uuid\": \"99f4762e-c4c2-4d1d-983a-2b8b303e691d\",\n      \"display\": \"Chronic Depression\",\n      \"types\": [\n        \"focus_areas\",\n        \"condition_cost_estimate\"\n      ],\n      \"specialties\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ],\n      \"modules\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a21fd8ce-9ec0-4744-b775-1b470a960564",
+              "name": "Module does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "search",
+                      "value": "depression"
+                    },
+                    {
+                      "key": "_excl_condition_ids",
+                      "value": "2938baf9-f064-44d6-8251-6e4b9fbb6fd2,c9d21735-8a78-45fe-982b-d216cb94beb7"
+                    },
+                    {
+                      "key": "specialty_ids",
+                      "value": "fcc9a22c-7a0f-4405-b0c9-c5f8ad83b93e,8b5d3998-d7e2-4b9e-91d1-17c19cd089f5"
+                    },
+                    {
+                      "key": "module",
+                      "value": "focus_areas"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea1db3ab-dbcd-41f0-9f22-212714f352d1",
+          "name": "Get Condition",
+          "request": {
+            "name": "Get Condition",
+            "description": {
+              "content": "Retrieve data on a specific condition.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "conditions",
+                ":condition_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "condition_uuid",
+                  "description": "(Required) The UUID of the target condition."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7bab78d9-68ef-4c55-a8e2-fd3b2cd589f7",
+              "name": "Returns a single condition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "conditions",
+                    ":condition_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "condition_uuid",
+                      "description": "(Required) The UUID of the target condition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"99f4762e-c4c2-4d1d-983a-2b8b303e691d\",\n  \"display\": \"Chronic Depression\",\n  \"types\": [\n    \"focus_areas\",\n    \"condition_cost_estimate\"\n  ],\n  \"specialties\": [\n    {\n      \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    }\n  ],\n  \"modules\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7b0757c-2853-412e-8acc-eeab7e6fe5a8",
+              "name": "The given condition UUID cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "conditions",
+                    ":condition_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "condition_uuid",
+                      "description": "(Required) The UUID of the target condition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67659c37-0ac6-4024-8362-dbe325c1ea4e",
+          "name": "Search Treatments",
+          "request": {
+            "name": "Search Treatments",
+            "description": {
+              "content": "Returns treatments that exist within the Ribbon API.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "treatments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Search parameters for the treatment endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "Search parameters for the treatment endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search parameters for the treatment endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_treatment_ids",
+                  "value": "<string>",
+                  "description": "Search parameters for the treatment endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "specialty_ids",
+                  "value": "<string>",
+                  "description": "Search parameters for the treatment endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Search parameters for the treatment endpoint."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb653b12-b957-4116-b696-52189cb7e7be",
+              "name": "Treatments returned from a valid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "treatments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "search",
+                      "value": "Ankle X-Ray"
+                    },
+                    {
+                      "key": "_excl_treatment_ids",
+                      "value": "ffb31993-8265-45f6-98ac-18a495d614b5,ff36f4f1-7031-46b0-a297-e85b73aa8e90"
+                    },
+                    {
+                      "key": "specialty_ids",
+                      "value": "fcc9a22c-7a0f-4405-b0c9-c5f8ad83b93e,8b5d3998-d7e2-4b9e-91d1-17c19cd089f5"
+                    },
+                    {
+                      "key": "type",
+                      "value": "providers"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 477,\n  \"next\": \"https://api.ribbonhealth.com/v1/custom/treatments?page=3\",\n  \"previous\": \"https://api.ribbonhealth.com/v1/custom/treatments?page=1\",\n  \"parameters\": {},\n  \"results\": [\n    {\n      \"uuid\": \"88a70b34-d0a7-47e2-89ac-4fed203eca2f\",\n      \"display\": \"Knee Replacement\",\n      \"types\": [\n        \"providers\",\n        \"locations\"\n      ],\n      \"specialties\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ]\n    },\n    {\n      \"uuid\": \"88a70b34-d0a7-47e2-89ac-4fed203eca2f\",\n      \"display\": \"Knee Replacement\",\n      \"types\": [\n        \"locations\",\n        \"locations\"\n      ],\n      \"specialties\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9eebefe-27d5-41b2-92e2-0a6f388b1b5d",
+          "name": "Get Treatment",
+          "request": {
+            "name": "Get Treatment",
+            "description": {
+              "content": "Retrieve data on a specific treatment.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "treatments",
+                ":treatment_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "treatment_uuid",
+                  "description": "(Required) The UUID of the target treatment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2a759b9-f4ba-44c1-924d-1cd4fb1bb8b7",
+              "name": "Returns a single treatment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "treatments",
+                    ":treatment_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "treatment_uuid",
+                      "description": "(Required) The UUID of the target treatment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"88a70b34-d0a7-47e2-89ac-4fed203eca2f\",\n  \"display\": \"Knee Replacement\",\n  \"types\": [\n    \"locations\",\n    \"locations\"\n  ],\n  \"specialties\": [\n    {\n      \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73aefab9-57ee-4b6b-9a66-66e959831de9",
+              "name": "The given treatment UUID cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "treatments",
+                    ":treatment_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "treatment_uuid",
+                      "description": "(Required) The UUID of the target treatment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ribbonhealth.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e8cbf6cd-b5ff-4dbe-bf52-2bbf886042d0",
+    "name": "Ribbon Health Focus Area Endpoints API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.\n",
+      "type": "text/plain"
+    }
+  }
+}

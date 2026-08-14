@@ -1,0 +1,1486 @@
+{
+  "item": [
+    {
+      "id": "d144b0a9-abb0-4061-8d18-dc67275f3dd6",
+      "name": "Price Transparency",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3ee23c5b-8432-4e5b-b455-7c0d0e4b96fa",
+          "name": "Provider Price Search",
+          "request": {
+            "name": "Provider Price Search",
+            "description": {
+              "content": "Search for providers that perform a given procedure and find the lowest insurance-specific price for a procedure in your area.\n\n#### Example Use Case\nSearch for all applicable provider negotiated rates, given a specific insurance and procedure (and optionally, a specific location/address and distance). For example, search for all providers near me who perform Leg MRIs and who take a given insurance, sorted by lowest price.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pricing",
+                "providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "procedure_id",
+                  "value": "<uuid>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "procedure",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "procedure_code",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "plan_id",
+                  "value": "<uuid>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "specialty_ids",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "specialty",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "distance",
+                  "value": "<integer>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                },
+                {
+                  "disabled": false,
+                  "key": "_excl_fields",
+                  "value": "<string>",
+                  "description": "Criteria used to search for providers based on their specialties."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f6f7591-4cde-44ee-9dc0-8763894f2535",
+              "name": "Returns per provider prices for the given procedure",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "procedure_id",
+                      "value": "7ad7c4ef-baf9-4789-8e58-51d2308a1143"
+                    },
+                    {
+                      "key": "procedure",
+                      "value": "MRI, thoracic spine"
+                    },
+                    {
+                      "key": "procedure_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "plan_id",
+                      "value": "81ba3a1a-05a9-48d9-b9b2-cb8f9eafc902"
+                    },
+                    {
+                      "key": "specialty_ids",
+                      "value": "fcc9a22c-7a0f-4405-b0c9-c5f8ad83b93e,8b5d3998-d7e2-4b9e-91d1-17c19cd089f5,44b0284c-f360-4312-a17d-d601651cb0ea"
+                    },
+                    {
+                      "key": "specialty",
+                      "value": "gastroenterology"
+                    },
+                    {
+                      "key": "address",
+                      "value": "2074 23rd Ave, San Francisco, CA 94116"
+                    },
+                    {
+                      "key": "location",
+                      "value": "37.7489816,-122.4802092"
+                    },
+                    {
+                      "key": "distance",
+                      "value": "10"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "matched_location,npi"
+                    },
+                    {
+                      "key": "_excl_fields",
+                      "value": "insurances,age"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"parameters\": {\n    \"total_count\": 141,\n    \"page\": 1,\n    \"page_size\": 25,\n    \"procedure_id\": \"7ad7c4ef-baf9-4789-8e58-51d2308a1143\",\n    \"procedure\": {\n      \"value\": \"reference #/paths/~1procedures~1%7Bprocedure_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    \"insurances\": [\n      \"c8315cf5-89c2-7105-f3a9-7182327cddba\",\n      \"8bc1e7b6-a824-1d56-806e-e07a421a35d4\"\n    ],\n    \"insurance\": {\n      \"uuid\": \"d8addf29-1054-4ccb-b179-dda65f7fefdd\",\n      \"plan_name\": \"Aetna HealthFund Open Choice\",\n      \"carrier_name\": \"Aetna\"\n    },\n    \"specialty_ids\": [\n      \"fcc9a22c-7a0f-4405-b0c9-c5f8ad83b93e\",\n      \"8b5d3998-d7e2-4b9e-91d1-17c19cd089f5\",\n      \"44b0284c-f360-4312-a17d-d601651cb0ea\"\n    ],\n    \"specialty\": {\n      \"value\": \"reference #/paths/~1custom~1specialties~1%7Bspecialty_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n    },\n    \"address\": \"2074 23rd Ave, San Francisco, CA 94116\",\n    \"location\": \"37.7489816,-122.4802092\",\n    \"distance\": 10,\n    \"fields\": [\n      \"matched_location\",\n      \"npi\"\n    ],\n    \"_excl_fields\": [\n      \"insurances\",\n      \"age\"\n    ]\n  },\n  \"data\": [\n    {\n      \"insurance\": {\n        \"uuid\": \"ef704f14-c906-4857-acd4-d811f1394c32\",\n        \"plan_name\": \"Aetna\",\n        \"carrier_name\": \"string\"\n      },\n      \"procedure\": {\n        \"uuid\": \"7ad7c4ef-baf9-4789-8e58-51d2308a1143\",\n        \"name\": \"MRI, leg\"\n      },\n      \"matched_location\": {\n        \"costs\": {\n          \"min\": \"239.0\",\n          \"median\": \"520.5350000000001\",\n          \"max\": \"714.93\",\n          \"is_bundle\": true,\n          \"outpatient\": {\n            \"min\": 239,\n            \"median\": 520.5350000000001,\n            \"max\": 714.93,\n            \"is_bundle\": true,\n            \"components\": [\n              {\n                \"display\": \"Knee replacement surgery\",\n                \"min\": 239,\n                \"median\": 520.5350000000001,\n                \"max\": 714.93\n              },\n              {\n                \"display\": \"Knee replacement surgery\",\n                \"min\": 239,\n                \"median\": 520.5350000000001,\n                \"max\": 714.93\n              }\n            ]\n          },\n          \"inpatient\": {\n            \"min\": 239,\n            \"median\": 520.5350000000001,\n            \"max\": 714.93,\n            \"is_bundle\": true,\n            \"components\": [\n              {\n                \"display\": \"Knee replacement surgery\",\n                \"min\": 239,\n                \"median\": 520.5350000000001,\n                \"max\": 714.93\n              },\n              {\n                \"display\": \"Knee replacement surgery\",\n                \"min\": 239,\n                \"median\": 520.5350000000001,\n                \"max\": 714.93\n              }\n            ]\n          }\n        }\n      },\n      \"npi\": 1861664294,\n      \"first_name\": \"Jane\",\n      \"middle_name\": \"J\",\n      \"last_name\": \"Doe\",\n      \"age\": 38,\n      \"gender\": \"m\",\n      \"ratings_count\": 20,\n      \"ratings_avg\": 9.8,\n      \"degrees\": [\n        \"MD\",\n        \"MD\"\n      ],\n      \"specialties\": [\n        \"607af392-c825-fe5e-564e-92f3f531d68f\",\n        \"6b2e8101-ce68-6c40-2883-6ae9bf6ea439\"\n      ],\n      \"languages\": [\n        \"english\",\n        \"english\"\n      ],\n      \"educations\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1providers~1%7Bnpi%7D/get/responses/200/content/application~1json/schema/properties/educations/items not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1providers~1%7Bnpi%7D/get/responses/200/content/application~1json/schema/properties/educations/items not found in the OpenAPI spec\"\n        }\n      ],\n      \"insurances\": [\n        \"0b0adf62-9aea-0c16-3ebb-2d6d4c591f53\",\n        \"568d62ee-6f58-a513-27bd-3fbfb175e414\"\n      ],\n      \"provider_types\": [\n        \"Doctor\",\n        \"Doctor\"\n      ],\n      \"locations\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1locations~1%7Blocation_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1locations~1%7Blocation_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ],\n      \"online_profiles\": [\n        {\n          \"url\": \"string\"\n        },\n        {\n          \"url\": \"string\"\n        }\n      ]\n    },\n    {\n      \"insurance\": {\n        \"uuid\": \"ef704f14-c906-4857-acd4-d811f1394c32\",\n        \"plan_name\": \"Aetna\",\n        \"carrier_name\": \"string\"\n      },\n      \"procedure\": {\n        \"uuid\": \"7ad7c4ef-baf9-4789-8e58-51d2308a1143\",\n        \"name\": \"MRI, leg\"\n      },\n      \"matched_location\": {\n        \"costs\": {\n          \"min\": \"239.0\",\n          \"median\": \"520.5350000000001\",\n          \"max\": \"714.93\",\n          \"is_bundle\": true,\n          \"outpatient\": {\n            \"min\": 239,\n            \"median\": 520.5350000000001,\n            \"max\": 714.93,\n            \"is_bundle\": true,\n            \"components\": null\n          },\n          \"inpatient\": {\n            \"min\": 239,\n            \"median\": 520.5350000000001,\n            \"max\": 714.93,\n            \"is_bundle\": true,\n            \"components\": null\n          }\n        }\n      },\n      \"npi\": 1861664294,\n      \"first_name\": \"Jane\",\n      \"middle_name\": \"J\",\n      \"last_name\": \"Doe\",\n      \"age\": 38,\n      \"gender\": \"m\",\n      \"ratings_count\": 20,\n      \"ratings_avg\": 9.8,\n      \"degrees\": [\n        \"MD\",\n        \"MD\"\n      ],\n      \"specialties\": [\n        \"54b02ee7-909f-efdf-bb2f-27669d3e5317\",\n        \"17c03de9-894b-5e16-fb29-6e5c916570cf\"\n      ],\n      \"languages\": [\n        \"english\",\n        \"english\"\n      ],\n      \"educations\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1providers~1%7Bnpi%7D/get/responses/200/content/application~1json/schema/properties/educations/items not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1providers~1%7Bnpi%7D/get/responses/200/content/application~1json/schema/properties/educations/items not found in the OpenAPI spec\"\n        }\n      ],\n      \"insurances\": [\n        \"98007eb2-df9d-fabb-c602-a6c5579cd7d8\",\n        \"6749b75d-59d5-605c-3661-e63fb134fdcc\"\n      ],\n      \"provider_types\": [\n        \"Doctor\",\n        \"Doctor\"\n      ],\n      \"locations\": [\n        {\n          \"value\": \"reference #/paths/~1custom~1locations~1%7Blocation_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/paths/~1custom~1locations~1%7Blocation_uuid%7D/get/responses/200/content/application~1json/schema not found in the OpenAPI spec\"\n        }\n      ],\n      \"online_profiles\": [\n        {\n          \"url\": \"string\"\n        },\n        {\n          \"url\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b486538-7296-4c06-987b-bcfd7a0155a5",
+              "name": "The given search was not valid. It combined parameters that may not be combined, or did not specify a procedure in any way, or the specified procedure could not be found, etc.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "procedure_id",
+                      "value": "7ad7c4ef-baf9-4789-8e58-51d2308a1143"
+                    },
+                    {
+                      "key": "procedure",
+                      "value": "MRI, thoracic spine"
+                    },
+                    {
+                      "key": "procedure_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "plan_id",
+                      "value": "81ba3a1a-05a9-48d9-b9b2-cb8f9eafc902"
+                    },
+                    {
+                      "key": "specialty_ids",
+                      "value": "fcc9a22c-7a0f-4405-b0c9-c5f8ad83b93e,8b5d3998-d7e2-4b9e-91d1-17c19cd089f5,44b0284c-f360-4312-a17d-d601651cb0ea"
+                    },
+                    {
+                      "key": "specialty",
+                      "value": "gastroenterology"
+                    },
+                    {
+                      "key": "address",
+                      "value": "2074 23rd Ave, San Francisco, CA 94116"
+                    },
+                    {
+                      "key": "location",
+                      "value": "37.7489816,-122.4802092"
+                    },
+                    {
+                      "key": "distance",
+                      "value": "10"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "matched_location,npi"
+                    },
+                    {
+                      "key": "_excl_fields",
+                      "value": "insurances,age"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61719048-607f-475c-bfab-b7315523141f",
+          "name": "Provider Procedures",
+          "request": {
+            "name": "Provider Procedures",
+            "description": {
+              "content": "Fetch the list of procedures that a single provider performs, with the lowest available negotiated rates specific to a given insurance for each procedure.\n\n#### Example Use Case\nFor a given provider, search the full list of procedures that they are likely to perform where there are negotiated rates available for a particular insurance, and return the minimum price for each procedure.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pricing",
+                "providers",
+                ":npi",
+                "procedures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "plan_id",
+                  "value": "<uuid>",
+                  "description": "Search for negotiated rates for the insurance plan with this UUID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d850aaad-fdba-4e4f-8f50-218a606822a9",
+              "name": "Returns the procedures for the given provider for which we have price data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "providers",
+                    ":npi",
+                    "procedures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "plan_id",
+                      "value": "81ba3a1a-05a9-48d9-b9b2-cb8f9eafc902"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"parameters\": {\n    \"page\": 1,\n    \"page_size\": 25,\n    \"insurance\": {\n      \"uuid\": \"d8addf29-1054-4ccb-b179-dda65f7fefdd\",\n      \"display\": \"Aetna\"\n    }\n  },\n  \"data\": [\n    {\n      \"uuid\": \"7ad7c4ef-baf9-4789-8e58-51d2308a1143\",\n      \"display\": \"MRI, leg\",\n      \"min_cost\": 7202.682355529934\n    },\n    {\n      \"uuid\": \"7ad7c4ef-baf9-4789-8e58-51d2308a1143\",\n      \"display\": \"MRI, leg\",\n      \"min_cost\": 5495.165312436401\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d77d92b-08bf-4515-bc66-fe961e319e13",
+              "name": "The given search was not valid. The given insurance could not be found, etc.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "providers",
+                    ":npi",
+                    "procedures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "plan_id",
+                      "value": "81ba3a1a-05a9-48d9-b9b2-cb8f9eafc902"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78555ab2-63ad-422d-a460-f3679a185a7e",
+              "name": "The given NPI cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "providers",
+                    ":npi",
+                    "procedures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "plan_id",
+                      "value": "81ba3a1a-05a9-48d9-b9b2-cb8f9eafc902"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a31a56a8-5565-4c90-885c-9db3c62880ae",
+          "name": "Provider Procedure Pricing",
+          "request": {
+            "name": "Provider Procedure Pricing",
+            "description": {
+              "content": "Find the prices offered by a single provider for a specific procedure, with a given insurance, across practice locations.\n\n#### Example Use Case\nCompare insurance-specific price estimates of a Leg MRI for a single provider at multiple relevant practices (e.g., compare this provider's rates when performing the procedure at both the provider's private outpatient facility, as well as a nearby hospital system clinic where they also practice).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pricing",
+                "providers",
+                ":npi",
+                "procedures",
+                ":procedure_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "plan_id",
+                  "value": "<uuid>",
+                  "description": "Search for negotiated rates for the insurance plan with this UUID."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "procedure_uuid",
+                  "description": "(Required) The UUID of the target procedure. If the target procedure is a procedure bundle but we do not have any data for it, we will return data for its anchor procedure instead."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9338f66-0988-4e51-ac98-c87d59bca127",
+              "name": "Returns costs for the given procedure with the given provider at each location",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "providers",
+                    ":npi",
+                    "procedures",
+                    ":procedure_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "plan_id",
+                      "value": "81ba3a1a-05a9-48d9-b9b2-cb8f9eafc902"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "procedure_uuid",
+                      "description": "(Required) The UUID of the target procedure. If the target procedure is a procedure bundle but we do not have any data for it, we will return data for its anchor procedure instead."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"parameters\": {\n    \"page\": 1,\n    \"page_size\": 25,\n    \"insurance\": {\n      \"uuid\": \"d8addf29-1054-4ccb-b179-dda65f7fefdd\",\n      \"display\": \"Aetna\"\n    }\n  },\n  \"locations\": [\n    {\n      \"uuid\": \"7ad7c4ef-baf9-4789-8e58-51d2308a1143\",\n      \"costs\": {\n        \"min\": 239,\n        \"avg\": 520.5350000000001,\n        \"max\": 714.93,\n        \"is_bundle\": true,\n        \"outpatient\": {\n          \"min\": 239,\n          \"median\": 520.5350000000001,\n          \"max\": 714.93,\n          \"is_bundle\": true,\n          \"components\": null\n        },\n        \"inpatient\": {\n          \"min\": 239,\n          \"median\": 520.5350000000001,\n          \"max\": 714.93,\n          \"is_bundle\": true,\n          \"components\": [\n            {\n              \"display\": \"Knee replacement surgery\",\n              \"min\": 239,\n              \"median\": 520.5350000000001,\n              \"max\": 714.93\n            },\n            {\n              \"display\": \"Knee replacement surgery\",\n              \"min\": 239,\n              \"median\": 520.5350000000001,\n              \"max\": 714.93\n            }\n          ]\n        }\n      }\n    },\n    {\n      \"uuid\": \"7ad7c4ef-baf9-4789-8e58-51d2308a1143\",\n      \"costs\": {\n        \"min\": 239,\n        \"avg\": 520.5350000000001,\n        \"max\": 714.93,\n        \"is_bundle\": true,\n        \"outpatient\": {\n          \"min\": 239,\n          \"median\": 520.5350000000001,\n          \"max\": 714.93,\n          \"is_bundle\": true,\n          \"components\": [\n            {\n              \"display\": \"Knee replacement surgery\",\n              \"min\": 239,\n              \"median\": 520.5350000000001,\n              \"max\": 714.93\n            },\n            {\n              \"display\": \"Knee replacement surgery\",\n              \"min\": 239,\n              \"median\": 520.5350000000001,\n              \"max\": 714.93\n            }\n          ]\n        },\n        \"inpatient\": {\n          \"min\": 239,\n          \"median\": 520.5350000000001,\n          \"max\": 714.93,\n          \"is_bundle\": true,\n          \"components\": null\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60decd71-8057-4985-bf77-d7cbec09d963",
+              "name": "The given search was not valid. The given insurance could not be found, etc.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "providers",
+                    ":npi",
+                    "procedures",
+                    ":procedure_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "plan_id",
+                      "value": "81ba3a1a-05a9-48d9-b9b2-cb8f9eafc902"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "procedure_uuid",
+                      "description": "(Required) The UUID of the target procedure. If the target procedure is a procedure bundle but we do not have any data for it, we will return data for its anchor procedure instead."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "acaf7c09-c686-4282-9b46-046ce314963a",
+              "name": "The given NPI cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "providers",
+                    ":npi",
+                    "procedures",
+                    ":procedure_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "plan_id",
+                      "value": "81ba3a1a-05a9-48d9-b9b2-cb8f9eafc902"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "procedure_uuid",
+                      "description": "(Required) The UUID of the target procedure. If the target procedure is a procedure bundle but we do not have any data for it, we will return data for its anchor procedure instead."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38d31537-a47c-420c-ba97-38fbb88c3f77",
+          "name": "Provider Location Procedure Pricing",
+          "request": {
+            "name": "Provider Location Procedure Pricing",
+            "description": {
+              "content": "Search for a price estimate for a specific procedure from a specific provider at a specific location, with a given insurance plan.\n\n#### Example Use Case\nGiven an insurance, identify the expected price of a particular procedure from a specific provider at a known facility.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pricing",
+                "providers",
+                ":npi",
+                "procedures",
+                ":procedure_uuid",
+                "locations",
+                ":location_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "plan_id",
+                  "value": "<uuid>",
+                  "description": "Search for negotiated rates for the insurance plan with this UUID."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "procedure_uuid",
+                  "description": "(Required) The UUID of the target procedure. If the target procedure is a procedure bundle but we do not have any data for it, we will return data for its anchor procedure instead."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82b430b6-dc22-465b-bcf2-0857cf3ec98e",
+              "name": "Returns the costs associated with the given provider, procedure, and location",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "providers",
+                    ":npi",
+                    "procedures",
+                    ":procedure_uuid",
+                    "locations",
+                    ":location_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "plan_id",
+                      "value": "81ba3a1a-05a9-48d9-b9b2-cb8f9eafc902"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "procedure_uuid",
+                      "description": "(Required) The UUID of the target procedure. If the target procedure is a procedure bundle but we do not have any data for it, we will return data for its anchor procedure instead."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"parameters\": {\n    \"insurance\": {\n      \"value\": \"reference #/paths/~1custom~1insurances/post/requestBody/content/application~1json/schema not found in the OpenAPI spec\"\n    }\n  },\n  \"data\": {\n    \"costs\": {\n      \"min\": 239,\n      \"avg\": 520.5350000000001,\n      \"max\": 714.93,\n      \"is_bundle\": true,\n      \"outpatient\": {\n        \"min\": 239,\n        \"median\": 520.5350000000001,\n        \"max\": 714.93,\n        \"is_bundle\": true,\n        \"components\": null\n      },\n      \"inpatient\": {\n        \"min\": 239,\n        \"median\": 520.5350000000001,\n        \"max\": 714.93,\n        \"is_bundle\": true,\n        \"components\": [\n          {\n            \"display\": \"Knee replacement surgery\",\n            \"min\": 239,\n            \"median\": 520.5350000000001,\n            \"max\": 714.93\n          },\n          {\n            \"display\": \"Knee replacement surgery\",\n            \"min\": 239,\n            \"median\": 520.5350000000001,\n            \"max\": 714.93\n          }\n        ]\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db50f0a7-4b9a-41ee-bfcf-0e92d1749975",
+              "name": "The given search was not valid. The given insurance could not be found, etc.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "providers",
+                    ":npi",
+                    "procedures",
+                    ":procedure_uuid",
+                    "locations",
+                    ":location_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "plan_id",
+                      "value": "81ba3a1a-05a9-48d9-b9b2-cb8f9eafc902"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "procedure_uuid",
+                      "description": "(Required) The UUID of the target procedure. If the target procedure is a procedure bundle but we do not have any data for it, we will return data for its anchor procedure instead."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2f63420-ba1b-4080-ab23-3580963d9cda",
+              "name": "The given NPI cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "providers",
+                    ":npi",
+                    "procedures",
+                    ":procedure_uuid",
+                    "locations",
+                    ":location_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "plan_id",
+                      "value": "81ba3a1a-05a9-48d9-b9b2-cb8f9eafc902"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "procedure_uuid",
+                      "description": "(Required) The UUID of the target procedure. If the target procedure is a procedure bundle but we do not have any data for it, we will return data for its anchor procedure instead."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53a349ea-b289-45b7-9e78-d92af5afa247",
+          "name": "List Carriers",
+          "request": {
+            "name": "List Carriers",
+            "description": {
+              "content": "This endpoint will show the carriers for which we have data. This can be used to fetch the recency of the data used per carrier.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pricing",
+                "carriers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "644b4ed0-2ead-4652-8f6f-77b2455a1b7e",
+              "name": "Returns all carriers we have price data for",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "carriers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"uuid\": \"ef704f14-c906-4857-acd4-d811f1394c32\",\n      \"name\": \"Aetna\",\n      \"last_updated\": \"2023-01\"\n    },\n    {\n      \"uuid\": \"ef704f14-c906-4857-acd4-d811f1394c32\",\n      \"name\": \"Aetna\",\n      \"last_updated\": \"2023-01\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a57d17bc-4c7b-47a2-b844-1f48a031476c",
+          "name": "Get Carrier",
+          "request": {
+            "name": "Get Carrier",
+            "description": {
+              "content": "Fetch metadata including the recency of the pricing data used for a specific carrier.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pricing",
+                "carrier",
+                ":carrier_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "carrier_uuid",
+                  "description": "(Required) The UUID of the insurance carrier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f2d9c0d-4f66-4143-ab8e-4be0e582c80d",
+              "name": "Returns metadata for the given carrier",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "carrier",
+                    ":carrier_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "carrier_uuid",
+                      "description": "(Required) The UUID of the insurance carrier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"ef704f14-c906-4857-acd4-d811f1394c32\",\n  \"name\": \"Aetna\",\n  \"last_updated\": \"2023-01\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9579a68-18b5-4738-af29-26c7a9f20816",
+              "name": "The given carrier cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "carrier",
+                    ":carrier_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "carrier_uuid",
+                      "description": "(Required) The UUID of the insurance carrier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81a78e8d-a49f-4ef3-8676-966cd37df320",
+          "name": "Carrier Names",
+          "request": {
+            "name": "Carrier Names",
+            "description": {
+              "content": "This endpoint will the names of the carriers for which we have data. This can be used to fetch the recency of the data used per carrier.\n\nThis endpoint is deprecated. Please use [List Carriers](./getpricingcarriers) instead.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pricing",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6b0e875-4906-45c1-a0f4-1bfb0d47cbf4",
+              "name": "Returns all carriers we have price data for",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"carriers\": [\n    \"Aetna\",\n    \"Cigna\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8fa958a6-905c-4578-8fde-e91d33c0cab4",
+          "name": "Carrier Data Versions By Name",
+          "request": {
+            "name": "Carrier Data Versions By Name",
+            "description": {
+              "content": "Fetch the recency of the pricing data used for a specific carrier by name.\n\nThis endpoint is deprecated. Please use [Get Carrier](./getpricingcarrier) instead.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pricing",
+                "version",
+                ":carrier_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "carrier_name",
+                  "description": "(Required) The name of the insurance carrier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ee1ff1d-be1d-4ad9-8b33-1a504e555ca3",
+              "name": "Returns the recency for the given carrier",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "version",
+                    ":carrier_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "carrier_name",
+                      "description": "(Required) The name of the insurance carrier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"last_updated\": \"2023-01\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11daef83-0094-4363-9b65-b763e39f116d",
+              "name": "The given carrier cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing",
+                    "version",
+                    ":carrier_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "carrier_name",
+                      "description": "(Required) The name of the insurance carrier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ribbonhealth.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d54bd282-b637-4ea4-a610-4205551dfee9",
+    "name": "Ribbon Health Price Transparency API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -233,3 +233,9 @@ tools:
 - name: get_network_analysis
   description: Network Analysis Based on Geography
   source_operation: openapi/ribbon-health-api-openapi.json#getNetworkAnalysis
+deployment:
+  mode: none
+  verified: derived
+  tools: 75
+  checked: '2026-08-12'
+  source: catalog MCP census
