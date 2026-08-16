@@ -6,13 +6,17 @@ description: H1 (h1.co) is a New York City-based healthcare data and technology 
   that combines deep healthcare provider data with agentic AI to power drug development, medical and commercial
   engagement, care navigation, and provider and network intelligence for life sciences, pharma, health
   plans, and digital health organizations across the United States. Its developer-facing API is the Ribbon
-  Health API (H1 acquired Ribbon Health), a proprietary REST API served over HTTPS at https://api.ribbonhealth.com/v1
+  Health API (H1 acquired Ribbon Health), a proprietary REST API served over HTTPS at https://api.ribbonhealth.com
   that provides accurate, comprehensive data on healthcare providers, locations, insurances, procedures,
-  price transparency, cost estimates, and insurance eligibility. The API is not FHIR-based and does not
-  expose a SMART-on-FHIR surface; it authenticates with a bearer API key and is segmented into provider,
-  location, custom-filter, focus-area, price-transparency, cost-estimate/eligibility, organization, reference-data,
-  and network-analysis product families. Access is gated behind a request-demo / API-key sign-up rather
-  than fully self-serve.
+  price transparency, cost estimates, and insurance eligibility. Two OpenAPI 3.1 contracts are published -
+  the 75-operation v1 API under /v1, and a newer 7-operation location-first Price Transparency v2 surface
+  under /v2 that H1 tells new integrations to prefer over the legacy provider-first /v1/pricing endpoints.
+  The API is not FHIR-based and does not expose a SMART-on-FHIR or Da Vinci PDEX Plan-Net surface; it
+  authenticates with a bearer API key, has no OAuth scopes, and gates product families on per-account
+  entitlement flags. It is segmented into provider, location, custom-filter, focus-area, price-transparency
+  (v1 and v2), cost-estimate/eligibility, organization, reference-data, and network-analysis product
+  families. Access is gated behind a request-demo / API-key sign-up rather than fully self-serve, and no
+  pricing, plans, SDKs, sandbox, changelog or webhook surface is published.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Healthcare
@@ -26,7 +30,7 @@ tags:
 - Digital Health
 - Pharma
 created: '2026-07-24'
-modified: '2026-07-24'
+modified: '2026-08-15'
 specificationVersion: '0.19'
 apis:
 - aid: h1:ribbon-providers-api
@@ -400,7 +404,40 @@ apis:
     url: https://ribbon.readme.io/docs/authentication
   - type: ToolCrosswalk
     url: mcp/h1-tool-crosswalk.yml
+- aid: h1:h1-price-transparency-v2-api
+  name: H1 Price Transparency v2 API
+  description: Location-first negotiated-rate API under /v2/* - resolve procedures, care clusters and
+    carriers, then shop procedure-level and care-cluster (bundle) prices at a known facility or near an
+    address / lat-lng, returned cheapest-first in a single shared response envelope. Separate from, and
+    preferred over, the legacy provider-first /v1/pricing/* endpoints; gated on the
+    doctors.can_price_transparency account entitlement.
+  humanURL: https://ribbon.readme.io/reference/getv2procedures
+  baseURL: https://api.ribbonhealth.com
+  tags:
+  - Price Transparency
+  - Pricing
+  - Care Clusters
+  - Healthcare
+  properties:
+  - type: OpenAPI
+    url: openapi/h1-price-transparency-v2-openapi.json
+  - type: Overlay
+    url: overlays/h1-price-transparency-v2-overlay.yaml
+  - type: Documentation
+    url: https://ribbon.readme.io/docs/welcome-to-the-ribbon-health-api
+  - type: APIReference
+    url: https://ribbon.readme.io/reference/getv2procedures
+  - type: Authentication
+    url: https://ribbon.readme.io/docs/authentication
+  - type: AgentSkill
+    url: skills/h1-shop-prices-near-me-v2.md
+  - type: ToolCrosswalk
+    url: mcp/h1-tool-crosswalk.yml
 common:
+- type: Plans
+  url: plans/h1-plans-pricing.yml
+- type: Overlay
+  url: overlays/h1-price-transparency-v2-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/h1-agentic-access.yml
 - type: DomainSecurity
@@ -449,8 +486,6 @@ common:
   url: https://h1.co/blog/
 - type: Support
   url: https://h1.co/contact/
-- type: Security
-  url: https://h1.co/security/
 - type: TermsOfService
   url: https://h1.co/terms-of-use/
 - type: PrivacyPolicy
@@ -481,62 +516,26 @@ common:
   url: https://h1.com/privacy-policy/
 - type: StatusPage
   url: https://status.ribbonhealth.com/
-- type: Lifecycle
-  url: lifecycle/h1-lifecycle.yml
 - type: Deprecation
   url: lifecycle/h1-lifecycle.yml
-- type: Authentication
-  url: authentication/h1-authentication.yml
-- type: Conventions
-  url: conventions/h1-conventions.yml
-- type: ErrorCatalog
-  url: errors/h1-problem-types.yml
-- type: Conformance
-  url: conformance/h1-conformance.yml
-- type: DataModel
-  url: data-model/h1-data-model.yml
-- type: DomainSecurity
-  url: security/h1-domain-security.yml
-- type: WellKnown
-  url: well-known/h1-well-known.yml
 - type: Packages
   url: packages/h1-packages.yml
-- type: MCPServer
-  url: mcp/h1-mcp.yml
-- type: ToolCrosswalk
-  url: mcp/h1-tool-crosswalk.yml
-- type: LLMsTxt
-  url: llms/h1-llms.txt
-- type: Overlay
-  url: overlays/h1-openapi-overlay.yaml
-- type: Lifecycle
-  url: lifecycle/h1-lifecycle.yml
-- type: Deprecation
-  url: lifecycle/h1-lifecycle.yml
-- type: Authentication
-  url: authentication/h1-authentication.yml
-- type: Conventions
-  url: conventions/h1-conventions.yml
-- type: ErrorCatalog
-  url: errors/h1-problem-types.yml
-- type: Conformance
-  url: conformance/h1-conformance.yml
-- type: DataModel
-  url: data-model/h1-data-model.yml
-- type: DomainSecurity
-  url: security/h1-domain-security.yml
-- type: WellKnown
-  url: well-known/h1-well-known.yml
-- type: Packages
-  url: packages/h1-packages.yml
-- type: MCPServer
-  url: mcp/h1-mcp.yml
-- type: ToolCrosswalk
-  url: mcp/h1-tool-crosswalk.yml
-- type: LLMsTxt
-  url: llms/h1-llms.txt
 - type: Overlay
   url: overlays/h1-openapi-overlay.yaml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-15'
+  status: enriched
+  artifacts_added: 4
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: null
+  detail: >-
+    Fully readable. Two OpenAPI 3.1 contracts were harvested from H1's own hosts, a verbatim llms.txt is
+    served at https://ribbon.readme.io/llms.txt, and every remaining absence (no plans, no SDKs, no
+    changelog, no sandbox, no webhooks/AsyncAPI, no /.well-known documents, no agent card, no compliance
+    program) was probed and recorded rather than assumed.
+  checked: '2026-08-15'
