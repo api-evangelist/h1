@@ -31,7 +31,7 @@ tags:
 - Pharma
 created: '2026-07-24'
 modified: '2026-08-15'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: h1:ribbon-providers-api
   name: H1 Ribbon Providers API
