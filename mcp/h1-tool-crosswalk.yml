@@ -1,15 +1,20 @@
-generated: '2026-07-24'
+generated: '2026-08-15'
 method: derived
-source: openapi/ribbon-health-api-openapi.json
-note: 'Derived crosswalk: the H1 MCP server is a candidate (no official hosted server found), so every
-  tool maps 1:1 to its backing REST operationId, inheriting that operation parameters+requestBody as its
-  real inputSchema.'
+source: openapi/ribbon-health-api-openapi.json, openapi/h1-price-transparency-v2-openapi.json
+note: >-
+  Derived crosswalk. The H1 MCP server is a CANDIDATE - no official hosted endpoint and no stdio
+  package exists (re-verified 2026-08-15) - so every tool maps 1:1 to its backing REST operationId and
+  inherits that operation's parameters + requestBody as its real inputSchema. Two OpenAPI contracts are
+  in scope: the v1 contract (75 operations) and the Price Transparency v2 contract (7 operations).
 surfaces:
-  openapi: openapi/ribbon-health-api-openapi.json
+  openapi:
+  - openapi/ribbon-health-api-openapi.json
+  - openapi/h1-price-transparency-v2-openapi.json
   graphql: null
   mcp:
     status: candidate
     url: null
+    note: no server published by H1; nothing to introspect via tools/list
 crosswalk:
 - tool: get_custom_providers
   category: Providers
@@ -461,11 +466,63 @@ crosswalk:
   - getNetworkAnalysis
   binding: rest
   confidence: high
+- tool: get_v2_procedures
+  category: Price Transparency v2
+  rest:
+  - getV2Procedures
+  binding: rest
+  confidence: high
+  source: openapi/h1-price-transparency-v2-openapi.json
+- tool: get_v2_care_clusters
+  category: Price Transparency v2
+  rest:
+  - getV2CareClusters
+  binding: rest
+  confidence: high
+  source: openapi/h1-price-transparency-v2-openapi.json
+- tool: get_v2_carriers
+  category: Price Transparency v2
+  rest:
+  - getV2Carriers
+  binding: rest
+  confidence: high
+  source: openapi/h1-price-transparency-v2-openapi.json
+- tool: get_v2_location_procedure_pricing
+  category: Price Transparency v2
+  rest:
+  - getV2LocationProcedurePricing
+  binding: rest
+  confidence: high
+  source: openapi/h1-price-transparency-v2-openapi.json
+- tool: get_v2_location_care_cluster_pricing
+  category: Price Transparency v2
+  rest:
+  - getV2LocationCareClusterPricing
+  binding: rest
+  confidence: high
+  source: openapi/h1-price-transparency-v2-openapi.json
+- tool: get_v2_pricing_location_procedures
+  category: Price Transparency v2
+  rest:
+  - getV2PricingLocationProcedures
+  binding: rest
+  confidence: high
+  source: openapi/h1-price-transparency-v2-openapi.json
+- tool: get_v2_pricing_location_care_clusters
+  category: Price Transparency v2
+  rest:
+  - getV2PricingLocationCareClusters
+  binding: rest
+  confidence: high
+  source: openapi/h1-price-transparency-v2-openapi.json
 mcp_only: []
 rest_only: []
 coverage:
-  tools_named: 75
-  tools_bound: 75
+  tools_named: 82
+  tools_bound: 82
   mcp_only: 0
-  rest_ops_total: 75
-  rest_ops_with_tool: 75
+  rest_ops_total: 82
+  rest_ops_with_tool: 82
+  note: >-
+    82 = 75 v1 operations + 7 Price Transparency v2 operations. Coverage is 1:1 by construction because
+    the tool list is derived from the specs; it is not evidence that a server exists.

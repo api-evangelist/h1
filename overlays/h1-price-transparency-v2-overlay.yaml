@@ -1,0 +1,69 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for H1 Price Transparency v2
+  version: 1.0.0
+extends: openapi/h1-price-transparency-v2-openapi.json
+x-generated: '2026-08-15'
+x-method: generated
+x-source: >-
+  API Evangelist enrichment pass 2026-08-15. Annotations over the Price Transparency v2 contract
+  assembled verbatim from the seven per-operation OpenAPI documents H1 publishes on its own
+  documentation host (https://ribbon.readme.io/reference/getv2*.md). The originals are never mutated.
+actions:
+
+- target: $.info
+  description: >-
+    Record operator identity and provenance. H1 acquired Ribbon Health; the spec is titled "H1's API"
+    while the host, docs subdomain and legacy paths still carry the Ribbon brand.
+  update:
+    x-apievangelist-provider: H1
+    x-apievangelist-slug: h1
+    x-apievangelist-product: H1 Price Transparency v2
+    x-apievangelist-legacy-brand: Ribbon Health
+    x-apievangelist-docs: https://ribbon.readme.io/reference/getv2procedures
+    x-apievangelist-harvested: '2026-08-15'
+    x-apievangelist-spec-source: https://ribbon.readme.io/reference/getv2procedures.md
+
+- target: $.info
+  description: Attach the derived artifacts that carry the semantics the contract itself does not state.
+  update:
+    x-apievangelist-authentication: authentication/h1-authentication.yml
+    x-apievangelist-rate-limits: rate-limits/h1-rate-limits.yml
+    x-apievangelist-conventions: conventions/h1-conventions.yml
+    x-apievangelist-errors: errors/h1-problem-types.yml
+    x-apievangelist-lifecycle: lifecycle/h1-lifecycle.yml
+    x-apievangelist-plans: plans/h1-plans-pricing.yml
+
+- target: $.info
+  description: >-
+    Record the runtime facts an agent needs and the contract omits - the per-key rate limit, the account
+    entitlement that gates every /v2 path, and the shared response envelope.
+  update:
+    x-apievangelist-rate-limit: 1000 requests per minute, per key, across all /v2/* endpoints
+    x-apievangelist-entitlement: doctors.can_price_transparency
+    x-apievangelist-response-envelope: [parameters, total_count, page, page_size, data]
+
+- target: $.servers[0]
+  description: >-
+    The v2 surface is served from the host root (https://api.ribbonhealth.com) with the version in the
+    path, while the v1 surface pins /v1 into the server URL. Same host, two different base conventions.
+  update:
+    x-apievangelist-note: >-
+      v2 paths carry their own /v2 prefix; do not append /v1. Carrier identifiers here are string
+      business ids from GET /v2/carriers and are NOT interchangeable with v1 carrier UUIDs.
+
+- target: $.paths['/v2/pricing/locations/procedures'].get
+  description: >-
+    Flag the behavioural break from v1 that will silently change results for anyone porting code: v1
+    defaulted an absent location to New York City, v2 returns 400.
+  update:
+    x-apievangelist-breaking-change: >-
+      Location is now REQUIRED - supply `address` or both `lat` and `lng`. v1 silently defaulted to a
+      New York City address; v2 returns HTTP 400.
+
+- target: $.paths['/v2/pricing/locations/care-clusters'].get
+  description: Same required-location break as the procedures search.
+  update:
+    x-apievangelist-breaking-change: >-
+      Location is now REQUIRED - supply `address` or both `lat` and `lng`; missing, partial or
+      un-geocodable input returns HTTP 400.

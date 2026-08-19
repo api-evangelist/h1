@@ -1,7 +1,7 @@
 ---
 name: Analyze network coverage and sites of care
 description: Use H1's location, organization, focus-area and network-analysis endpoints to understand what care is available in a geography and how a provider network is composed.
-api: openapi/h1-insights-openapi-original.json
+api: openapi/h1-openapi-original.json
 base_url: https://api.ribbonhealth.com/v1
 operations:
   - getCustomLocationTypes
@@ -17,7 +17,7 @@ operations:
   - getLanguages
 generated: '2026-08-04'
 method: generated
-source: openapi/h1-insights-openapi-original.json + https://ribbon.readme.io/docs/network-data
+source: openapi/h1-openapi-original.json + https://ribbon.readme.io/docs/network-data
 ---
 
 # Analyze network coverage and sites of care

@@ -1,8 +1,11 @@
-generated: '2026-07-24'
+generated: '2026-08-15'
 method: searched
 sources:
 - https://ribbon.readme.io/docs/authentication
 - https://ribbon.readme.io/docs/rate-limits
+- https://ribbon.readme.io/docs/latency
+- https://ribbon.readme.io/docs/includeexclude-fields
+- https://ribbon.readme.io/reference/getv2procedures
 authentication:
   style: bearer-api-key
   header: Authorization
@@ -14,24 +17,76 @@ pagination:
   params:
   - page
   - page_size
-  note: List/search endpoints accept page and page_size query parameters.
+  note: >-
+    List/search endpoints accept page and page_size query parameters. On v1 provider search page_size is
+    capped by the strict `max_locations * page_size <= 1000` rule; the recommended default is 25.
+  v2_response_fields:
+  - parameters
+  - total_count
+  - page
+  - page_size
+  - data
+sparse_fields:
+  supported: true
+  params:
+  - fields
+  - _excl_fields
+  mutually_exclusive: true
+  docs: https://ribbon.readme.io/docs/includeexclude-fields
+  note: >-
+    Comma-separated allow-list (`fields`) or deny-list (`_excl_fields`) over the response object. The
+    two cannot be combined. H1 recommends them as the primary latency lever.
+async_writes:
+  supported: true
+  param: async
+  value: 'true'
+  applies_to: edit/PUT operations
+  docs: https://ribbon.readme.io/docs/latency
+  note: >-
+    Passing `async=true` on an edit applies the change asynchronously. There is no documented job id or
+    status endpoint to poll, so an agent gets fire-and-forget semantics with no completion signal.
 idempotency:
   supported: false
-  note: No Idempotency-Key header is documented; PUT operations are idempotent by HTTP semantics but there
-    is no dedicated idempotency contract.
+  note: >-
+    No Idempotency-Key header or equivalent is documented anywhere in the guides or the OpenAPI. PUT
+    operations are idempotent by HTTP semantics, but POST creates (locations, insurances, specialties,
+    filters, provider types, location types) have no replay-safety contract. No `Idempotency` pointer is
+    asserted in apis.yml as a result.
 rate_limiting:
   signaled: true
   status: 429
   code: rate_limit_exceeded
+  response_headers: []
+  note: Limits are documented per endpoint but no RateLimit-*/Retry-After response header is published.
   ref: rate-limits/h1-rate-limits.yml
 error_envelope:
   format: json
   ref: errors/h1-problem-types.yml
   note: Errors returned as JSON bodies (not RFC 9457 problem+json).
+request_tracing:
+  request_id_header: null
+  note: No request-id/correlation header is documented.
 versioning:
   scheme: uri-path
   current: v1
+  also_serving: v2
+  note: >-
+    Two version prefixes are live on the same host. Legacy provider-first pricing sits under
+    /v1/pricing/*; the newer location-first Price Transparency surface sits under /v2/*. The docs branch
+    is separately labelled v2.2 (a documentation version, not the API version) - do not conflate them.
+    v2 carrier identifiers are string business ids and are NOT interchangeable with v1 carrier UUIDs.
+  ref: lifecycle/h1-lifecycle.yml
+entitlements:
+  style: account-flag
+  observed:
+  - doctors.can_price_transparency
+  note: >-
+    Product families are gated per API key by account flags rather than OAuth scopes. A 403 is the
+    signal that the key is not entitled to a product family, not that the request was malformed.
 identifiers:
   providers: NPI (National Provider Identifier)
-  entities: UUID for locations, insurances, specialties, procedures, organizations, clinical areas, conditions,
+  entities: >-
+    UUID for locations, insurances, specialties, procedures, organizations, clinical areas, conditions,
     treatments, carriers, provider types, location types
+  v2_locations: integer location id OR location UUID (both accepted on the same path parameter)
+  v2_carriers: string business id from GET /v2/carriers (not a v1 carrier UUID)

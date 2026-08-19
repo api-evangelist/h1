@@ -2,7 +2,7 @@ overlay: 1.0.0
 info:
   title: API Evangelist enhancements for the H1 Provider Data API
   version: 1.0.0
-extends: openapi/h1-insights-openapi-original.json
+extends: openapi/h1-openapi-original.json
 x-generated: '2026-08-04'
 x-method: generated
 x-source: >-

@@ -1,7 +1,7 @@
 ---
 name: Find an in-network provider
 description: Search the H1 provider directory for clinicians who match a patient's geography, insurance network, specialty and quality bar, then pull the full record for the chosen provider.
-api: openapi/h1-insights-openapi-original.json
+api: openapi/h1-openapi-original.json
 base_url: https://api.ribbonhealth.com/v1
 operations:
   - getInsurances
@@ -10,7 +10,7 @@ operations:
   - getCustomProvider
 generated: '2026-08-04'
 method: generated
-source: openapi/h1-insights-openapi-original.json + https://ribbon.readme.io/docs/provider-search
+source: openapi/h1-openapi-original.json + https://ribbon.readme.io/docs/provider-search
 ---
 
 # Find an in-network provider

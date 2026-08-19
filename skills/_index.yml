@@ -1,19 +1,102 @@
-generated: '2026-07-24'
+generated: '2026-08-15'
 method: generated
 skills:
-- file: h1-provider-search.md
-  name: Search and retrieve healthcare providers
-  api: openapi/ribbon-health-api-openapi.json
-  operations: [getCustomProviders, getCustomProvider, getSpecialties, getInsurances]
-- file: h1-in-network-search.md
-  name: Find in-network providers for an insurance
-  api: openapi/ribbon-health-api-openapi.json
-  operations: [getInsurances, getCustomProviders, getNetworkAnalysis]
-- file: h1-price-transparency.md
-  name: Price-transparency and procedure cost lookup
-  api: openapi/ribbon-health-api-openapi.json
-  operations: [getProcedures, getPricingProviders, getPricingProviderProcedure, getProcedureCostEstimate]
+- file: h1-analyze-network-coverage.md
+  name: Analyze network coverage and sites of care
+  api: openapi/h1-openapi-original.json
+  operations:
+  - getCustomLocationTypes
+  - getCustomLocations
+  - getCustomLocation
+  - getOrganizations
+  - getOrganization
+  - getClinicalAreas
+  - getConditions
+  - getTreatments
+  - getCustomVirtualCarePlatforms
+  - getNetworkAnalysis
+  - getLanguages
+- file: h1-check-member-eligibility.md
+  name: Check member eligibility and benefits
+  api: openapi/h1-openapi-original.json
+  operations:
+  - getEligibilityInsurancePartners
+  - getEligibilityInsurancePartner
+  - getEligibility
+- file: h1-curate-custom-directory.md
+  name: Curate a custom provider directory
+  api: openapi/h1-openapi-original.json
+  operations:
+  - putCustomProvider
+  - putCustomProviderLocations
+  - putCustomProviderLocation
+  - putCustomProviderSpecialties
+  - putCustomProviderLocationInsurances
+  - postCustomLocations
+  - putCustomLocation
+  - getCustomProviderFilters
+  - createCustomProviderFilter
+  - editCustomProviderFilter
+  - deleteCustomProviderFilter
+  - getCustomProviders
 - file: h1-eligibility-check.md
   name: Check member insurance eligibility
   api: openapi/ribbon-health-api-openapi.json
-  operations: [getEligibilityInsurancePartners, getEligibility]
+  operations:
+  - getEligibilityInsurancePartners
+  - getEligibility
+- file: h1-find-in-network-provider.md
+  name: Find an in-network provider
+  api: openapi/h1-openapi-original.json
+  operations:
+  - getInsurances
+  - getSpecialties
+  - getCustomProviders
+  - getCustomProvider
+- file: h1-in-network-search.md
+  name: Find in-network providers for an insurance
+  api: openapi/ribbon-health-api-openapi.json
+  operations:
+  - getInsurances
+  - getCustomProviders
+  - getNetworkAnalysis
+- file: h1-price-a-procedure.md
+  name: Price a procedure for a member
+  api: openapi/h1-openapi-original.json
+  operations:
+  - getProcedures
+  - getInsurances
+  - getPricingProviders
+  - getPricingProviderProcedures
+  - getPricingProviderProcedure
+  - getPricingProviderProcedureLocation
+  - getPricingCarriers
+  - getPricingCarrier
+  - getProcedureCostEstimate
+- file: h1-price-transparency.md
+  name: Price-transparency and procedure cost lookup
+  api: openapi/ribbon-health-api-openapi.json
+  operations:
+  - getProcedures
+  - getPricingProviders
+  - getPricingProviderProcedure
+  - getProcedureCostEstimate
+- file: h1-provider-search.md
+  name: Search and retrieve healthcare providers
+  api: openapi/ribbon-health-api-openapi.json
+  operations:
+  - getCustomProviders
+  - getCustomProvider
+  - getSpecialties
+  - getInsurances
+- file: h1-shop-prices-near-me-v2.md
+  name: Shop procedure and bundle prices near a location (Price Transparency v2)
+  api: openapi/h1-price-transparency-v2-openapi.json
+  operations:
+  - getV2Procedures
+  - getV2CareClusters
+  - getV2Carriers
+  - getV2PricingLocationProcedures
+  - getV2PricingLocationCareClusters
+  - getV2LocationProcedurePricing
+  - getV2LocationCareClusterPricing

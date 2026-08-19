@@ -1,0 +1,1580 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "H1's API",
+    "version": "1.0.0",
+    "description": "An API for interacting with the data provided by Ribbon Health, including information about healthcare providers,\nlocations, insurances, and more.\n\n## Price Transparency v2\n\nLocation-first negotiated rate endpoints live under `/v2/*` (separate from legacy\n`/v1/pricing/*`). Use them to:\n\n1. Look up procedures, care clusters, and carriers (`GET /v2/procedures`,\n   `/v2/care-clusters`, `/v2/carriers`)\n2. Get prices for a known location (`GET /v2/locations/{location_id}/pricing/...`)\n3. Shop by geography (`GET /v2/pricing/locations/...`)\n\n**Key differences from v1:** prices are location-scoped (not provider-first);\ncarriers use string business ids (not v1 carrier UUIDs); every v2 response uses\nthe same envelope (`parameters`, `total_count`, `page`, `page_size`, `data`);\ngeo search requires an explicit `address` or `lat`+`lng` (no silent default).\n\nSee the **Price Transparency v2** tag for full endpoint reference.\n"
+  },
+  "servers": [
+    {
+      "url": "https://api.ribbonhealth.com"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Price Transparency v2",
+      "description": "Location-first negotiated rates under `/v2/*`. Prefer these endpoints for new\nintegrations. Carrier ids come from `GET /v2/carriers` and are not interchangeable\nwith v1 pricing carrier UUIDs. Provider-scoped v2 routes are not live yet.\n"
+    }
+  ],
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "paths": {
+    "/v2/procedures": {
+      "get": {
+        "summary": "List Procedures (v2)",
+        "description": "Browse or search the Price Transparency v2 procedure code dictionary.\n\nUse this to resolve a CPT (or other) code before pricing lookups, or to\ndiscover which care clusters a procedure belongs to. This endpoint does\n**not** return dollar amounts.\n\n#### Example Use Case\nLook up CPT `27447` to confirm its description and see that it belongs to\nthe `JOINT_REPLACEMENT` care cluster before calling a pricing endpoint.\n\n#### Notes\n- Requires Price Transparency access (`doctors.can_price_transparency`).\n- Rate limited to 1,000 requests per minute.\n- All Price Transparency v2 endpoints share the same response envelope:\n  `parameters`, `total_count`, `page`, `page_size`, and `data`.\n",
+        "operationId": "getV2Procedures",
+        "tags": [
+          "Price Transparency v2"
+        ],
+        "parameters": [
+          {
+            "name": "procedure_code",
+            "in": "query",
+            "required": false,
+            "description": "Exact procedure code filter (for example `27447`).",
+            "schema": {
+              "type": "string",
+              "example": "27447"
+            }
+          },
+          {
+            "name": "procedure_code_scheme",
+            "in": "query",
+            "required": false,
+            "description": "Exact match on procedure coding system (for example `CPT` or `HCPCS`).\n",
+            "schema": {
+              "type": "string",
+              "example": "CPT"
+            }
+          },
+          {
+            "name": "procedure_description",
+            "in": "query",
+            "required": false,
+            "description": "Case-insensitive substring match on procedure description.",
+            "schema": {
+              "type": "string",
+              "example": "knee"
+            }
+          },
+          {
+            "name": "care_cluster_code",
+            "in": "query",
+            "required": false,
+            "description": "Filter to a specific care cluster by its business code (for example `JOINT_REPLACEMENT`).",
+            "schema": {
+              "type": "string",
+              "example": "JOINT_REPLACEMENT"
+            }
+          },
+          {
+            "name": "care_cluster_description",
+            "in": "query",
+            "required": false,
+            "description": "Match on care cluster display description. Case-insensitive substring on\ndictionary endpoints; case-insensitive exact match on DB-backed pricing\nendpoints; case-sensitive exact match on Elasticsearch search endpoints.\n",
+            "schema": {
+              "type": "string",
+              "example": "Joint Replacement"
+            }
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/2"
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matching procedure dictionary records.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/paths/~1v2~1carriers/get/responses/200/content/application~1json/schema/allOf/0"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "description": "A procedure code from the Price Transparency v2 dictionary.",
+                            "required": [
+                              "code",
+                              "code_scheme",
+                              "description"
+                            ],
+                            "properties": {
+                              "code": {
+                                "type": "string",
+                                "description": "Procedure code.",
+                                "example": "27447"
+                              },
+                              "code_scheme": {
+                                "type": "string",
+                                "description": "Coding system (for example `CPT`).",
+                                "example": "CPT"
+                              },
+                              "description": {
+                                "type": "string",
+                                "description": "Human-readable procedure description.",
+                                "example": "Total knee arthroplasty"
+                              },
+                              "care_clusters": {
+                                "type": "array",
+                                "description": "Present only when the procedure belongs to one or more care clusters.\n",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "care_cluster_code",
+                                    "care_cluster_description"
+                                  ],
+                                  "properties": {
+                                    "care_cluster_code": {
+                                      "type": "string",
+                                      "example": "JOINT_REPLACEMENT"
+                                    },
+                                    "care_cluster_description": {
+                                      "type": "string",
+                                      "example": "Joint Replacement"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "example": [
+                            {
+                              "code": "27447",
+                              "code_scheme": "CPT",
+                              "description": "Total knee arthroplasty",
+                              "care_clusters": [
+                                {
+                                  "care_cluster_code": "JOINT_REPLACEMENT",
+                                  "care_cluster_description": "Joint Replacement"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "parameters": {
+                    "procedure_code": "27447",
+                    "procedure_code_scheme": "CPT"
+                  },
+                  "total_count": 1,
+                  "page": 1,
+                  "page_size": 20,
+                  "data": [
+                    {
+                      "code": "27447",
+                      "code_scheme": "CPT",
+                      "description": "Total knee arthroplasty",
+                      "care_clusters": [
+                        {
+                          "care_cluster_code": "JOINT_REPLACEMENT",
+                          "care_cluster_description": "Joint Replacement"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/400/content/application~1json/schema"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller does not have Price Transparency access.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/403/content/application~1json/schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/care-clusters": {
+      "get": {
+        "summary": "List Care Clusters (v2)",
+        "description": "Browse care cluster definitions and the procedures each cluster includes.\n\nA care cluster is a curated group of related procedures that together\nrepresent a care episode (for example joint replacement). Use this\ndictionary before querying bundle prices.\n\n#### Example Use Case\nSearch for clusters matching `\"joint\"` to find `JOINT_REPLACEMENT` and see\nwhich CPT codes are expected in that bundle.\n",
+        "operationId": "getV2CareClusters",
+        "tags": [
+          "Price Transparency v2"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/paths/~1v2~1procedures/get/parameters/3"
+          },
+          {
+            "$ref": "#/paths/~1v2~1procedures/get/parameters/4"
+          },
+          {
+            "$ref": "#/paths/~1v2~1procedures/get/parameters/0"
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/2"
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matching care cluster definitions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/paths/~1v2~1carriers/get/responses/200/content/application~1json/schema/allOf/0"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "description": "A care cluster definition from the Price Transparency v2 dictionary.",
+                            "required": [
+                              "care_cluster_code",
+                              "care_cluster_description",
+                              "procedures"
+                            ],
+                            "properties": {
+                              "care_cluster_code": {
+                                "type": "string",
+                                "description": "Stable business code for the cluster.",
+                                "example": "JOINT_REPLACEMENT"
+                              },
+                              "care_cluster_description": {
+                                "type": "string",
+                                "description": "Display name for the cluster.",
+                                "example": "Joint Replacement"
+                              },
+                              "procedures": {
+                                "type": "array",
+                                "description": "Member procedures that make up this care episode.",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "code",
+                                    "code_scheme",
+                                    "description"
+                                  ],
+                                  "properties": {
+                                    "code": {
+                                      "type": "string",
+                                      "example": "27447"
+                                    },
+                                    "code_scheme": {
+                                      "type": "string",
+                                      "example": "CPT"
+                                    },
+                                    "description": {
+                                      "type": "string",
+                                      "example": "Total knee arthroplasty"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "example": [
+                            {
+                              "care_cluster_code": "JOINT_REPLACEMENT",
+                              "care_cluster_description": "Joint Replacement",
+                              "procedures": [
+                                {
+                                  "code": "27447",
+                                  "code_scheme": "CPT",
+                                  "description": "Total knee arthroplasty"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "parameters": {
+                    "care_cluster_description": "joint"
+                  },
+                  "total_count": 1,
+                  "page": 1,
+                  "page_size": 20,
+                  "data": [
+                    {
+                      "care_cluster_code": "JOINT_REPLACEMENT",
+                      "care_cluster_description": "Joint Replacement",
+                      "procedures": [
+                        {
+                          "code": "27447",
+                          "code_scheme": "CPT",
+                          "description": "Total knee arthroplasty"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/400/content/application~1json/schema"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller does not have Price Transparency access.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/403/content/application~1json/schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/carriers": {
+      "get": {
+        "summary": "List Carriers (v2)",
+        "description": "List carriers available in the Price Transparency v2 pricing data set.\n\nUse this to discover valid `carrier_id` values for pricing filters.\n\n#### Important\nThese identifiers are **not** the same as v1 [`/v1/pricing/carriers`](./getpricingcarriers)\nUUIDs. Always resolve carriers through this endpoint (or a curated customer\nmapping) when working with v2.\n",
+        "operationId": "getV2Carriers",
+        "tags": [
+          "Price Transparency v2"
+        ],
+        "parameters": [
+          {
+            "name": "carrier_id",
+            "in": "query",
+            "required": false,
+            "description": "Exact match on carrier business id.",
+            "schema": {
+              "type": "string",
+              "example": "78110"
+            }
+          },
+          {
+            "name": "carrier_name",
+            "in": "query",
+            "required": false,
+            "description": "Match on carrier display name. Case-insensitive substring on\n`/v2/carriers`; case-insensitive exact match on DB-backed pricing endpoints;\ncase-sensitive exact match on Elasticsearch search endpoints.\n",
+            "schema": {
+              "type": "string",
+              "example": "Aetna"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page of results to return. Values below `1` are treated as `1`.\n",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "example": 1
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "description": "Number of results per page. Hard-capped at **100**.\n",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "example": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matching carriers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "type": "object",
+                      "description": "Standard response envelope for all Price Transparency v2 endpoints.\nPagination fields are always present; `parameters` echoes the non-null filters\nthat were applied (pagination keys are omitted from the echo).\n",
+                      "required": [
+                        "parameters",
+                        "total_count",
+                        "page",
+                        "page_size",
+                        "data"
+                      ],
+                      "properties": {
+                        "parameters": {
+                          "type": "object",
+                          "additionalProperties": true,
+                          "description": "Echo of non-null request filters (pagination omitted).",
+                          "example": {
+                            "code": "27447",
+                            "code_scheme": "CPT"
+                          }
+                        },
+                        "total_count": {
+                          "type": "integer",
+                          "description": "Total matching rows across all pages.",
+                          "example": 1
+                        },
+                        "page": {
+                          "type": "integer",
+                          "description": "Current page number.",
+                          "example": 1
+                        },
+                        "page_size": {
+                          "type": "integer",
+                          "description": "Page size used for this response.",
+                          "example": 20
+                        },
+                        "data": {
+                          "type": "array",
+                          "description": "Records for the current page.",
+                          "items": {}
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "description": "An insurance carrier in the Price Transparency v2 data set.\nUse `carrier_id` as the filter value on pricing endpoints.\n",
+                            "required": [
+                              "carrier_id",
+                              "name"
+                            ],
+                            "properties": {
+                              "carrier_id": {
+                                "type": "string",
+                                "description": "Business id used in all v2 pricing filters.",
+                                "example": "78110"
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "Display name.",
+                                "example": "Aetna"
+                              }
+                            }
+                          },
+                          "example": [
+                            {
+                              "carrier_id": "78110",
+                              "name": "Aetna"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "parameters": {
+                    "carrier_name": "aetna"
+                  },
+                  "total_count": 1,
+                  "page": 1,
+                  "page_size": 20,
+                  "data": [
+                    {
+                      "carrier_id": "78110",
+                      "name": "Aetna"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "An error returned from the API",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "status",
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "status": {
+                          "type": "integer",
+                          "description": "The HTTP error code associated with this error",
+                          "example": 400
+                        },
+                        "code": {
+                          "type": "string",
+                          "enum": [
+                            "invalid_query_params",
+                            "bad_request"
+                          ]
+                        },
+                        "message": {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "description": "An object representing what exactly went wrong. The keys available in this object vary with the type of error  returned.\n",
+                          "example": {
+                            "query": {
+                              "_schema": [
+                                "parameters 'npis' and 'location_ids' cannot be used together"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller does not have Price Transparency access.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "You are not allow to make this request",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "status",
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "status": {
+                          "type": "integer",
+                          "example": 403
+                        },
+                        "code": {
+                          "type": "string",
+                          "enum": [
+                            "permission_denied"
+                          ]
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "a trial account does not have access to this functionality"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/locations/{location_id}/pricing/procedures": {
+      "get": {
+        "summary": "Location Procedure Pricing (v2)",
+        "description": "Return all procedure-level negotiated rates for a single facility /\npractice location, optionally filtered by carrier.\n\nResults are ordered cheapest-first by `min`.\n\n#### Example Use Case\nGiven location `1001` and carrier `78110`, list every procedure priced at\nthat site for that carrier, sorted from lowest to highest `min`.\n\n#### Path parameter\n`location_id` accepts either the integer location id **or** the location UUID.\nUnknown values return HTTP 404.\n\n#### Carrier filtering\nPrefer `carrier_id` (from [`GET /v2/carriers`](./getv2carriers)).\n`plan_id` is accepted in the contract but currently returns HTTP 501.\n`carrier_id` and `plan_id` are mutually exclusive (HTTP 400 if both are sent).\n",
+        "operationId": "getV2LocationProcedurePricing",
+        "tags": [
+          "Price Transparency v2"
+        ],
+        "parameters": [
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "description": "The location to look up. Accepts either the integer location id **or** the location UUID.\n",
+            "schema": {
+              "type": "string",
+              "example": "1001"
+            }
+          },
+          {
+            "$ref": "#/paths/~1v2~1pricing~1locations~1procedures/get/parameters/7"
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/1"
+          },
+          {
+            "$ref": "#/paths/~1v2~1procedures/get/parameters/1"
+          },
+          {
+            "$ref": "#/paths/~1v2~1pricing~1locations~1procedures/get/parameters/9"
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/2"
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Procedure price records for the location.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/paths/~1v2~1carriers/get/responses/200/content/application~1json/schema/allOf/0"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "description": "Location-scoped negotiated rate statistics for a single procedure and carrier.\n",
+                            "required": [
+                              "procedure_code",
+                              "procedure_code_scheme",
+                              "procedure_description",
+                              "carrier_id",
+                              "carrier_name",
+                              "location_id",
+                              "min",
+                              "median",
+                              "avg",
+                              "max"
+                            ],
+                            "properties": {
+                              "procedure_code": {
+                                "type": "string",
+                                "example": "27447"
+                              },
+                              "procedure_code_scheme": {
+                                "type": "string",
+                                "example": "CPT"
+                              },
+                              "procedure_description": {
+                                "type": "string",
+                                "example": "Total knee arthroplasty"
+                              },
+                              "carrier_id": {
+                                "type": "string",
+                                "example": "78110"
+                              },
+                              "carrier_name": {
+                                "type": "string",
+                                "example": "Aetna"
+                              },
+                              "location_id": {
+                                "type": "string",
+                                "description": "Location id as a string.",
+                                "example": "1001"
+                              },
+                              "npi": {
+                                "type": [
+                                  "integer",
+                                  "null"
+                                ],
+                                "description": "Null for location-level records.",
+                                "example": null
+                              },
+                              "negotiated_type": {
+                                "type": "string",
+                                "example": "negotiated"
+                              },
+                              "negotiation_arrangement": {
+                                "type": "string",
+                                "example": "ffs"
+                              },
+                              "min": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 14200
+                              },
+                              "median": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 16850
+                              },
+                              "avg": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 17120.5
+                              },
+                              "max": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 21400
+                              },
+                              "care_cluster_codes": {
+                                "type": "array",
+                                "description": "Present when the procedure belongs to one or more care clusters.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "example": [
+                                  "JOINT_REPLACEMENT"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "parameters": {
+                    "carrier_id": "78110",
+                    "location_id": "1001"
+                  },
+                  "total_count": 1,
+                  "page": 1,
+                  "page_size": 20,
+                  "data": [
+                    {
+                      "procedure_code": "27447",
+                      "procedure_code_scheme": "CPT",
+                      "procedure_description": "Total knee arthroplasty",
+                      "carrier_id": "78110",
+                      "carrier_name": "Aetna",
+                      "location_id": "1001",
+                      "npi": null,
+                      "negotiated_type": "negotiated",
+                      "negotiation_arrangement": "ffs",
+                      "min": 14200,
+                      "median": 16850,
+                      "avg": 17120.5,
+                      "max": 21400,
+                      "care_cluster_codes": [
+                        "JOINT_REPLACEMENT"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters (for example both `carrier_id` and `plan_id`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/400/content/application~1json/schema"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller does not have Price Transparency access.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/403/content/application~1json/schema"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The given location could not be found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v1~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "`plan_id` filtering is not implemented yet.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/400/content/application~1json/schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/locations/{location_id}/pricing/care-clusters": {
+      "get": {
+        "summary": "Location Care Cluster Pricing (v2)",
+        "description": "Return care-cluster (bundle) prices for a single facility / practice\nlocation, optionally filtered by carrier.\n\nResults are ordered cheapest-first by `bundle_price`.\n\nEach record includes completeness fields so clients can see how much of the\nexpected procedure set has pricing at that site:\n`procedure_count`, `expected_procedure_count`, `completeness_pct`,\n`included_procedures`, and `missing_procedures`.\n\n#### Path parameter\n`location_id` accepts either the integer location id **or** the location UUID.\nUnknown values return HTTP 404.\n\n#### Carrier filtering\nPrefer `carrier_id`. `plan_id` currently returns HTTP 501.\n`carrier_id` and `plan_id` are mutually exclusive.\n",
+        "operationId": "getV2LocationCareClusterPricing",
+        "tags": [
+          "Price Transparency v2"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/paths/~1v2~1locations~1%7Blocation_id%7D~1pricing~1procedures/get/parameters/0"
+          },
+          {
+            "$ref": "#/paths/~1v2~1pricing~1locations~1procedures/get/parameters/7"
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/1"
+          },
+          {
+            "$ref": "#/paths/~1v2~1procedures/get/parameters/4"
+          },
+          {
+            "$ref": "#/paths/~1v2~1procedures/get/parameters/0"
+          },
+          {
+            "$ref": "#/paths/~1v2~1pricing~1locations~1procedures/get/parameters/9"
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/2"
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Care cluster price records for the location.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/paths/~1v2~1carriers/get/responses/200/content/application~1json/schema/allOf/0"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "description": "Location-scoped care-cluster (bundle) price for a single carrier.\n",
+                            "required": [
+                              "care_cluster_code",
+                              "care_cluster_description",
+                              "carrier_id",
+                              "carrier_name",
+                              "location_id",
+                              "bundle_price",
+                              "procedure_count",
+                              "expected_procedure_count",
+                              "completeness_pct",
+                              "included_procedures",
+                              "missing_procedures"
+                            ],
+                            "properties": {
+                              "care_cluster_code": {
+                                "type": "string",
+                                "example": "JOINT_REPLACEMENT"
+                              },
+                              "care_cluster_description": {
+                                "type": "string",
+                                "example": "Joint Replacement"
+                              },
+                              "carrier_id": {
+                                "type": "string",
+                                "example": "78110"
+                              },
+                              "carrier_name": {
+                                "type": "string",
+                                "example": "Aetna"
+                              },
+                              "location_id": {
+                                "type": "string",
+                                "description": "Location id as a string.",
+                                "example": "1001"
+                              },
+                              "npi": {
+                                "type": [
+                                  "integer",
+                                  "null"
+                                ],
+                                "example": null
+                              },
+                              "bundle_price": {
+                                "type": "number",
+                                "format": "float",
+                                "description": "Aggregated price for the cluster at this location / carrier.",
+                                "example": 28500
+                              },
+                              "procedure_count": {
+                                "type": "integer",
+                                "description": "How many expected procedures in the cluster have pricing.",
+                                "example": 4
+                              },
+                              "expected_procedure_count": {
+                                "type": "integer",
+                                "description": "How many procedures the cluster definition expects.",
+                                "example": 5
+                              },
+                              "completeness_pct": {
+                                "type": "number",
+                                "format": "float",
+                                "description": "Coverage percentage (`procedure_count / expected_procedure_count`).",
+                                "example": 80
+                              },
+                              "included_procedures": {
+                                "type": "array",
+                                "description": "Procedures that contributed to the bundle. Defaults to `[]`.",
+                                "items": {},
+                                "example": [
+                                  "27447",
+                                  "27446"
+                                ]
+                              },
+                              "missing_procedures": {
+                                "type": "array",
+                                "description": "Expected procedures with no price at this location/carrier. Defaults to `[]`.",
+                                "items": {},
+                                "example": [
+                                  "27445"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "parameters": {
+                    "carrier_id": "78110",
+                    "location_id": "1001"
+                  },
+                  "total_count": 1,
+                  "page": 1,
+                  "page_size": 20,
+                  "data": [
+                    {
+                      "care_cluster_code": "JOINT_REPLACEMENT",
+                      "care_cluster_description": "Joint Replacement",
+                      "carrier_id": "78110",
+                      "carrier_name": "Aetna",
+                      "location_id": "1001",
+                      "npi": null,
+                      "bundle_price": 28500,
+                      "procedure_count": 4,
+                      "expected_procedure_count": 5,
+                      "completeness_pct": 80,
+                      "included_procedures": [
+                        "27447",
+                        "27446"
+                      ],
+                      "missing_procedures": [
+                        "27445"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters (for example both `carrier_id` and `plan_id`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/400/content/application~1json/schema"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller does not have Price Transparency access.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/403/content/application~1json/schema"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The given location could not be found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v1~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "`plan_id` filtering is not implemented yet.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/400/content/application~1json/schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/pricing/locations/procedures": {
+      "get": {
+        "summary": "Search Location Procedure Prices (v2)",
+        "description": "Find **location-level** procedure prices near an address or lat/lng,\nsorted by price ascending (`min`).\n\nThis is the primary \u201cshop around me\u201d endpoint for individual procedures.\n\n#### Location required\nUnlike v1 (which silently defaulted to a New York City address), v2 requires\neither `address` **or** both `lat` and `lng`. Missing location \u2192 HTTP 400.\nProviding only one of `lat`/`lng` \u2192 HTTP 400. Failed geocoding \u2192 HTTP 400.\n\n#### Example Use Case\nSearch for CPT `27447` within 25 miles of ZIP `10001` for carrier `78110`,\nsorted from lowest to highest negotiated `min`, with facility address fields\nfor a map UI.\n\n#### Carrier filtering\nPrefer `carrier_id`. `plan_id` currently returns HTTP 501.\n`carrier_id` and `plan_id` are mutually exclusive.\n",
+        "operationId": "getV2PricingLocationProcedures",
+        "tags": [
+          "Price Transparency v2"
+        ],
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "required": false,
+            "description": "Free-text address or ZIP code, geocoded server-side.\n\nProvide **either** `address` **or** both `lat` and `lng`. Failed geocoding returns HTTP 400.\n",
+            "schema": {
+              "type": "string",
+              "example": "10001"
+            }
+          },
+          {
+            "name": "lat",
+            "in": "query",
+            "required": false,
+            "description": "Latitude for a coordinate search. Must be provided together with `lng`.\n\nProvide **either** both `lat` and `lng`, **or** `address`. Providing only one of\n`lat`/`lng` returns HTTP 400.\n",
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "example": 40.7506
+            }
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "required": false,
+            "description": "Longitude for a coordinate search. Must be provided together with `lat`.\n\nProvide **either** both `lat` and `lng`, **or** `address`. Providing only one of\n`lat`/`lng` returns HTTP 400.\n",
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "example": -73.9971
+            }
+          },
+          {
+            "name": "distance_miles",
+            "in": "query",
+            "required": false,
+            "description": "Search radius in miles from the resolved address or coordinates. Must be greater than zero.\n",
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "exclusiveMinimum": 0,
+              "default": 25,
+              "example": 25
+            }
+          },
+          {
+            "$ref": "#/paths/~1v2~1procedures/get/parameters/0"
+          },
+          {
+            "$ref": "#/paths/~1v2~1procedures/get/parameters/1"
+          },
+          {
+            "$ref": "#/paths/~1v2~1procedures/get/parameters/3"
+          },
+          {
+            "name": "carrier_id",
+            "in": "query",
+            "required": false,
+            "description": "Filter results to a single insurance carrier using the v2 carrier business id\n(for example `78110`).\n\nDiscover valid values with [`GET /v2/carriers`](./getv2carriers). These ids are\n**not** the same as v1 `/v1/pricing/carriers` UUIDs.\n\nMutually exclusive with `plan_id` \u2014 sending both returns HTTP 400.\n",
+            "schema": {
+              "type": "string",
+              "example": "78110"
+            }
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/1"
+          },
+          {
+            "name": "plan_id",
+            "in": "query",
+            "required": false,
+            "description": "Reserved for filtering by a Ribbon insurance plan UUID.\n\n**Not functional yet** \u2014 requests that include `plan_id` return HTTP 501 until\nplan\u2192carrier mapping is available. Prefer `carrier_id` today.\n\nMutually exclusive with `carrier_id` \u2014 sending both returns HTTP 400.\n",
+            "schema": {
+              "type": "string",
+              "example": "81ba3a1a-05a9-48d9-b9b2-cb8f9eafc902"
+            }
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/2"
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Location procedure price hits near the search point.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/paths/~1v2~1carriers/get/responses/200/content/application~1json/schema/allOf/0"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "description": "Geographic search hit for a location-level procedure price. Sorted by `min`\nascending. Includes facility identity and geo fields for mapping UIs.\n",
+                            "required": [
+                              "location_id",
+                              "carrier_id",
+                              "procedure_code",
+                              "min",
+                              "median",
+                              "avg",
+                              "max"
+                            ],
+                            "properties": {
+                              "location_id": {
+                                "type": "string",
+                                "example": "1001"
+                              },
+                              "location_name": {
+                                "type": "string",
+                                "example": "Example Orthopedic Center"
+                              },
+                              "address": {
+                                "type": "string",
+                                "example": "123 Main St, New York, NY 10001"
+                              },
+                              "state": {
+                                "type": "string",
+                                "example": "NY"
+                              },
+                              "latitude": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 40.7506
+                              },
+                              "longitude": {
+                                "type": "number",
+                                "format": "float",
+                                "example": -73.9971
+                              },
+                              "npi": {
+                                "type": [
+                                  "integer",
+                                  "null"
+                                ],
+                                "description": "Null for location-level hits.",
+                                "example": null
+                              },
+                              "carrier_id": {
+                                "type": "string",
+                                "example": "78110"
+                              },
+                              "carrier_name": {
+                                "type": "string",
+                                "example": "Aetna"
+                              },
+                              "procedure_code": {
+                                "type": "string",
+                                "example": "27447"
+                              },
+                              "procedure_code_scheme": {
+                                "type": "string",
+                                "example": "CPT"
+                              },
+                              "procedure_description": {
+                                "type": "string",
+                                "example": "Total knee arthroplasty"
+                              },
+                              "care_cluster_code": {
+                                "type": "string",
+                                "description": "Present when the procedure is associated with a care cluster.",
+                                "example": "JOINT_REPLACEMENT"
+                              },
+                              "negotiated_type": {
+                                "type": "string",
+                                "example": "negotiated"
+                              },
+                              "negotiation_arrangement": {
+                                "type": "string",
+                                "example": "ffs"
+                              },
+                              "min": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 14200
+                              },
+                              "median": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 16850
+                              },
+                              "avg": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 17120.5
+                              },
+                              "max": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 21400
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "parameters": {
+                    "address": "10001",
+                    "procedure_code": "27447",
+                    "carrier_id": "78110",
+                    "distance_miles": 25
+                  },
+                  "total_count": 18,
+                  "page": 1,
+                  "page_size": 20,
+                  "data": [
+                    {
+                      "location_id": "1001",
+                      "location_name": "Example Orthopedic Center",
+                      "address": "123 Main St, New York, NY 10001",
+                      "state": "NY",
+                      "latitude": 40.7506,
+                      "longitude": -73.9971,
+                      "npi": null,
+                      "carrier_id": "78110",
+                      "carrier_name": "Aetna",
+                      "procedure_code": "27447",
+                      "procedure_code_scheme": "CPT",
+                      "procedure_description": "Total knee arthroplasty",
+                      "care_cluster_code": "JOINT_REPLACEMENT",
+                      "negotiated_type": "negotiated",
+                      "negotiation_arrangement": "ffs",
+                      "min": 14200,
+                      "median": 16850,
+                      "avg": 17120.5,
+                      "max": 21400
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid search \u2014 missing location, incomplete lat/lng, failed geocode,\nor mutually exclusive carrier filters.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/400/content/application~1json/schema"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller does not have Price Transparency access.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/403/content/application~1json/schema"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "`plan_id` filtering is not implemented yet.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/400/content/application~1json/schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/pricing/locations/care-clusters": {
+      "get": {
+        "summary": "Search Location Care Cluster Prices (v2)",
+        "description": "Find **location-level** care-cluster (bundle) prices near an address or\nlat/lng, sorted by `bundle_price` ascending.\n\nSame geo / carrier / pagination rules as\n[`GET /v2/pricing/locations/procedures`](./getv2pricinglocationprocedures).\n\nOptional `procedure_code` filters to bundles whose `included_procedures`\ncontain that code.\n\n#### Location required\nProvide either `address` **or** both `lat` and `lng`. Missing location,\nincomplete coordinates, or failed geocoding \u2192 HTTP 400.\n",
+        "operationId": "getV2PricingLocationCareClusters",
+        "tags": [
+          "Price Transparency v2"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/paths/~1v2~1pricing~1locations~1procedures/get/parameters/0"
+          },
+          {
+            "$ref": "#/paths/~1v2~1pricing~1locations~1procedures/get/parameters/1"
+          },
+          {
+            "$ref": "#/paths/~1v2~1pricing~1locations~1procedures/get/parameters/2"
+          },
+          {
+            "$ref": "#/paths/~1v2~1pricing~1locations~1procedures/get/parameters/3"
+          },
+          {
+            "$ref": "#/paths/~1v2~1procedures/get/parameters/3"
+          },
+          {
+            "$ref": "#/paths/~1v2~1procedures/get/parameters/4"
+          },
+          {
+            "$ref": "#/paths/~1v2~1procedures/get/parameters/0"
+          },
+          {
+            "$ref": "#/paths/~1v2~1pricing~1locations~1procedures/get/parameters/7"
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/1"
+          },
+          {
+            "$ref": "#/paths/~1v2~1pricing~1locations~1procedures/get/parameters/9"
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/2"
+          },
+          {
+            "$ref": "#/paths/~1v2~1carriers/get/parameters/3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Location care cluster price hits near the search point.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/paths/~1v2~1carriers/get/responses/200/content/application~1json/schema/allOf/0"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "description": "Geographic search hit for a location-level care-cluster (bundle) price.\nSorted by `bundle_price` ascending.\n",
+                            "required": [
+                              "location_id",
+                              "carrier_id",
+                              "care_cluster_code",
+                              "bundle_price"
+                            ],
+                            "properties": {
+                              "location_id": {
+                                "type": "string",
+                                "example": "1001"
+                              },
+                              "location_name": {
+                                "type": "string",
+                                "example": "Example Orthopedic Center"
+                              },
+                              "address": {
+                                "type": "string",
+                                "example": "123 Main St, New York, NY 10001"
+                              },
+                              "state": {
+                                "type": "string",
+                                "example": "NY"
+                              },
+                              "latitude": {
+                                "type": "number",
+                                "format": "float"
+                              },
+                              "longitude": {
+                                "type": "number",
+                                "format": "float"
+                              },
+                              "npi": {
+                                "type": [
+                                  "integer",
+                                  "null"
+                                ],
+                                "description": "Null for location-level hits.",
+                                "example": null
+                              },
+                              "carrier_id": {
+                                "type": "string",
+                                "example": "78110"
+                              },
+                              "carrier_name": {
+                                "type": "string",
+                                "example": "Aetna"
+                              },
+                              "care_cluster_code": {
+                                "type": "string",
+                                "example": "JOINT_REPLACEMENT"
+                              },
+                              "care_cluster_description": {
+                                "type": "string",
+                                "example": "Joint Replacement"
+                              },
+                              "bundle_price": {
+                                "type": "number",
+                                "format": "float",
+                                "description": "Sort key (ascending).",
+                                "example": 28500
+                              },
+                              "procedure_count": {
+                                "type": "integer",
+                                "example": 4
+                              },
+                              "expected_procedure_count": {
+                                "type": "integer",
+                                "example": 5
+                              },
+                              "completeness_pct": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 80
+                              },
+                              "included_procedures": {
+                                "type": "array",
+                                "items": {}
+                              },
+                              "missing_procedures": {
+                                "type": "array",
+                                "items": {}
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "parameters": {
+                    "lat": 40.75,
+                    "lng": -73.99,
+                    "care_cluster_code": "JOINT_REPLACEMENT",
+                    "distance_miles": 25
+                  },
+                  "total_count": 7,
+                  "page": 1,
+                  "page_size": 20,
+                  "data": [
+                    {
+                      "location_id": "1001",
+                      "location_name": "Example Orthopedic Center",
+                      "address": "123 Main St, New York, NY 10001",
+                      "state": "NY",
+                      "latitude": 40.7506,
+                      "longitude": -73.9971,
+                      "npi": null,
+                      "carrier_id": "78110",
+                      "carrier_name": "Aetna",
+                      "care_cluster_code": "JOINT_REPLACEMENT",
+                      "care_cluster_description": "Joint Replacement",
+                      "bundle_price": 28500,
+                      "procedure_count": 4,
+                      "expected_procedure_count": 5,
+                      "completeness_pct": 80,
+                      "included_procedures": [
+                        "27447"
+                      ],
+                      "missing_procedures": [
+                        "27445"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid search \u2014 missing location, incomplete lat/lng, failed geocode,\nor mutually exclusive carrier filters.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/400/content/application~1json/schema"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller does not have Price Transparency access.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/403/content/application~1json/schema"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "`plan_id` filtering is not implemented yet.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1v2~1carriers/get/responses/400/content/application~1json/schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}

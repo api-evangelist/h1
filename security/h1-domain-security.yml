@@ -1,11 +1,16 @@
-generated: '2026-07-24'
+generated: '2026-08-15'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
 - host: h1.co
   https: true
   tls_version: TLSv1.3
-  cert_expires: Sep 13 08:52:44 2026 GMT
+  cert_expires: Nov 11 10:05:52 2026 GMT
+  hsts: false
+- host: h1.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 20 15:13:57 2026 GMT
   hsts: false
 - host: ribbon.readme.io
   https: true
@@ -13,11 +18,6 @@ hosts:
   cert_expires: Oct  9 13:12:37 2026 GMT
   hsts: true
   hsts_max_age: 31536000
-- host: api.ribbonhealth.com
-  https: true
-  tls_version: TLSv1.2
-  cert_expires: Dec  6 23:59:59 2026 GMT
-  hsts: false
 domains:
 - domain: h1.co
   dnssec: false
@@ -25,9 +25,9 @@ domains:
   spf: true
   dmarc: true
   dmarc_policy: quarantine
-- domain: readme.io
+- domain: h1.com
   dnssec: false
   caa: []
   spf: true
   dmarc: true
-  dmarc_policy: quarantine
+  dmarc_policy: none

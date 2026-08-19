@@ -1,7 +1,7 @@
 ---
 name: Price a procedure for a member
 description: Use H1's price-transparency and cost-estimate endpoints to find who performs a procedure, what each provider's insurer-negotiated rate is, and what a member should expect to pay.
-api: openapi/h1-insights-openapi-original.json
+api: openapi/h1-openapi-original.json
 base_url: https://api.ribbonhealth.com/v1
 operations:
   - getProcedures
@@ -15,7 +15,7 @@ operations:
   - getProcedureCostEstimate
 generated: '2026-08-04'
 method: generated
-source: openapi/h1-insights-openapi-original.json + https://ribbon.readme.io/docs/cost-quality
+source: openapi/h1-openapi-original.json + https://ribbon.readme.io/docs/cost-quality
 ---
 
 # Price a procedure for a member

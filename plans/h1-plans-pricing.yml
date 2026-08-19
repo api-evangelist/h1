@@ -1,0 +1,34 @@
+generated: '2026-08-15'
+method: searched
+source: https://h1.com/request-demo/
+plan_count: 0
+model: sales-gated
+currency: null
+note: >-
+  H1 publishes no plans, tiers or list prices for the H1 API (the Ribbon Health provider-data API).
+  Access is sold through a request-demo / sales conversation and an API key is issued afterwards; the
+  developer documentation states "If you haven't gotten an API key yet, please sign up here" and links
+  straight to the demo request form. There is no self-serve signup, no free tier, no published rate
+  card and no pricing/plans page anywhere on h1.com, h1.co or the ReadMe documentation host. Entitlement
+  is instead expressed as per-account feature flags visible in the docs (for example Price Transparency
+  v2 requires `doctors.can_price_transparency`), which confirms plan-shaped packaging exists but is not
+  published. plan_count is an honest zero, not a gap in this probe.
+entitlements_observed:
+- flag: doctors.can_price_transparency
+  gates: Price Transparency v2 endpoints (/v2/*)
+  source: https://ribbon.readme.io/reference/getv2procedures
+plans: []
+probes:
+- url: https://h1.com/pricing/
+  status: 404
+- url: https://h1.com/pricing
+  status: 404
+- url: https://h1.com/plans/
+  status: 404
+- url: https://h1.co/pricing/
+  status: 404
+- url: https://ribbon.readme.io/docs/pricing
+  status: 404
+- url: https://h1.com/request-demo/
+  status: 200
+sign_up: https://h1.com/request-demo/

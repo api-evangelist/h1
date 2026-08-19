@@ -1,7 +1,7 @@
 ---
 name: Curate a custom provider directory
 description: Correct and extend a customer-scoped H1 provider directory — edit provider and location fields, attach specialties, insurances and organizations, and register custom or boost filters so the new data becomes searchable.
-api: openapi/h1-insights-openapi-original.json
+api: openapi/h1-openapi-original.json
 base_url: https://api.ribbonhealth.com/v1
 operations:
   - putCustomProvider
@@ -18,7 +18,7 @@ operations:
   - getCustomProviders
 generated: '2026-08-04'
 method: generated
-source: openapi/h1-insights-openapi-original.json + https://ribbon.readme.io/docs/create-a-custom-filter
+source: openapi/h1-openapi-original.json + https://ribbon.readme.io/docs/create-a-custom-filter
 ---
 
 # Curate a custom provider directory

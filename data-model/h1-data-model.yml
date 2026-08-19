@@ -1,8 +1,13 @@
-generated: '2026-07-24'
+generated: '2026-08-15'
 method: derived
-source: openapi/ribbon-health-api-openapi.json
-note: Derived from OpenAPI paths and id-reference parameters (NPI + *_uuid). The API exposes no components.schemas,
-  so relationships are inferred from path structure and id fields.
+source: openapi/ribbon-health-api-openapi.json, openapi/h1-price-transparency-v2-openapi.json
+note: >-
+  Derived from OpenAPI paths and id-reference parameters (NPI + *_uuid). The v1 contract exposes no
+  components.schemas, so v1 relationships are inferred from path structure and id fields. The Price
+  Transparency v2 contract does carry response schemas, and it introduces a SECOND, incompatible id
+  space: v2 carriers are string business ids (not v1 carrier UUIDs) and v2 locations accept either an
+  integer location id or the location UUID. Treat v1 and v2 pricing as two graphs joined only through
+  the procedure code, not through carrier identity.
 entities:
 - name: provider
   id: npi
@@ -77,3 +82,41 @@ relationships:
   type: has_many
   via: procedure_uuid
   context: price transparency negotiated rates
+- from: care_cluster
+  to: v2_procedure
+  type: has_many
+  via: procedure_code
+  context: price transparency v2 care-episode bundles (included_procedures / missing_procedures)
+- from: v2_location
+  to: v2_procedure
+  type: has_many
+  via: procedure_code
+  context: price transparency v2 location-scoped negotiated rates
+- from: v2_location
+  to: care_cluster
+  type: has_many
+  via: care_cluster_id
+  context: price transparency v2 location-scoped bundle prices
+- from: v2_carrier
+  to: v2_location
+  type: has_many
+  via: carrier_id
+  context: price transparency v2 carrier filter (string business id, NOT the v1 carrier_uuid)
+v2_entities:
+- name: v2_procedure
+  id: procedure_code
+  id_type: CPT (or other procedure code)
+  source: openapi/h1-price-transparency-v2-openapi.json
+- name: care_cluster
+  id: care_cluster_id
+  note: curated group of related procedures representing a care episode, e.g. JOINT_REPLACEMENT
+  source: openapi/h1-price-transparency-v2-openapi.json
+- name: v2_carrier
+  id: carrier_id
+  id_type: string business id
+  note: NOT interchangeable with the v1 carrier_uuid
+  source: openapi/h1-price-transparency-v2-openapi.json
+- name: v2_location
+  id: location_id
+  id_type: integer location id OR location UUID
+  source: openapi/h1-price-transparency-v2-openapi.json

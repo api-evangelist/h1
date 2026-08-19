@@ -1,18 +1,70 @@
-generated: '2026-07-24'
+generated: '2026-08-15'
 method: searched
+sources:
+- https://ribbon.readme.io/llms.txt
+- https://ribbon.readme.io/reference/getpricingcarriernames
+- https://ribbon.readme.io/reference/getv2procedures
+- https://status.ribbonhealth.com/
 versioning:
   scheme: uri-path
   current: v1
+  also_serving: v2
   base_url: https://api.ribbonhealth.com/v1
+  v2_base_url: https://api.ribbonhealth.com
+  note: >-
+    A second major version is now live. Price Transparency v2 (/v2/*) is location-first and runs
+    alongside the legacy provider-first /v1/pricing/* endpoints; H1's own spec says "Prefer these
+    endpoints for new integrations". No sunset date is published for the v1 pricing endpoints, and
+    "Provider-scoped v2 routes are not live yet", so both surfaces are expected to coexist indefinitely.
 status_page: https://status.ribbonhealth.com
+status_page_details:
+  platform: Atlassian Statuspage
+  components: 15+ (provider/location search and edit, eligibility via pVerify, procedure cost estimates,
+    reference endpoints)
+  feeds:
+  - https://status.ribbonhealth.com/history.atom
+  - https://status.ribbonhealth.com/history.rss
+  subscriptions: [email, sms, slack, atom, rss]
+changelog:
+  published: false
+  note: >-
+    No dated changelog is published. https://ribbon.readme.io/changelog returns HTTP 404 and the
+    provider's own documentation index (llms.txt) lists no changelog, release-notes or "what's new"
+    page. Individual documentation pages carry an `updatedAt` timestamp in their markdown frontmatter
+    (for example the Price Transparency v2 reference pages were last updated 2026-08-05), which is the
+    only change signal available to a consumer. No `ChangeLog` pointer is asserted in apis.yml.
+  probe:
+    url: https://ribbon.readme.io/changelog
+    status: 404
 deprecation:
   policy_url: null
   sunset_header: false
-  note: No formal deprecation policy page found. Two pricing endpoints are marked deprecated in the docs
-    (Carrier Names -> use List Carriers; Carrier Data Versions By Name -> use Get Carrier).
+  note: >-
+    No formal deprecation policy page exists. Deprecation is communicated in prose on the individual
+    endpoint reference pages ("This endpoint is deprecated. Please use X instead"), with no Deprecation
+    or Sunset response header (RFC 8594) and no removal date.
 deprecated_operations:
-- openapi/ribbon-health-api-openapi.json#getpricingcarriernames
-- openapi/ribbon-health-api-openapi.json#getpricingversioncarrier
+- op: getPricingCarrierNames
+  source: openapi/ribbon-health-api-openapi.json
+  replacement: getPricingCarriers
+  docs: https://ribbon.readme.io/reference/getpricingcarriernames
+- op: getPricingVersionCarrier
+  source: openapi/ribbon-health-api-openapi.json
+  replacement: getPricingCarrier
+  docs: https://ribbon.readme.io/reference/getpricingversioncarrier
+not_yet_implemented:
+- surface: v2 `plan_id` carrier filter
+  status: HTTP 501
+  note: >-
+    Accepted in the contract on all four v2 pricing endpoints but returns 501 until plan-to-carrier
+    mapping ships. Documented as "Not functional yet" - use `carrier_id` today.
+- surface: provider-scoped v2 routes
+  status: not live
+  note: H1's own v2 tag description states "Provider-scoped v2 routes are not live yet."
+sla:
+  url: null
+  uptime_target: null
+  note: No public SLA or uptime commitment is published; terms are negotiated in the commercial agreement.
 access:
   model: gated
   note: Access via request-demo / API-key issuance rather than self-serve signup.

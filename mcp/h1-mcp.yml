@@ -1,12 +1,15 @@
-generated: '2026-07-24'
+generated: '2026-08-15'
 method: derived
 status: candidate
 server:
   name: h1-ribbon-health
   transport: http
-note: Candidate tool list derived one-per-operation from the Ribbon Health OpenAPI. No official hosted
-  MCP server was found for H1/Ribbon Health as of this round.
-source: openapi/ribbon-health-api-openapi.json
+note: >-
+  Candidate tool list derived one-per-operation from H1's two published OpenAPI contracts. No official
+  hosted or stdio MCP server exists for H1/Ribbon Health as of 2026-08-15 - re-searched the docs, the
+  llms.txt index, npm and the MCP registries and found nothing. H1 markets "agentic AI" on h1.com but
+  ships no agent-callable surface of its own.
+source: openapi/ribbon-health-api-openapi.json, openapi/h1-price-transparency-v2-openapi.json
 tools:
 - name: get_custom_providers
   description: Search Providers
@@ -233,9 +236,38 @@ tools:
 - name: get_network_analysis
   description: Network Analysis Based on Geography
   source_operation: openapi/ribbon-health-api-openapi.json#getNetworkAnalysis
+- name: get_v2_procedures
+  description: List Procedures (v2) - Price Transparency v2 procedure code dictionary
+  source_operation: openapi/h1-price-transparency-v2-openapi.json#getV2Procedures
+- name: get_v2_care_clusters
+  description: List Care Clusters (v2) - care-episode bundles and their procedures
+  source_operation: openapi/h1-price-transparency-v2-openapi.json#getV2CareClusters
+- name: get_v2_carriers
+  description: List Carriers (v2) - carrier business ids for v2 pricing filters
+  source_operation: openapi/h1-price-transparency-v2-openapi.json#getV2Carriers
+- name: get_v2_location_procedure_pricing
+  description: Location Procedure Pricing (v2) - negotiated rates at one location
+  source_operation: openapi/h1-price-transparency-v2-openapi.json#getV2LocationProcedurePricing
+- name: get_v2_location_care_cluster_pricing
+  description: Location Care Cluster Pricing (v2) - bundle prices at one location
+  source_operation: openapi/h1-price-transparency-v2-openapi.json#getV2LocationCareClusterPricing
+- name: get_v2_pricing_location_procedures
+  description: Search Location Procedure Prices (v2) - shop procedure prices near an address or lat/lng
+  source_operation: openapi/h1-price-transparency-v2-openapi.json#getV2PricingLocationProcedures
+- name: get_v2_pricing_location_care_clusters
+  description: Search Location Care Cluster Prices (v2) - shop bundle prices near an address or lat/lng
+  source_operation: openapi/h1-price-transparency-v2-openapi.json#getV2PricingLocationCareClusters
 deployment:
   mode: none
-  verified: derived
-  tools: 75
-  checked: '2026-08-12'
-  source: catalog MCP census
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: searched
+  tools: 82
+  checked: '2026-08-15'
+  source: >-
+    Docs (ribbon.readme.io llms.txt index), npm, and MCP registry search on 2026-08-15 - no hosted
+    endpoint and no stdio package published by H1. mode:none means this file is a DERIVED candidate,
+    not a server anyone can reach. `auth: api-key` describes the underlying REST API a real server
+    would have to carry, not a live MCP surface.

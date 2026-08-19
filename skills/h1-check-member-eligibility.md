@@ -1,7 +1,7 @@
 ---
 name: Check member eligibility and benefits
 description: Verify a member's active coverage and pull their deductible, out-of-pocket, copay and coinsurance position from H1's real-time eligibility endpoint.
-api: openapi/h1-insights-openapi-original.json
+api: openapi/h1-openapi-original.json
 base_url: https://api.ribbonhealth.com/v1
 operations:
   - getEligibilityInsurancePartners
@@ -9,7 +9,7 @@ operations:
   - getEligibility
 generated: '2026-08-04'
 method: generated
-source: openapi/h1-insights-openapi-original.json + https://ribbon.readme.io/docs/eligibility
+source: openapi/h1-openapi-original.json + https://ribbon.readme.io/docs/eligibility
 ---
 
 # Check member eligibility and benefits

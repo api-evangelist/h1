@@ -1,16 +1,30 @@
-generated: '2026-07-24'
+generated: '2026-08-15'
 method: searched
-source: openapi/ribbon-health-api-openapi.json
+source: openapi/ribbon-health-api-openapi.json, openapi/h1-price-transparency-v2-openapi.json
 docs: https://ribbon.readme.io/docs/authentication
 summary:
   types:
   - http
   scheme: bearer-api-key
+  key_prefix: null
   note: >-
     The H1 (Ribbon Health) API authenticates every request with a customer API
     key passed in the HTTP Bearer scheme - Authorization: Bearer {customer_token}.
-    There is no OAuth 2.0 / OpenID Connect surface; keys are issued via the
-    request-demo onboarding rather than self-serve. Keep the key server-side.
+    Both published contracts - the v1 API and Price Transparency v2 - declare the
+    same single BearerAuth scheme and apply it globally. There is no OAuth 2.0 /
+    OpenID Connect surface (no /.well-known/oauth-authorization-server or
+    openid-configuration on any host, probed 2026-08-15), so there are no scopes
+    and no scopes/ artifact. Authorization is expressed instead as per-account
+    entitlement flags such as `doctors.can_price_transparency`, which surface as a
+    403 rather than as a scope check. Keys are issued via the request-demo
+    onboarding rather than self-serve. No published key prefix or format. Keep the
+    key server-side; H1's docs explicitly warn against client-side use.
+authorization:
+  model: account-entitlement-flags
+  scopes: []
+  observed_flags:
+  - doctors.can_price_transparency
+  failure_status: 403
 schemes:
 - name: BearerAuth
   type: http
@@ -18,5 +32,7 @@ schemes:
   in: header
   header: Authorization
   format: Bearer {customer_token}
+  applied: global
   sources:
   - openapi/ribbon-health-api-openapi.json
+  - openapi/h1-price-transparency-v2-openapi.json

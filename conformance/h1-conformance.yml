@@ -1,27 +1,76 @@
-generated: '2026-07-24'
+generated: '2026-08-15'
 method: derived
-source: openapi/ribbon-health-api-openapi.json
+source: openapi/ribbon-health-api-openapi.json, openapi/h1-price-transparency-v2-openapi.json, https://ribbon.readme.io/llms.txt
 standards:
 - id: oauth2
   conforms: false
-  evidence: No oauth2 securityScheme; bearer API-key (http bearer) only.
+  evidence: No oauth2 securityScheme in either spec; bearer API-key (http bearer) only.
 - id: oidc
   conforms: false
+  evidence: No /.well-known/openid-configuration on any host (404, probed 2026-08-15).
 - id: fhir-r4
   conforms: false
-  evidence: Proprietary REST resources keyed by NPI/UUID; no FHIR CapabilityStatement or SMART-on-FHIR.
+  evidence: >-
+    Proprietary REST resources keyed by NPI/UUID; no FHIR CapabilityStatement, no SMART-on-FHIR, no
+    FHIR resource shapes. Notable for a US provider-directory API, where FHIR PlanNet is the sector
+    standard for exactly this data.
+- id: fhir-plannet
+  conforms: false
+  evidence: >-
+    No Da Vinci PDEX Plan-Net endpoints or resources are exposed, despite the API serving provider
+    directory, network and location data that the profile covers.
 - id: rfc9457-problem-details
   conforms: false
   evidence: Errors returned as plain JSON, not application/problem+json.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: Deprecated operations are flagged in prose only; no Deprecation/Sunset headers.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on every host (probed 2026-08-15).
 - id: bearer-token-auth
   conforms: true
-  evidence: 'http bearer securityScheme documented (Authorization: Bearer).'
+  evidence: 'http bearer securityScheme documented and applied globally (Authorization: Bearer).'
 - id: pagination
   conforms: true
-  evidence: page / page_size query parameters across list endpoints.
+  evidence: >-
+    page / page_size query parameters across list endpoints; Price Transparency v2 additionally
+    standardises a single response envelope (parameters, total_count, page, page_size, data).
 - id: rate-limiting
   conforms: true
   evidence: Documented per-endpoint rate limits with 429 rate_limit_exceeded.
+- id: rate-limit-headers
+  conforms: false
+  evidence: No RateLimit-*/X-RateLimit-*/Retry-After response headers are documented.
+- id: idempotency
+  conforms: false
+  evidence: No Idempotency-Key contract; POST creates have no replay-safety guarantee.
 - id: openapi-3.1
   conforms: true
-  evidence: Published OpenAPI 3.1.0 definition, 57 paths / 75 operations.
+  evidence: >-
+    Two published OpenAPI 3.1.0 definitions - the v1 contract (57 paths / 75 operations) and the Price
+    Transparency v2 contract (7 paths / 7 operations).
+- id: llms-txt
+  conforms: true
+  evidence: https://ribbon.readme.io/llms.txt served, 200, text/plain, indexing every guide and reference page.
+compliance_program:
+  published: false
+  note: >-
+    No trust center, no named certifications and no compliance page were found. h1.com/security/ and
+    h1.com/compliance/ do not exist - /security/ answers HTTP 200 only because it soft-redirects to
+    https://h1.com/health-plans/, a marketing page with no security or compliance content. Probes:
+    h1.com/trust/ 404, trust.h1.com no DNS, h1.com/compliance/ 404, /.well-known/security.txt 404 on
+    every host. For a company handling US healthcare provider, eligibility and price-transparency data,
+    the absence of a published HIPAA/SOC 2/HITRUST posture is a material gap. No `Compliance` and no
+    `Security` pointer is asserted in apis.yml as a result.
+  probes:
+  - url: https://h1.com/security/
+    status: 200
+    note: soft-404 - redirects to https://h1.com/health-plans/
+  - url: https://h1.com/compliance/
+    status: 404
+  - url: https://h1.com/trust/
+    status: 404
+  - url: https://trust.h1.com/
+    status: 000
+    note: no DNS

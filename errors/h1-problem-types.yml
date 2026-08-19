@@ -1,10 +1,13 @@
-generated: '2026-07-24'
+generated: '2026-08-15'
 method: derived
-source: openapi/ribbon-health-api-openapi.json
+source: openapi/ribbon-health-api-openapi.json, openapi/h1-price-transparency-v2-openapi.json
 docs: https://ribbon.readme.io/docs/rate-limits
 format: json-envelope
-note: Ribbon Health returns JSON error bodies (not RFC 9457 problem+json). Statuses derived from OpenAPI
-  4xx responses; the documented 429 rate_limit_exceeded code is added from the rate-limits doc.
+note: >-
+  H1 returns JSON error bodies (not RFC 9457 problem+json) and publishes no error-code registry.
+  Statuses derived from the OpenAPI 4xx/5xx responses across both published contracts; the documented
+  429 rate_limit_exceeded code is added from the rate-limits doc, and the 501 semantics from the Price
+  Transparency v2 reference pages.
 problems:
 - status: 400
   title: Bad Request
@@ -51,3 +54,28 @@ problems:
   code: rate_limit_exceeded
   remediation: Rate limit exceeded; back off and retry within the documented per-endpoint limits.
   source: https://ribbon.readme.io/docs/rate-limits
+- status: 501
+  title: Not Implemented
+  remediation: >-
+    Stop sending `plan_id`. On the four Price Transparency v2 pricing endpoints `plan_id` is accepted by
+    the contract but is not functional until plan-to-carrier mapping ships; resolve a `carrier_id` from
+    GET /v2/carriers and filter on that instead. Sending both `carrier_id` and `plan_id` returns 400.
+  operation_count: 4
+  example_operations:
+  - getV2LocationProcedurePricing
+  - getV2LocationCareClusterPricing
+  - getV2PricingLocationProcedures
+  - getV2PricingLocationCareClusters
+  source: https://ribbon.readme.io/reference/getv2pricinglocationprocedures
+v2_notes:
+  source: openapi/h1-price-transparency-v2-openapi.json
+  common_400_causes:
+  - Neither `address` nor both `lat` and `lng` supplied on a geo pricing search (v2 requires an explicit
+    location - unlike v1, which silently defaulted to a New York City address).
+  - Only one of `lat`/`lng` supplied.
+  - Geocoding of the supplied `address` failed.
+  - Both `carrier_id` and `plan_id` supplied (mutually exclusive).
+  common_403_cause: >-
+    The API key lacks the `doctors.can_price_transparency` account entitlement. A 403 on /v2/* is an
+    entitlement signal, not a malformed-request signal.
+  common_404_cause: Unknown `location_id` (accepts either the integer location id or the location UUID).

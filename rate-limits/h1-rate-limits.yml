@@ -1,6 +1,16 @@
-generated: '2026-07-24'
+generated: '2026-08-15'
 method: searched
 source: https://ribbon.readme.io/docs/rate-limits
+sources:
+- https://ribbon.readme.io/docs/rate-limits
+- https://ribbon.readme.io/reference/getv2procedures
+headers:
+  published: false
+  note: >-
+    H1 documents the numbers but not the runtime signal. No RateLimit-*, X-RateLimit-* or Retry-After
+    response header is documented anywhere in the guides or the OpenAPI, so an agent cannot read its
+    remaining budget from a response - it can only observe the 429. This is the single biggest
+    rate-limit gap on this API.
 error:
   status: 429
   code: rate_limit_exceeded
@@ -31,3 +41,13 @@ limits:
 - endpoint: v1/deductible
   limit_count: 1000
   window: hour
+- endpoint: v2/*
+  limit_count: 1000
+  window: minute
+  scope: per-key
+  note: >-
+    Every Price Transparency v2 endpoint (/v2/procedures, /v2/care-clusters, /v2/carriers,
+    /v2/locations/{location_id}/pricing/*, /v2/pricing/locations/*) is documented as rate limited to
+    1,000 requests per minute and additionally gated on the `doctors.can_price_transparency` account
+    entitlement.
+  source: https://ribbon.readme.io/reference/getv2procedures
