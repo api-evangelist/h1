@@ -33,160 +33,6 @@ created: '2026-07-24'
 modified: '2026-08-15'
 specificationVersion: '0.23'
 apis:
-- aid: h1:ribbon-providers-api
-  name: H1 Ribbon Providers API
-  description: Provider data and network intelligence keyed by NPI - retrieve and curate healthcare providers
-    along with their specialties, procedures, clinical areas, locations, and insurance affiliations.
-  humanURL: https://ribbon.readme.io/reference
-  baseURL: https://api.ribbonhealth.com/v1
-  tags:
-  - Providers
-  - Healthcare
-  - Provider Data
-  properties:
-  - type: OpenAPI
-    url: openapi/ribbon-health-api-openapi.json
-  - type: Documentation
-    url: https://ribbon.readme.io/docs/welcome-to-the-ribbon-health-api
-  - type: APIReference
-    url: https://ribbon.readme.io/reference
-- aid: h1:ribbon-locations-api
-  name: H1 Ribbon Locations API
-  description: Healthcare location data - create, read, update, and delete provider locations and manage
-    their associated clinical areas, insurances, and organizations.
-  humanURL: https://ribbon.readme.io/reference
-  baseURL: https://api.ribbonhealth.com/v1
-  tags:
-  - Locations
-  - Healthcare
-  properties:
-  - type: OpenAPI
-    url: openapi/ribbon-health-api-openapi.json
-  - type: Documentation
-    url: https://ribbon.readme.io/docs/welcome-to-the-ribbon-health-api
-  - type: APIReference
-    url: https://ribbon.readme.io/reference
-- aid: h1:ribbon-filters-api
-  name: H1 Ribbon Custom Filters API
-  description: Create, edit, and delete saved custom filters for providers and locations to scope and
-    reuse queries against the Ribbon provider and location data.
-  humanURL: https://ribbon.readme.io/reference
-  baseURL: https://api.ribbonhealth.com/v1
-  tags:
-  - Filters
-  - Healthcare
-  properties:
-  - type: OpenAPI
-    url: openapi/ribbon-health-api-openapi.json
-  - type: Documentation
-    url: https://ribbon.readme.io/docs/welcome-to-the-ribbon-health-api
-  - type: APIReference
-    url: https://ribbon.readme.io/reference
-- aid: h1:ribbon-focus-areas-api
-  name: H1 Ribbon Focus Areas API
-  description: Clinical focus-area reference data - browse clinical areas, conditions, and treatments
-    used to describe and match provider expertise.
-  humanURL: https://ribbon.readme.io/reference
-  baseURL: https://api.ribbonhealth.com/v1
-  tags:
-  - Focus Areas
-  - Clinical Areas
-  - Healthcare
-  properties:
-  - type: OpenAPI
-    url: openapi/ribbon-health-api-openapi.json
-  - type: Documentation
-    url: https://ribbon.readme.io/docs/welcome-to-the-ribbon-health-api
-  - type: APIReference
-    url: https://ribbon.readme.io/reference
-- aid: h1:ribbon-price-transparency-api
-  name: H1 Ribbon Price Transparency API
-  description: Machine-readable price-transparency data - negotiated rates by carrier, provider (NPI),
-    procedure, and location drawn from payer price-transparency disclosures.
-  humanURL: https://ribbon.readme.io/reference
-  baseURL: https://api.ribbonhealth.com/v1
-  tags:
-  - Price Transparency
-  - Pricing
-  - Healthcare
-  properties:
-  - type: OpenAPI
-    url: openapi/ribbon-health-api-openapi.json
-  - type: Documentation
-    url: https://ribbon.readme.io/docs/welcome-to-the-ribbon-health-api
-  - type: APIReference
-    url: https://ribbon.readme.io/reference
-- aid: h1:ribbon-cost-estimates-eligibility-api
-  name: H1 Ribbon Cost Estimates & Eligibility API
-  description: Procedure cost estimates and insurance eligibility - submit eligibility checks and retrieve
-    supported eligibility insurance partners and estimated procedure costs.
-  humanURL: https://ribbon.readme.io/reference
-  baseURL: https://api.ribbonhealth.com/v1
-  tags:
-  - Cost Estimates
-  - Eligibility
-  - Healthcare
-  properties:
-  - type: OpenAPI
-    url: openapi/ribbon-health-api-openapi.json
-  - type: Documentation
-    url: https://ribbon.readme.io/docs/welcome-to-the-ribbon-health-api
-  - type: APIReference
-    url: https://ribbon.readme.io/reference
-- aid: h1:ribbon-organizations-api
-  name: H1 Ribbon Organizations API
-  description: Healthcare organization records - retrieve organizations and their details used to group
-    and affiliate providers and locations.
-  humanURL: https://ribbon.readme.io/reference
-  baseURL: https://api.ribbonhealth.com/v1
-  tags:
-  - Organization
-  - Healthcare
-  tags_raw:
-  - Organizations
-  - Healthcare
-  properties:
-  - type: OpenAPI
-    url: openapi/ribbon-health-api-openapi.json
-  - type: Documentation
-    url: https://ribbon.readme.io/docs/welcome-to-the-ribbon-health-api
-  - type: APIReference
-    url: https://ribbon.readme.io/reference
-- aid: h1:ribbon-reference-data-api
-  name: H1 Ribbon Reference Data API
-  description: Shared reference data and custom taxonomies - insurances, specialties, procedures, provider
-    types, location types, languages, TINs, and virtual care platforms used across the Ribbon data model.
-  humanURL: https://ribbon.readme.io/reference
-  baseURL: https://api.ribbonhealth.com/v1
-  tags:
-  - Reference Data
-  - Insurances
-  - Specialties
-  - Healthcare
-  properties:
-  - type: OpenAPI
-    url: openapi/ribbon-health-api-openapi.json
-  - type: Documentation
-    url: https://ribbon.readme.io/docs/welcome-to-the-ribbon-health-api
-  - type: APIReference
-    url: https://ribbon.readme.io/reference
-- aid: h1:ribbon-network-analysis-api
-  name: H1 Ribbon Network Analysis API
-  description: Network analysis endpoint for assessing provider network composition and adequacy across
-    the Ribbon provider and insurance data.
-  humanURL: https://ribbon.readme.io/reference
-  baseURL: https://api.ribbonhealth.com/v1
-  tags:
-  - Networks
-  - Network Intelligence
-  - Healthcare
-  properties:
-  - type: OpenAPI
-    url: openapi/ribbon-health-api-openapi.json
-  - type: Documentation
-    url: https://ribbon.readme.io/docs/welcome-to-the-ribbon-health-api
-  - type: APIReference
-    url: https://ribbon.readme.io/reference
 - aid: h1:h1-insights-cost-estimates-api
   name: H1 Cost Estimates API
   description: The Cost Estimates API from H1 — 4 operation(s) for cost estimates.
@@ -411,34 +257,32 @@ apis:
     url: mcp/h1-tool-crosswalk.yml
 - aid: h1:h1-price-transparency-v2-api
   name: H1 Price Transparency v2 API
-  description: Location-first negotiated-rate API under /v2/* - resolve procedures, care clusters and
-    carriers, then shop procedure-level and care-cluster (bundle) prices at a known facility or near an
-    address / lat-lng, returned cheapest-first in a single shared response envelope. Separate from, and
-    preferred over, the legacy provider-first /v1/pricing/* endpoints; gated on the
-    doctors.can_price_transparency account entitlement.
-  humanURL: https://ribbon.readme.io/reference/getv2procedures
-  baseURL: https://api.ribbonhealth.com
+  description: >-
+    Location-first negotiated rates under `/v2/*`. Prefer these endpoints for new
+
+    integrations. Carrier ids come from `GET /v2/carriers` and are not interchangeable
+
+    with v1 pricing carrier UUIDs. Provider-scoped v2 routes are not live yet.
+  humanURL: https://ribbon.readme.io/reference
+  baseURL: https://api.ribbonhealth.com/v1
   tags:
-  - Price Transparency
-  - Pricing
-  - Care Clusters
-  - Healthcare
+  - Price Transparency v2
   properties:
   - type: OpenAPI
-    url: openapi/h1-price-transparency-v2-openapi.json
-  - type: Overlay
-    url: overlays/h1-price-transparency-v2-overlay.yaml
+    url: openapi/h1-price-transparency-v2-api-openapi.yml
   - type: Documentation
     url: https://ribbon.readme.io/docs/welcome-to-the-ribbon-health-api
+  - type: APIReference
+    url: https://ribbon.readme.io/reference
   - type: APIReference
     url: https://ribbon.readme.io/reference/getv2procedures
   - type: Authentication
     url: https://ribbon.readme.io/docs/authentication
-  - type: AgentSkill
-    url: skills/h1-shop-prices-near-me-v2.md
   - type: ToolCrosswalk
     url: mcp/h1-tool-crosswalk.yml
 common:
+- type: AgentSkill
+  url: skills/h1-shop-prices-near-me-v2.md
 - type: Plans
   url: plans/h1-plans-pricing.yml
 - type: Overlay
