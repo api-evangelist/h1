@@ -17,6 +17,18 @@ description: H1 (h1.co) is a New York City-based healthcare data and technology 
   (v1 and v2), cost-estimate/eligibility, organization, reference-data, and network-analysis product
   families. Access is gated behind a request-demo / API-key sign-up rather than fully self-serve, and no
   pricing, plans, SDKs, sandbox, changelog or webhook surface is published.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Healthcare
