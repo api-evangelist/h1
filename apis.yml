@@ -293,6 +293,9 @@ apis:
   - type: ToolCrosswalk
     url: mcp/h1-tool-crosswalk.yml
 common:
+- type: CapabilityMap
+  url: capabilities/h1-capability-edges.yml
+  name: H1 Business Capability Map
 - type: AgentSkill
   url: skills/h1-shop-prices-near-me-v2.md
 - type: Plans
