@@ -2,9 +2,7 @@ openapi: 3.2.0
 info:
   title: Ribbon Health Cost Estimates API
   version: 1.0.0
-  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
-
-    '
+  description: An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
 servers:
 - url: https://api.ribbonhealth.com/v1
 security:
@@ -20,9 +18,7 @@ paths:
 
         #### Example Use Case
 
-        Inform a member of their current progress against their Deductible as well as their Copay and Coinsurance summaries so they can better estimate their out-of pocket costs.
-
-        '
+        Inform a member of their current progress against their Deductible as well as their Copay and Coinsurance summaries so they can better estimate their out-of pocket costs.'
       operationId: getEligibility
       tags:
       - Cost Estimates
@@ -435,9 +431,7 @@ paths:
   /eligibility_insurance_partners:
     get:
       summary: Search Supported Eligibility Insurances
-      description: 'Search or list all insurance partners supported by our eligibility features.
-
-        '
+      description: Search or list all insurance partners supported by our eligibility features.
       operationId: getEligibilityInsurancePartners
       tags:
       - Cost Estimates
@@ -471,9 +465,7 @@ paths:
   /eligibility_insurance_partners/{insurance_partner}:
     get:
       summary: Get Eligibility Insurance
-      description: 'Fetch an insurance partner supported by our eligibility features.
-
-        '
+      description: Fetch an insurance partner supported by our eligibility features.
       operationId: getEligibilityInsurancePartner
       tags:
       - Cost Estimates
@@ -515,9 +507,7 @@ paths:
 
         #### Example Use Case
 
-        Estimate the cost of a knee replacement surgery for a user in Boston so they can plan their personal finances accordingly.
-
-        '
+        Estimate the cost of a knee replacement surgery for a user in Boston so they can plan their personal finances accordingly.'
       operationId: getProcedureCostEstimate
       tags:
       - Cost Estimates

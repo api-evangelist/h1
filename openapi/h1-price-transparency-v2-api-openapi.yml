@@ -2,7 +2,9 @@ openapi: 3.2.0
 info:
   title: H1's Price Transparency v2 API
   version: 1.0.0
-  description: "An API for interacting with the data provided by Ribbon Health, including information about healthcare providers,\nlocations, insurances, and more.\n\n## Price Transparency v2\n\nLocation-first negotiated rate endpoints live under `/v2/*` (separate from legacy\n`/v1/pricing/*`). Use them to:\n\n1. Look up procedures, care clusters, and carriers (`GET /v2/procedures`,\n   `/v2/care-clusters`, `/v2/carriers`)\n2. Get prices for a known location (`GET /v2/locations/{location_id}/pricing/...`)\n3. Shop by geography (`GET /v2/pricing/locations/...`)\n\n**Key differences from v1:** prices are location-scoped (not provider-first);\ncarriers use string business ids (not v1 carrier UUIDs); every v2 response uses\nthe same envelope (`parameters`, `total_count`, `page`, `page_size`, `data`);\ngeo search requires an explicit `address` or `lat`+`lng` (no silent default).\n\nSee the **Price Transparency v2** tag for full endpoint reference.\n"
+  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers,
+
+    locations, insurances, and more.'
 servers:
 - url: https://api.ribbonhealth.com
 security:
@@ -13,14 +15,37 @@ tags:
 
     integrations. Carrier ids come from `GET /v2/carriers` and are not interchangeable
 
-    with v1 pricing carrier UUIDs. Provider-scoped v2 routes are not live yet.
-
-    '
+    with v1 pricing carrier UUIDs. Provider-scoped v2 routes are not live yet.'
 paths:
   /v2/procedures:
     get:
       summary: List Procedures (v2)
-      description: "Browse or search the Price Transparency v2 procedure code dictionary.\n\nUse this to resolve a CPT (or other) code before pricing lookups, or to\ndiscover which care clusters a procedure belongs to. This endpoint does\n**not** return dollar amounts.\n\n#### Example Use Case\nLook up CPT `27447` to confirm its description and see that it belongs to\nthe `JOINT_REPLACEMENT` care cluster before calling a pricing endpoint.\n\n#### Notes\n- Requires Price Transparency access (`doctors.can_price_transparency`).\n- Rate limited to 1,000 requests per minute.\n- All Price Transparency v2 endpoints share the same response envelope:\n  `parameters`, `total_count`, `page`, `page_size`, and `data`.\n"
+      description: 'Browse or search the Price Transparency v2 procedure code dictionary.
+
+
+        Use this to resolve a CPT (or other) code before pricing lookups, or to
+
+        discover which care clusters a procedure belongs to. This endpoint does
+
+        **not** return dollar amounts.
+
+
+        #### Example Use Case
+
+        Look up CPT `27447` to confirm its description and see that it belongs to
+
+        the `JOINT_REPLACEMENT` care cluster before calling a pricing endpoint.
+
+
+        #### Notes
+
+        - Requires Price Transparency access (`doctors.can_price_transparency`).
+
+        - Rate limited to 1,000 requests per minute.
+
+        - All Price Transparency v2 endpoints share the same response envelope:
+
+        `parameters`, `total_count`, `page`, `page_size`, and `data`.'
       operationId: getV2Procedures
       tags:
       - Price Transparency v2
@@ -169,9 +194,7 @@ paths:
 
         Search for clusters matching `"joint"` to find `JOINT_REPLACEMENT` and see
 
-        which CPT codes are expected in that bundle.
-
-        '
+        which CPT codes are expected in that bundle.'
       operationId: getV2CareClusters
       tags:
       - Price Transparency v2
@@ -271,13 +294,11 @@ paths:
 
         #### Important
 
-        These identifiers are **not** the same as v1 [`/v1/pricing/carriers`](./getpricingcarriers)
+        These identifiers are **not** the same as v1 `/v1/pricing/carriers`
 
         UUIDs. Always resolve carriers through this endpoint (or a curated customer
 
-        mapping) when working with v2.
-
-        '
+        mapping) when working with v2.'
       operationId: getV2Carriers
       tags:
       - Price Transparency v2
@@ -496,13 +517,11 @@ paths:
 
         #### Carrier filtering
 
-        Prefer `carrier_id` (from [`GET /v2/carriers`](./getv2carriers)).
+        Prefer `carrier_id` (from `GET /v2/carriers`).
 
         `plan_id` is accepted in the contract but currently returns HTTP 501.
 
-        `carrier_id` and `plan_id` are mutually exclusive (HTTP 400 if both are sent).
-
-        '
+        `carrier_id` and `plan_id` are mutually exclusive (HTTP 400 if both are sent).'
       operationId: getV2LocationProcedurePricing
       tags:
       - Price Transparency v2
@@ -683,9 +702,7 @@ paths:
 
         Prefer `carrier_id`. `plan_id` currently returns HTTP 501.
 
-        `carrier_id` and `plan_id` are mutually exclusive.
-
-        '
+        `carrier_id` and `plan_id` are mutually exclusive.'
       operationId: getV2LocationCareClusterPricing
       tags:
       - Price Transparency v2
@@ -860,9 +877,7 @@ paths:
 
         Prefer `carrier_id`. `plan_id` currently returns HTTP 501.
 
-        `carrier_id` and `plan_id` are mutually exclusive.
-
-        '
+        `carrier_id` and `plan_id` are mutually exclusive.'
       operationId: getV2PricingLocationProcedures
       tags:
       - Price Transparency v2
@@ -1119,7 +1134,7 @@ paths:
 
         Same geo / carrier / pagination rules as
 
-        [`GET /v2/pricing/locations/procedures`](./getv2pricinglocationprocedures).
+        `GET /v2/pricing/locations/procedures`.
 
 
         Optional `procedure_code` filters to bundles whose `included_procedures`
@@ -1131,9 +1146,7 @@ paths:
 
         Provide either `address` **or** both `lat` and `lng`. Missing location,
 
-        incomplete coordinates, or failed geocoding → HTTP 400.
-
-        '
+        incomplete coordinates, or failed geocoding → HTTP 400.'
       operationId: getV2PricingLocationCareClusters
       tags:
       - Price Transparency v2

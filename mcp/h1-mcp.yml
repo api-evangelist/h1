@@ -4,8 +4,7 @@ status: candidate
 server:
   name: h1-ribbon-health
   transport: http
-note: >-
-  Candidate tool list derived one-per-operation from H1's two published OpenAPI contracts. No official
+note: Candidate tool list derived one-per-operation from H1's two published OpenAPI contracts. No official
   hosted or stdio MCP server exists for H1/Ribbon Health as of 2026-08-15 - re-searched the docs, the
   llms.txt index, npm and the MCP registries and found nothing. H1 markets "agentic AI" on h1.com but
   ships no agent-callable surface of its own.
@@ -259,15 +258,7 @@ tools:
   source_operation: openapi/h1-price-transparency-v2-openapi.json#getV2PricingLocationCareClusters
 deployment:
   mode: none
-  endpoint: null
-  install: null
-  package: null
-  auth: api-key
-  verified: searched
-  tools: 82
-  checked: '2026-08-15'
-  source: >-
-    Docs (ribbon.readme.io llms.txt index), npm, and MCP registry search on 2026-08-15 - no hosted
-    endpoint and no stdio package published by H1. mode:none means this file is a DERIVED candidate,
-    not a server anyone can reach. `auth: api-key` describes the underlying REST API a real server
-    would have to carry, not a live MCP surface.
+  verified: derived
+  tools: 75
+  checked: '2026-08-12'
+  source: catalog MCP census

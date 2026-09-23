@@ -2,9 +2,7 @@ openapi: 3.2.0
 info:
   title: Ribbon Health Providers API
   version: 1.0.0
-  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
-
-    '
+  description: An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
 servers:
 - url: https://api.ribbonhealth.com/v1
 security:
@@ -15,9 +13,7 @@ paths:
   /custom/providers:
     get:
       summary: Search Providers
-      description: 'Allows you to quickly list doctors based on important search criteria.
-
-        '
+      description: Allows you to quickly list doctors based on important search criteria.
       operationId: getCustomProviders
       tags:
       - Providers
@@ -1083,9 +1079,7 @@ paths:
   /custom/providers/{npi}:
     get:
       summary: Get Provider
-      description: 'Retrieve detailed information for any provider given their NPI, such as locations, contact information, education, patient satisfaction, etc.
-
-        '
+      description: Retrieve detailed information for any provider given their NPI, such as locations, contact information, education, patient satisfaction, etc.
       operationId: getCustomProvider
       tags:
       - Providers
@@ -1357,9 +1351,7 @@ paths:
 
         #### Looking For The Old Documentation?
 
-        We''re in the process of revamping our documentation. You can find the old page for this endpoint [here](https://ribbon.readme.io/docs/add-or-edit-provider-fields-old).
-
-        '
+        We''re in the process of revamping our documentation. You can find the old page for this endpoint here.'
       operationId: putCustomProvider
       tags:
       - Providers
@@ -1420,9 +1412,7 @@ paths:
   /custom/providers/{npi}/locations:
     put:
       summary: Add Or Remove Provider Locations
-      description: 'Add or remove locations a provider practices at using our standard location UUIDs.
-
-        '
+      description: Add or remove locations a provider practices at using our standard location UUIDs.
       operationId: putCustomProviderLocations
       tags:
       - Providers
@@ -1503,9 +1493,7 @@ paths:
       summary: Modify Provider Location Fields
       description: 'Edit all fields that do not fall under `uuid`, `google_maps_link`, `latitude`, or `longitude`. You may also add new fields or remove existing fields.
 
-        These updates are provider-specific and will not affect other providers practicing at the same location.
-
-        '
+        These updates are provider-specific and will not affect other providers practicing at the same location.'
       operationId: putCustomProviderLocation
       tags:
       - Providers
@@ -1552,9 +1540,7 @@ paths:
   /custom/providers/{npi}/specialties:
     put:
       summary: Add Or Remove Provider Specialties
-      description: 'Add or remove specialties for a provider using our standard specialty UUIDs.
-
-        '
+      description: Add or remove specialties for a provider using our standard specialty UUIDs.
       operationId: putCustomProviderSpecialties
       tags:
       - Providers
@@ -1609,9 +1595,7 @@ paths:
   /custom/providers/{npi}/specialties/{specialty_uuid}:
     put:
       summary: Modify A Provider's Primary Specialties
-      description: 'Edit whether a single specialty is one of the provider''s primary specialties.
-
-        '
+      description: Edit whether a single specialty is one of the provider's primary specialties.
       operationId: putCustomProviderPrimarySpecialties
       tags:
       - Providers
@@ -1665,9 +1649,7 @@ paths:
   /custom/providers/{npi}/procedures:
     put:
       summary: Add Or Remove Provider Procedures
-      description: 'Add or remove procedures for a provider using our standard procedure UUIDs.
-
-        '
+      description: Add or remove procedures for a provider using our standard procedure UUIDs.
       operationId: putCustomProviderProcedures
       tags:
       - Providers
@@ -1713,9 +1695,7 @@ paths:
   /custom/providers/{npi}/clinical_areas:
     put:
       summary: Add Or Remove Provider Clinical Areas
-      description: 'Add or remove clinical areas for a provider using our standard clinical area UUIDs.
-
-        '
+      description: Add or remove clinical areas for a provider using our standard clinical area UUIDs.
       operationId: putCustomProviderClinicalAreas
       tags:
       - Providers
@@ -1761,9 +1741,7 @@ paths:
   /custom/providers/{npi}/locations/{location_uuid}/insurances:
     put:
       summary: Add Or Remove Provider Insurances At A Location
-      description: 'Add or remove insurances accepted by a provider at a specific location using our standard insurance UUIDs.
-
-        '
+      description: Add or remove insurances accepted by a provider at a specific location using our standard insurance UUIDs.
       operationId: putCustomProviderLocationInsurances
       tags:
       - Providers
@@ -1810,9 +1788,7 @@ paths:
   /custom/providers/{npi}/locations/{location_uuid}/organizations:
     put:
       summary: Add Or Remove Provider Organizations At A Location
-      description: 'Add or remove organizations accepted by a provider at a specific location using our standard organization UUIDs.
-
-        '
+      description: Add or remove organizations accepted by a provider at a specific location using our standard organization UUIDs.
       operationId: putCustomProviderLocationOrganizations
       tags:
       - Providers

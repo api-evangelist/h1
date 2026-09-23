@@ -1,0 +1,27 @@
+# Front Door AI Index — h1 — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: h1
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: h1.co
+  final_host: h1.com
+  ownership: inherited
+  owner: h1
+  shares_host_with: null
+  inherited_from: h1.com
+  verdict: scored
+  score: null
+  host_score: 3
+  density: null
+  words: 1190
+  tiers:
+    agentic: 0
+    core: 3
+    model: 0
+  ambiguous: 8
+  top_terms:
+    intelligence: 7
+    AI: 3
+    automation: 1

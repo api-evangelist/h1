@@ -2,9 +2,7 @@ openapi: 3.2.0
 info:
   title: Ribbon Health Focus Area Endpoints API
   version: 1.0.0
-  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
-
-    '
+  description: An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
 servers:
 - url: https://api.ribbonhealth.com/v1
 security:
@@ -15,9 +13,7 @@ paths:
   /custom/clinical_areas:
     get:
       summary: Search Clinical Areas
-      description: 'Returns clinical areas that exist within the Ribbon API.
-
-        '
+      description: Returns clinical areas that exist within the Ribbon API.
       operationId: getClinicalAreas
       tags:
       - Focus Area Endpoints
@@ -123,9 +119,7 @@ paths:
   /custom/clinical_areas/{clinical_area_uuid}:
     get:
       summary: Get Clinical Area
-      description: 'Retrieve data on a specific clinical area.
-
-        '
+      description: Retrieve data on a specific clinical area.
       operationId: getClinicalArea
       tags:
       - Focus Area Endpoints
@@ -182,9 +176,7 @@ paths:
   /custom/conditions:
     get:
       summary: Search Conditions
-      description: 'Returns conditions that exist within the Ribbon API.
-
-        '
+      description: Returns conditions that exist within the Ribbon API.
       operationId: getConditions
       tags:
       - Focus Area Endpoints
@@ -270,9 +262,7 @@ paths:
   /custom/conditions/{condition_uuid}:
     get:
       summary: Get Condition
-      description: 'Retrieve data on a specific condition.
-
-        '
+      description: Retrieve data on a specific condition.
       operationId: getCondition
       tags:
       - Focus Area Endpoints
@@ -325,9 +315,7 @@ paths:
   /custom/treatments:
     get:
       summary: Search Treatments
-      description: 'Returns treatments that exist within the Ribbon API.
-
-        '
+      description: Returns treatments that exist within the Ribbon API.
       operationId: getTreatments
       tags:
       - Focus Area Endpoints
@@ -407,9 +395,7 @@ paths:
   /custom/treatments/{treatment_uuid}:
     get:
       summary: Get Treatment
-      description: 'Retrieve data on a specific treatment.
-
-        '
+      description: Retrieve data on a specific treatment.
       operationId: getTreatment
       tags:
       - Focus Area Endpoints

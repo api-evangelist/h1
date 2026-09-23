@@ -3,17 +3,15 @@ method: probed
 source: live HTTPS probes, 2026-08-15
 result: none
 pointer_emitted: false
-note: >-
-  No /.well-known document is served on any H1 host. Every path below was probed against every host in
-  apis.yml and every OpenAPI servers[] host on 2026-08-15 and each returned HTTP 404 - a real 404, not a
-  single-page-app 200 shell. h1.co 301-redirects to h1.com for all paths; h1.com and api.ribbonhealth.com
+note: No /.well-known document is served on any H1 host. Every path below was probed against every host
+  in apis.yml and every OpenAPI servers[] host on 2026-08-15 and each returned HTTP 404 - a real 404,
+  not a single-page-app 200 shell. h1.co 301-redirects to h1.com for all paths; h1.com and api.ribbonhealth.com
   answer 404 (api.ribbonhealth.com with a clean JSON 404 body); ribbon.readme.io (the ReadMe-hosted docs)
   answers 404. No security.txt, no OIDC/OAuth discovery, no api-catalog, no ai-plugin, and no A2A agent
   card at either the canonical /.well-known/agent-card.json or the legacy /.well-known/agent.json path.
-  Because nothing returned a 200 carrying a real document, this file records an ABSENCE and NO
-  `WellKnown` / `SecurityTxt` pointer is wired into apis.yml - a pointer would assert that H1 serves a
-  discovery surface it does not serve.
-
+  Because nothing returned a 200 carrying a real document, this file records an ABSENCE and NO `WellKnown`
+  / `SecurityTxt` pointer is wired into apis.yml - a pointer would assert that H1 serves a discovery surface
+  it does not serve.
 hosts_probed:
 - https://h1.co
 - https://www.h1.co
@@ -21,39 +19,28 @@ hosts_probed:
 - https://api.ribbonhealth.com
 - https://ribbonhealth.com
 - https://ribbon.readme.io
-
-documents:
-- path: /.well-known/security.txt
-  spec: RFC 9116
-  status: 404
-  hosts: [h1.com, api.ribbonhealth.com, ribbon.readme.io]
-- path: /.well-known/openid-configuration
-  spec: OpenID Connect Discovery 1.0
-  status: 404
-  hosts: [h1.com, api.ribbonhealth.com, ribbon.readme.io]
-- path: /.well-known/oauth-authorization-server
-  spec: RFC 8414
-  status: 404
-  hosts: [h1.com, api.ribbonhealth.com, ribbon.readme.io]
-- path: /.well-known/oauth-protected-resource
-  spec: RFC 9728
-  status: 404
-  hosts: [h1.co (301), www.h1.co, api.ribbonhealth.com, ribbonhealth.com, ribbon.readme.io]
-- path: /.well-known/api-catalog
-  spec: RFC 9727
-  status: 404
-  hosts: [h1.com, api.ribbonhealth.com, ribbon.readme.io]
-- path: /.well-known/ai-plugin.json
-  spec: OpenAI plugin manifest (legacy)
-  status: 404
-  hosts: [h1.com, api.ribbonhealth.com, ribbon.readme.io]
-- path: /.well-known/agent-card.json
-  spec: A2A 1.0.0
-  status: 404
-  hosts: [h1.com, api.ribbonhealth.com, ribbon.readme.io]
-- path: /.well-known/agent.json
-  spec: A2A pre-0.3 legacy
-  status: 404
-  hosts: [h1.com, api.ribbonhealth.com, ribbon.readme.io]
-
 files: []
+hosts:
+- host: ''
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.

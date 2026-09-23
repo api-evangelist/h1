@@ -2,9 +2,7 @@ openapi: 3.2.0
 info:
   title: Ribbon Health Locations API
   version: 1.0.0
-  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
-
-    '
+  description: An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
 servers:
 - url: https://api.ribbonhealth.com/v1
 security:
@@ -15,9 +13,7 @@ paths:
   /custom/locations:
     get:
       summary: Search Locations
-      description: 'Allows you to search for different service locations, including specific location types.
-
-        '
+      description: Allows you to search for different service locations, including specific location types.
       operationId: getCustomLocations
       tags:
       - Locations
@@ -467,9 +463,7 @@ paths:
 
         #### Example Use Case
 
-        You want to add new urgent care locations (or labs, imaging centers, therapy centers, etc.) to an area that are not yet included in the existing Ribbon locations listings.
-
-        '
+        You want to add new urgent care locations (or labs, imaging centers, therapy centers, etc.) to an area that are not yet included in the existing Ribbon locations listings.'
       operationId: postCustomLocations
       tags:
       - Locations
@@ -628,9 +622,7 @@ paths:
   /custom/locations/{location_uuid}:
     get:
       summary: Get Location
-      description: 'Retrieve data on a specific location.
-
-        '
+      description: Retrieve data on a specific location.
       operationId: getCustomLocation
       tags:
       - Locations
@@ -774,9 +766,7 @@ paths:
                 $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
     put:
       summary: Add or Edit Location Fields
-      description: 'Edit all fields that do not fall under `insurances`, `google_maps_link`, `latitude`, or `longitude`. You may also add new fields or remove existing fields.
-
-        '
+      description: Edit all fields that do not fall under `insurances`, `google_maps_link`, `latitude`, or `longitude`. You may also add new fields or remove existing fields.
       operationId: putCustomLocation
       tags:
       - Locations
@@ -830,9 +820,7 @@ paths:
                 $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
     delete:
       summary: Delete Location
-      description: 'Delete a location.
-
-        '
+      description: Delete a location.
       operationId: deleteCustomLocation
       tags:
       - Locations
@@ -850,9 +838,7 @@ paths:
   /custom/locations/{location_uuid}/insurances:
     put:
       summary: Add Or Remove Location Insurances
-      description: 'Add or remove insurances from a location using our standard insurance UUIDs.
-
-        '
+      description: Add or remove insurances from a location using our standard insurance UUIDs.
       operationId: putCustomLocationInsurances
       tags:
       - Locations
@@ -925,9 +911,7 @@ paths:
   /custom/locations/{location_uuid}/organizations:
     put:
       summary: Add Or Remove Location Organizations
-      description: 'Add or remove organizations from a location using our standard organization UUIDs.
-
-        '
+      description: Add or remove organizations from a location using our standard organization UUIDs.
       operationId: putCustomLocationOrganizations
       tags:
       - Locations
@@ -967,9 +951,7 @@ paths:
   /custom/locations/{location_uuid}/clinical_areas:
     put:
       summary: Add Or Remove Location Clinical Areas
-      description: 'Add or remove clinical areas from a location using our standard clinical area UUIDs.
-
-        '
+      description: Add or remove clinical areas from a location using our standard clinical area UUIDs.
       operationId: putCustomLocationClinicalAreas
       tags:
       - Locations

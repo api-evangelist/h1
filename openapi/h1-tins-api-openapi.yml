@@ -2,9 +2,7 @@ openapi: 3.2.0
 info:
   title: Ribbon Health TI Ns API
   version: 1.0.0
-  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
-
-    '
+  description: An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
 servers:
 - url: https://api.ribbonhealth.com/v1
 security:
@@ -15,9 +13,7 @@ paths:
   /custom/tin:
     get:
       summary: Search TINs
-      description: 'Search and list tins that exist within the Ribbon API.
-
-        '
+      description: Search and list tins that exist within the Ribbon API.
       operationId: getTins
       tags:
       - TINs
@@ -172,9 +168,7 @@ paths:
   /custom/tin/{tin_id}:
     get:
       summary: Get TIN
-      description: 'Retrieve data on a specific TIN.
-
-        '
+      description: Retrieve data on a specific TIN.
       operationId: getCustomTin
       tags:
       - TINs

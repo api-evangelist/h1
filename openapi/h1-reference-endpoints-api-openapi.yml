@@ -2,9 +2,7 @@ openapi: 3.2.0
 info:
   title: Ribbon Health Reference Endpoints API
   version: 1.0.0
-  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
-
-    '
+  description: An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
 servers:
 - url: https://api.ribbonhealth.com/v1
 security:
@@ -15,9 +13,7 @@ paths:
   /custom/insurances:
     get:
       summary: Search Insurances
-      description: 'Search and list insurances that exist within the Ribbon API.
-
-        '
+      description: Search and list insurances that exist within the Ribbon API.
       operationId: getInsurances
       tags:
       - Reference Endpoints
@@ -151,9 +147,7 @@ paths:
                 $ref: '#/paths/~1network_analysis/get/responses/400/content/application~1json/schema'
     post:
       summary: Create Insurance
-      description: 'Create a insurance with desired field values.
-
-        '
+      description: Create a insurance with desired field values.
       operationId: postCustomInsurance
       tags:
       - Reference Endpoints
@@ -252,9 +246,7 @@ paths:
   /custom/insurances/{insurance_uuid}:
     get:
       summary: Get Insurance
-      description: 'Retrieve data on a specific insurance.
-
-        '
+      description: Retrieve data on a specific insurance.
       operationId: getCustomInsurance
       tags:
       - Reference Endpoints
@@ -282,9 +274,7 @@ paths:
                 $ref: '#/paths/~1custom~1tin~1%7Btin_id%7D/get/responses/404/content/application~1json/schema'
     put:
       summary: Edit Insurance Fields
-      description: 'Edit fields of a custom created insurance or a Ribbon created insurance.
-
-        '
+      description: Edit fields of a custom created insurance or a Ribbon created insurance.
       operationId: putCustomInsurance
       tags:
       - Reference Endpoints
@@ -332,9 +322,7 @@ paths:
       description: 'Delete an insurance.
 
 
-        Note: If you''ve added this insurance to doctors, you are deleting all instances of this UUID, and Ribbon will not be able to regenerate them.
-
-        '
+        Note: If you''ve added this insurance to doctors, you are deleting all instances of this UUID, and Ribbon will not be able to regenerate them.'
       operationId: deleteCustomInsurance
       tags:
       - Reference Endpoints
@@ -352,9 +340,7 @@ paths:
   /custom/specialties:
     get:
       summary: Search Specialties
-      description: 'Search and list specialties that exist within the Ribbon API.
-
-        '
+      description: Search and list specialties that exist within the Ribbon API.
       operationId: getSpecialties
       tags:
       - Reference Endpoints
@@ -432,9 +418,7 @@ paths:
                 $ref: '#/paths/~1custom~1tin/get/responses/403/content/application~1json/schema'
     post:
       summary: Create Specialty
-      description: 'Create a custom specialty with desired field values.
-
-        '
+      description: Create a custom specialty with desired field values.
       operationId: postCustomSpecialty
       tags:
       - Reference Endpoints
@@ -482,9 +466,7 @@ paths:
   /custom/specialties/{specialty_uuid}:
     get:
       summary: Get Specialty
-      description: 'Retrieve data on a specific specialty.
-
-        '
+      description: Retrieve data on a specific specialty.
       operationId: getCustomSpecialty
       tags:
       - Reference Endpoints
@@ -576,9 +558,7 @@ paths:
       description: 'Edit fields of a custom created specialty.
 
 
-        Note: You cannot edit a Ribbon created specialty.
-
-        '
+        Note: You cannot edit a Ribbon created specialty.'
       operationId: putCustomSpecialty
       tags:
       - Reference Endpoints
@@ -626,9 +606,7 @@ paths:
       description: 'Delete a specialty.
 
 
-        Note: You cannot delete a Ribbon created specialty.
-
-        '
+        Note: You cannot delete a Ribbon created specialty.'
       operationId: deleteCustomSpecialty
       tags:
       - Reference Endpoints
@@ -646,9 +624,7 @@ paths:
   /provider_types:
     get:
       summary: Search Provider Types
-      description: 'Search and list provider types that exist within the Ribbon API.
-
-        '
+      description: Search and list provider types that exist within the Ribbon API.
       operationId: getCustomProviderTypes
       tags:
       - Reference Endpoints
@@ -676,9 +652,7 @@ paths:
   /custom/provider_types:
     post:
       summary: Create Provider Type
-      description: 'Create a custom provider type with desired field values.
-
-        '
+      description: Create a custom provider type with desired field values.
       operationId: postCustomProviderType
       tags:
       - Reference Endpoints
@@ -720,9 +694,7 @@ paths:
   /custom/provider_types/{provider_type_uuid}:
     get:
       summary: Get Provider Type
-      description: 'Retrieve data on a specific provider type.
-
-        '
+      description: Retrieve data on a specific provider type.
       operationId: getCustomProviderType
       tags:
       - Reference Endpoints
@@ -762,9 +734,7 @@ paths:
       description: 'Edit fields of a custom created provider type.
 
 
-        Note: You cannot edit a Ribbon created provider type.
-
-        '
+        Note: You cannot edit a Ribbon created provider type.'
       operationId: putCustomProviderType
       tags:
       - Reference Endpoints
@@ -818,9 +788,7 @@ paths:
       description: 'Delete a provider type.
 
 
-        Note: You cannot edit a Ribbon created provider type.
-
-        '
+        Note: You cannot edit a Ribbon created provider type.'
       operationId: deleteCustomProviderType
       tags:
       - Reference Endpoints
@@ -844,9 +812,7 @@ paths:
   /location_types:
     get:
       summary: Search Location Types
-      description: 'Search and list location types that exist within the Ribbon API.
-
-        '
+      description: Search and list location types that exist within the Ribbon API.
       operationId: getCustomLocationTypes
       tags:
       - Reference Endpoints
@@ -874,9 +840,7 @@ paths:
   /custom/location_types:
     post:
       summary: Create Location Type
-      description: 'Create a location type with desired field values.
-
-        '
+      description: Create a location type with desired field values.
       operationId: postCustomLocationType
       tags:
       - Reference Endpoints
@@ -914,9 +878,7 @@ paths:
   /custom/location_types/{location_type_uuid}:
     get:
       summary: Get Location Type
-      description: 'Retrieve data on a specific location type.
-
-        '
+      description: Retrieve data on a specific location type.
       operationId: getCustomLocationType
       tags:
       - Reference Endpoints
@@ -956,9 +918,7 @@ paths:
       description: 'Edit fields of a custom created location type.
 
 
-        Note: You cannot edit a Ribbon created location type.
-
-        '
+        Note: You cannot edit a Ribbon created location type.'
       operationId: putCustomLocationType
       tags:
       - Reference Endpoints
@@ -1012,9 +972,7 @@ paths:
       description: 'Delete a location type.
 
 
-        Note: You cannot edit a Ribbon created location type.
-
-        '
+        Note: You cannot edit a Ribbon created location type.'
       operationId: deleteCustomLocationType
       tags:
       - Reference Endpoints
@@ -1038,9 +996,7 @@ paths:
   /procedures:
     get:
       summary: Search Procedures
-      description: 'Search and list procedures that exist within the Ribbon API.
-
-        '
+      description: Search and list procedures that exist within the Ribbon API.
       operationId: getProcedures
       tags:
       - Reference Endpoints
@@ -1110,9 +1066,7 @@ paths:
   /procedures/{procedure_uuid}:
     get:
       summary: Get Procedure
-      description: 'Retrieve data on a specific procedure.
-
-        '
+      description: Retrieve data on a specific procedure.
       operationId: getProcedure
       tags:
       - Reference Endpoints
@@ -1167,9 +1121,7 @@ paths:
   /languages:
     get:
       summary: Search Languages
-      description: 'Search and list provider languages that exist in the Ribbon API.
-
-        '
+      description: Search and list provider languages that exist in the Ribbon API.
       operationId: getLanguages
       tags:
       - Reference Endpoints

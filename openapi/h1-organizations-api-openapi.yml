@@ -2,9 +2,7 @@ openapi: 3.2.0
 info:
   title: Ribbon Health Organizations API
   version: 1.0.0
-  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
-
-    '
+  description: An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
 servers:
 - url: https://api.ribbonhealth.com/v1
 security:
@@ -20,9 +18,7 @@ paths:
 
         #### Example Use Case
 
-        Display a map of all of all nearby health systems and their relevant information so that a patient can find care.
-
-        '
+        Display a map of all of all nearby health systems and their relevant information so that a patient can find care.'
       operationId: getOrganizations
       tags:
       - Organizations
@@ -119,9 +115,7 @@ paths:
   /custom/organizations/{organization_uuid}:
     get:
       summary: Get Organization
-      description: 'Retrieve detailed information for any organization given its UUID
-
-        '
+      description: Retrieve detailed information for any organization given its UUID
       operationId: getOrganization
       tags:
       - Organizations

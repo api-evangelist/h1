@@ -2,9 +2,7 @@ openapi: 3.2.0
 info:
   title: Ribbon Health Price Transparency API
   version: 1.0.0
-  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
-
-    '
+  description: An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
 servers:
 - url: https://api.ribbonhealth.com/v1
 security:
@@ -20,9 +18,7 @@ paths:
 
         #### Example Use Case
 
-        Search for all applicable provider negotiated rates, given a specific insurance and procedure (and optionally, a specific location/address and distance). For example, search for all providers near me who perform Leg MRIs and who take a given insurance, sorted by lowest price.
-
-        '
+        Search for all applicable provider negotiated rates, given a specific insurance and procedure (and optionally, a specific location/address and distance). For example, search for all providers near me who perform Leg MRIs and who take a given insurance, sorted by lowest price.'
       operationId: getPricingProviders
       tags:
       - Price Transparency
@@ -431,9 +427,7 @@ paths:
 
         #### Example Use Case
 
-        For a given provider, search the full list of procedures that they are likely to perform where there are negotiated rates available for a particular insurance, and return the minimum price for each procedure.
-
-        '
+        For a given provider, search the full list of procedures that they are likely to perform where there are negotiated rates available for a particular insurance, and return the minimum price for each procedure.'
       operationId: getPricingProviderProcedures
       tags:
       - Price Transparency
@@ -519,9 +513,7 @@ paths:
 
         #### Example Use Case
 
-        Compare insurance-specific price estimates of a Leg MRI for a single provider at multiple relevant practices (e.g., compare this provider''s rates when performing the procedure at both the provider''s private outpatient facility, as well as a nearby hospital system clinic where they also practice).
-
-        '
+        Compare insurance-specific price estimates of a Leg MRI for a single provider at multiple relevant practices (e.g., compare this provider''s rates when performing the procedure at both the provider''s private outpatient facility, as well as a nearby hospital system clinic where they also practice).'
       operationId: getPricingProviderProcedure
       tags:
       - Price Transparency
@@ -593,9 +585,7 @@ paths:
 
         #### Example Use Case
 
-        Given an insurance, identify the expected price of a particular procedure from a specific provider at a known facility.
-
-        '
+        Given an insurance, identify the expected price of a particular procedure from a specific provider at a known facility.'
       operationId: getPricingProviderProcedureLocation
       tags:
       - Price Transparency
@@ -735,9 +725,7 @@ paths:
   /pricing/carriers:
     get:
       summary: List Carriers
-      description: 'This endpoint will show the carriers for which we have data. This can be used to fetch the recency of the data used per carrier.
-
-        '
+      description: This endpoint will show the carriers for which we have data. This can be used to fetch the recency of the data used per carrier.
       operationId: getPricingCarriers
       tags:
       - Price Transparency
@@ -758,9 +746,7 @@ paths:
   /pricing/carrier/{carrier_uuid}:
     get:
       summary: Get Carrier
-      description: 'Fetch metadata including the recency of the pricing data used for a specific carrier.
-
-        '
+      description: Fetch metadata including the recency of the pricing data used for a specific carrier.
       operationId: getPricingCarrier
       tags:
       - Price Transparency
@@ -806,9 +792,7 @@ paths:
       description: 'This endpoint will the names of the carriers for which we have data. This can be used to fetch the recency of the data used per carrier.
 
 
-        This endpoint is deprecated. Please use [List Carriers](./getpricingcarriers) instead.
-
-        '
+        This endpoint is deprecated. Please use List Carriers instead.'
       operationId: getPricingCarrierNames
       tags:
       - Price Transparency
@@ -837,9 +821,7 @@ paths:
       description: 'Fetch the recency of the pricing data used for a specific carrier by name.
 
 
-        This endpoint is deprecated. Please use [Get Carrier](./getpricingcarrier) instead.
-
-        '
+        This endpoint is deprecated. Please use Get Carrier instead.'
       operationId: getPricingVersionCarrier
       tags:
       - Price Transparency

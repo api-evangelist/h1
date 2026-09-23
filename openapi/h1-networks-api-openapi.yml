@@ -2,9 +2,7 @@ openapi: 3.2.0
 info:
   title: Ribbon Health Networks API
   version: 1.0.0
-  description: 'An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
-
-    '
+  description: An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
 servers:
 - url: https://api.ribbonhealth.com/v1
 security:
@@ -20,9 +18,7 @@ paths:
 
         #### Example Use Case
 
-        In looking to expand to a new region, analyze existing provider networks in the region to understand how best to construct your own.
-
-        '
+        In looking to expand to a new region, analyze existing provider networks in the region to understand how best to construct your own.'
       operationId: getNetworkAnalysis
       tags:
       - Networks
