@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Ribbon Health TI Ns API
+  title: Ribbon Health TINs API
   version: 1.0.0
   description: An API for interacting with the data provided by Ribbon Health, including information about healthcare providers, locations, insurances, and more.
 servers:
