@@ -1,4 +1,4 @@
-generated: '2026-09-16'
+generated: '2026-09-23'
 method: generated
 source: openapi/h1-cost-estimates-api-openapi.yml, openapi/h1-filters-api-openapi.yml, openapi/h1-focus-area-endpoints-api-openapi.yml,
   openapi/h1-locations-api-openapi.yml, openapi/h1-networks-api-openapi.yml, openapi/h1-organizations-api-openapi.yml,
@@ -11,29 +11,23 @@ description: Recommended x-agentic-access execution contracts, classified heuris
 summary:
   operations: 82
   by_action_class:
-    acting: 34
-    connected: 48
+    connected: 49
+    acting: 33
   by_consequence:
-    write: 34
-    read: 48
+    read: 49
+    write: 33
   human_in_the_loop_required: 0
 operations:
 - path: /eligibility
   method: post
   operationId: getEligibility
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /eligibility_insurance_partners
   method: get
   operationId: getEligibilityInsurancePartners
