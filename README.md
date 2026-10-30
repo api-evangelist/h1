@@ -1,4 +1,4 @@
-# H1 (h1)
+# H1
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,123 +64,156 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-H1 (h1.co) is a New York City-based healthcare data and technology company, founded in 2017, that combines deep healthcare provider data with agentic AI to power drug development, medical and commercial engagement, care navigation, and provider and network intelligence for life sciences, pharma, health plans, and digital health organizations across the United States. Its developer-facing API is the Ribbon Health API (H1 acquired Ribbon Health), a proprietary REST API served over HTTPS at `https://api.ribbonhealth.com/v1`, authenticated with a bearer API key. It is not FHIR-based.
+H1 (h1.co) is a New York City-based healthcare data and technology company, founded in 2017, that combines deep healthcare provider data with agentic AI to power drug development, medical and commercial engagement, care navigation, and provider and network intelligence for life sciences, pharma, health plans, and digital health organizations across the United States. Its developer-facing API is the Ribbon Health API (H1 acquired Ribbon Health), a proprietary REST API served over HTTPS at https://api.ribbonhealth.com that provides accurate, comprehensive data on healthcare providers, locations, insurances, procedures, price transparency, cost estimates, and insurance eligibility. Two OpenAPI 3.1 contracts are published - the 75-operation v1 API under /v1, and a newer 7-operation location-first Price Transparency v2 surface under /v2 that H1 tells new integrations to prefer over the legacy provider-first /v1/pricing endpoints. The API is not FHIR-based and does not expose a SMART-on-FHIR or Da Vinci PDEX Plan-Net surface; it authenticates with a bearer API key, has no OAuth scopes, and gates product families on per-account entitlement flags. It is segmented into provider, location, custom-filter, focus-area, price-transparency (v1 and v2), cost-estimate/eligibility, organization, reference-data, and network-analysis product families. Access is gated behind a request-demo / API-key sign-up rather than fully self-serve, and no pricing, plans, SDKs, sandbox, changelog or webhook surface is published.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/h1/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/h1/refs/heads/main/apis.yml)
+**Areas:** Healthcare · United States · Life Sciences · Provider Data · Healthcare API · Price Transparency · Eligibility · Network Intelligence · Digital Health · Pharma
 
-## Tags
+## H1 on APIs.io
 
-- Healthcare
-- United States
-- Life Sciences
-- Provider Data
-- Healthcare API
-- Price Transparency
-- Eligibility
-- Network Intelligence
-- Digital Health
-- Pharma
+Everything profiled for H1 is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/h1/](https://apis.io/providers/h1/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (12)
 
-- **Created:** 2026-07-24
-- **Modified:** 2026-07-24
+- [H1 Cost Estimates API](https://apis.io/apis/h1/h1-insights-cost-estimates-api/) — The Cost Estimates API from H1 — 4 operation(s) for cost estimates.
+- [H1 Filters API](https://apis.io/apis/h1/h1-insights-filters-api/) — The Filters API from H1 — 4 operation(s) for filters.
+- [H1 Focus Area Endpoints API](https://apis.io/apis/h1/h1-insights-focus-area-endpoints-api/) — The Focus Area Endpoints API from H1 — 6 operation(s) for focus area endpoints.
+- [H1 Locations API](https://apis.io/apis/h1/h1-insights-locations-api/) — The Locations API from H1 — 5 operation(s) for locations.
+- [H1 Networks API](https://apis.io/apis/h1/h1-insights-networks-api/) — The Networks API from H1 — 1 operation(s) for networks.
+- [H1 Organizations API](https://apis.io/apis/h1/h1-insights-organizations-api/) — The Organizations API from H1 — 2 operation(s) for organizations.
+- [H1 Price Transparency API](https://apis.io/apis/h1/h1-insights-price-transparency-api/) — The Price Transparency API from H1 — 8 operation(s) for price transparency.
+- [H1 Providers API](https://apis.io/apis/h1/h1-insights-providers-api/) — The Providers API from H1 — 10 operation(s) for providers.
+- [H1 Reference Endpoints API](https://apis.io/apis/h1/h1-insights-reference-endpoints-api/) — The Reference Endpoints API from H1 — 13 operation(s) for reference endpoints.
+- [H1 TI Ns API](https://apis.io/apis/h1/h1-insights-tins-api/) — The TINs API from H1 — 2 operation(s) for tins.
+- [H1 Virtual Care Platforms API](https://apis.io/apis/h1/h1-insights-virtual-care-platforms-api/) — The Virtual Care Platforms API from H1 — 2 operation(s) for virtual care platforms.
+- [H1 Price Transparency v2 API](https://apis.io/apis/h1/h1-price-transparency-v2-api/) — Location-first negotiated rates under `/v2/*`. Prefer these endpoints for new integrations. Carrier ids come from `GET /v2/carriers` and are not…
 
-## APIs
+### Published properties
 
-The Ribbon Health API is a single REST API (OpenAPI 3.1.0, 57 paths, base URL `https://api.ribbonhealth.com/v1`) segmented into the following product families:
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### H1 Ribbon Providers API
+#### MCP servers (1)
 
-Provider data and network intelligence keyed by NPI - retrieve and curate healthcare providers along with their specialties, procedures, clinical areas, locations, and insurance affiliations.
+Model Context Protocol servers that expose the API to agents.
 
-- **Human URL:** [https://ribbon.readme.io/reference](https://ribbon.readme.io/reference)
-- **Base URL:** `https://api.ribbonhealth.com/v1`
-- [OpenAPI](openapi/ribbon-health-api-openapi.json)
+- [h1-ribbon-health](https://apis.io/servers/h1/h1-ribbon-health/)
 
-### H1 Ribbon Locations API
+#### Agentic access (1)
 
-Healthcare location data - create, read, update, and delete provider locations and manage their associated clinical areas, insurances, and organizations.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://ribbon.readme.io/reference](https://ribbon.readme.io/reference)
-- **Base URL:** `https://api.ribbonhealth.com/v1`
-- [OpenAPI](openapi/ribbon-health-api-openapi.json)
+- [H1 Agentic Access](https://apis.io/agentic-access/h1/h1-agentic-access/)
 
-### H1 Ribbon Custom Filters API
+#### Collections (12)
 
-Create, edit, and delete saved custom filters for providers and locations to scope and reuse queries.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://ribbon.readme.io/reference](https://ribbon.readme.io/reference)
-- **Base URL:** `https://api.ribbonhealth.com/v1`
-- [OpenAPI](openapi/ribbon-health-api-openapi.json)
+- [Ribbon Health Cost Estimates API](https://apis.io/collections/h1/open-h1-cost-estimates-api/)
+- [Ribbon Health Filters API](https://apis.io/collections/h1/open-h1-filters-api/)
+- [Ribbon Health Focus Area Endpoints API](https://apis.io/collections/h1/open-h1-focus-area-endpoints-api/)
+- [Ribbon Health Locations API](https://apis.io/collections/h1/open-h1-locations-api/)
+- [Ribbon Health Networks API](https://apis.io/collections/h1/open-h1-networks-api/)
+- [Ribbon Health Organizations API](https://apis.io/collections/h1/open-h1-organizations-api/)
+- [Ribbon Health Price Transparency API](https://apis.io/collections/h1/open-h1-price-transparency-api/)
+- [Ribbon Health Providers API](https://apis.io/collections/h1/open-h1-providers-api/)
+- [Ribbon Health Reference Endpoints API](https://apis.io/collections/h1/open-h1-reference-endpoints-api/)
+- [Ribbon Health TI Ns API](https://apis.io/collections/h1/open-h1-tins-api/)
+- [Ribbon Health Virtual Care Platforms API](https://apis.io/collections/h1/open-h1-virtual-care-platforms-api/)
+- [Ribbon Health API](https://apis.io/collections/h1/open-ribbon-health-api/)
 
-### H1 Ribbon Focus Areas API
+#### Overlays (3)
 
-Clinical focus-area reference data - browse clinical areas, conditions, and treatments used to describe and match provider expertise.
+OpenAPI overlays, including conversational phrasing for each operation.
 
-- **Human URL:** [https://ribbon.readme.io/reference](https://ribbon.readme.io/reference)
-- **Base URL:** `https://api.ribbonhealth.com/v1`
-- [OpenAPI](openapi/ribbon-health-api-openapi.json)
+- [H1 Openapi Overlay](https://apis.io/overlays/h1/h1-openapi-overlay/)
+- [H1 Price Transparency V2 Overlay](https://apis.io/overlays/h1/h1-price-transparency-v2-overlay/)
+- [H1 Ribbon Health Api Overlay](https://apis.io/overlays/h1/h1-ribbon-health-api-overlay/)
 
-### H1 Ribbon Price Transparency API
+#### Security (2)
 
-Machine-readable price-transparency data - negotiated rates by carrier, provider (NPI), procedure, and location.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://ribbon.readme.io/reference](https://ribbon.readme.io/reference)
-- **Base URL:** `https://api.ribbonhealth.com/v1`
-- [OpenAPI](openapi/ribbon-health-api-openapi.json)
+- [H1 Authentication](https://apis.io/security/h1/h1-authentication/)
+- [H1 Domain Security](https://apis.io/security/h1/h1-domain-security/)
 
-### H1 Ribbon Cost Estimates & Eligibility API
+#### Plans and pricing (1)
 
-Procedure cost estimates and insurance eligibility - submit eligibility checks and retrieve supported eligibility insurance partners and estimated procedure costs.
+Published plans, tiers and prices.
 
-- **Human URL:** [https://ribbon.readme.io/reference](https://ribbon.readme.io/reference)
-- **Base URL:** `https://api.ribbonhealth.com/v1`
-- [OpenAPI](openapi/ribbon-health-api-openapi.json)
+- [H1 Plans Pricing](https://apis.io/plans/h1/h1-plans-pricing/)
 
-### H1 Ribbon Organizations API
+#### Rate limits (1)
 
-Healthcare organization records - retrieve organizations and their details used to group and affiliate providers and locations.
+Published request limits.
 
-- **Human URL:** [https://ribbon.readme.io/reference](https://ribbon.readme.io/reference)
-- **Base URL:** `https://api.ribbonhealth.com/v1`
-- [OpenAPI](openapi/ribbon-health-api-openapi.json)
+- [H1 Rate Limits](https://apis.io/rate-limits/h1/h1-rate-limits/)
 
-### H1 Ribbon Reference Data API
+## Where to find this API
 
-Shared reference data and custom taxonomies - insurances, specialties, procedures, provider types, location types, languages, TINs, and virtual care platforms.
-
-- **Human URL:** [https://ribbon.readme.io/reference](https://ribbon.readme.io/reference)
-- **Base URL:** `https://api.ribbonhealth.com/v1`
-- [OpenAPI](openapi/ribbon-health-api-openapi.json)
-
-### H1 Ribbon Network Analysis API
-
-Network analysis endpoint for assessing provider network composition and adequacy.
-
-- **Human URL:** [https://ribbon.readme.io/reference](https://ribbon.readme.io/reference)
-- **Base URL:** `https://api.ribbonhealth.com/v1`
-- [OpenAPI](openapi/ribbon-health-api-openapi.json)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://h1.co/)
-- [Developer Portal](https://ribbon.readme.io/)
 - [Documentation](https://ribbon.readme.io/docs/welcome-to-the-ribbon-health-api)
-- [API Reference](https://ribbon.readme.io/reference)
-- [Getting Started](https://ribbon.readme.io/docs/getting-started)
-- [Sign Up / Request Demo](https://h1.co/request-demo/)
-- [Blog](https://h1.co/blog/)
+- [Getting started](https://ribbon.readme.io/docs/getting-started)
+- [API reference](https://ribbon.readme.io/reference)
+- [Sign up](https://h1.co/request-demo/)
 - [Support](https://h1.co/contact/)
-- [Security](https://h1.co/security/)
-- [Terms of Service](https://h1.co/terms-of-use/)
-- [Privacy Policy](https://h1.co/privacy-policy/)
+- [Blog](https://h1.co/blog/)
+- [Terms of service](https://h1.co/terms-of-use/)
+- [Privacy policy](https://h1.co/privacy-policy/)
+- [GitHub](https://github.com/RibbonHealth)
+- [Status](https://status.ribbonhealth.com)
 
-## Authentication
+## API Evangelist rating
 
-API key passed as an HTTP Bearer token (OpenAPI `BearerAuth`, applied globally). The API is not FHIR / SMART-on-FHIR. Production keys are gated behind a request-demo / partner sign-up; documentation is fully public.
+**Kin Score 48.3** — developing · rubric 0.25.0 · scored 2026-10-23
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 54.2 |
+| Contract governance | 4.5 |
+| Operational transparency | 57.9 |
+| Developer ergonomics | 49.4 |
+| Access clarity | 34.2 |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Agent readiness 31.8** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 30.5** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/h1/](https://apis.io/providers/h1/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for H1: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/h1/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
